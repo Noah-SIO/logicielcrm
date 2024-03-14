@@ -94,5 +94,6 @@ class ManagerEntreprise{
     public function __construct() {
         $this -> bd = new PDO("mysql:host=localhost;dbname=crm", 'root', '');
     }
+    
 }    
 ?>
