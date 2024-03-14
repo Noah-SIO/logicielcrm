@@ -11,6 +11,7 @@ Class Entreprise{
     private $idCommercial;
     private $dateCreationCompte;
 
+    
 
 }
 
