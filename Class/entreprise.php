@@ -88,4 +88,11 @@ Class Entreprise{
         $this->dateCreationCompte = $dateCreationCompte;
     }
 }
+
+class ManagerEntreprise{
+    private $bd;
+    public function __construct() {
+        $this -> bd = new PDO("mysql:host=localhost;dbname=crm", 'root', '');
+    }
+}    
 ?>
