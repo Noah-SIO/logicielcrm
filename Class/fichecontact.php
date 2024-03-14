@@ -25,6 +25,7 @@ Class Utilisateur{
         $this -> resume = $resume;
     }
 
+//  id
     public function getId() {
         return $this->id;
     }
@@ -33,7 +34,7 @@ Class Utilisateur{
         $this->id = $id;
     }
 
-
+//  Id_compte
     public function getId_compte() {
         return $this->id_compte;
     }
@@ -42,7 +43,7 @@ Class Utilisateur{
         $this->id_compte = $id_compte;
     }
 
-
+//  Id_entreprise
     public function getId_entreprise() {
         return $this->id_entreprise;
     }
@@ -51,7 +52,7 @@ Class Utilisateur{
         $this->id_entreprise = $id_entreprise;
     }
 
-
+// Identifiants
     public function getIdentifiants() {
         return $this->identifiants;
     }
@@ -60,7 +61,7 @@ Class Utilisateur{
         $this->identifiants = $identifiants;
     }
 
-
+//  Date
     public function getDate() {
         return $this->date;
     }
@@ -69,7 +70,7 @@ Class Utilisateur{
         $this->date = $date;
     }
 
-
+//  Moyen de contact
     public function getMoyenDeContact() {
         return $this->MoyenDeContact;
     }
@@ -78,7 +79,7 @@ Class Utilisateur{
         $this->MoyenDeContact = $MoyenDeContact;
     }
 
-
+//  Demande
     public function getDemande() {
         return $this->demande;
     }
@@ -87,7 +88,7 @@ Class Utilisateur{
         $this->demande = $demande;
     }
 
-
+// Reponse
     public function getReponse() {
         return $this->reponse;
     }
@@ -96,7 +97,7 @@ Class Utilisateur{
         $this->reponse = $reponse;
     }
 
-
+//  Support
     public function getSupport() {
         return $this->support;
     }
@@ -105,7 +106,7 @@ Class Utilisateur{
         $this->support = $support;
     }
 
-
+//  Resume
     public function getResume() {
         return $this->reporesumense;
     }
