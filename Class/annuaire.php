@@ -14,7 +14,7 @@ Class annuaire{
         $this -> ValeurDeContact = $ValeurDeContact;
     }
 
-
+//  id
     public function getId() {
         return $this->id;
 
@@ -25,7 +25,7 @@ Class annuaire{
     }
 
 
-
+//  Id_entreprise
     public function setId_entreprise($id_entreprise) {
         $this->id_entreprise = $id_entreprise;
     }
@@ -36,6 +36,9 @@ Class annuaire{
 
     }
 
+
+
+//  type
     public function settype($type) {
         $this->type = $type;
     }
@@ -44,7 +47,7 @@ Class annuaire{
         return $this->type;
     }
 
-
+//  Valeur De Contact
     public function getValeurDeContact() {
         return $this->ValeurDeContact;
     }

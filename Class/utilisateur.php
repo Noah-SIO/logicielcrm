@@ -21,7 +21,7 @@ Class Utilisateur{
         $this -> email = $email;
         $this -> numTel = $numTel;
     }
-
+//  Id
     public function getId() {
         return $this->id;
     }
@@ -30,7 +30,7 @@ Class Utilisateur{
         $this->id = $id;
     }
 
-
+//  Nom
     public function getNom() {
         return $this->nom;
     }
@@ -39,7 +39,7 @@ Class Utilisateur{
         $this->nom = $nom;
     }
 
-
+//  Prenom
     public function getPrenom() {
         return $this->prenom;
     }
@@ -48,7 +48,7 @@ Class Utilisateur{
         $this->prenom = $prenom;
     }
 
-
+//  Identifiants
     public function getIdentifiants() {
         return $this->identifiants;
     }
@@ -57,7 +57,7 @@ Class Utilisateur{
         $this->identifiants = $identifiants;
     }
 
-
+//  Profil
     public function getProfil() {
         return $this->profil;
     }
@@ -66,7 +66,7 @@ Class Utilisateur{
         $this->profil = $profil;
     }
 
-
+//  Mot de pass
     public function getMpd() {
         return $this->mdp;
     }
@@ -75,7 +75,7 @@ Class Utilisateur{
         $this->mdp = $mdp;
     }
 
-
+//  Email
     public function getEmail() {
         return $this->email;
     }
@@ -84,7 +84,7 @@ Class Utilisateur{
         $this->email = $email;
     }
 
-
+//  Numero de telephone
     public function getNumtel() {
         return $this->numTel;
     }
