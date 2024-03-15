@@ -2,8 +2,8 @@
 
 Class Utilisateur{
     private $id;
-    private $id_compte;
-    private $id_entreprise;
+    private $idCompte;
+    private $idEntreprise;
     private $date;
     private $MoyenDeContact;
     private $demande;
@@ -13,10 +13,10 @@ Class Utilisateur{
 
 
     
-    public function __construct($id, $id_compte, $id_entreprise, $date, $MoyenDeContact, $demande, $reponse,$support,$resume){
+    public function __construct($id, $idCompte, $idEntreprise, $date, $MoyenDeContact, $demande, $reponse,$support,$resume){
         $this -> id = $id ;
-        $this -> id_compte = $id_compte;
-        $this -> id_entreprise = $id_entreprise;
+        $this -> idCompte = $idCompte;
+        $this -> idEntreprise = $idEntreprise;
         $this -> date = $date;
         $this -> MoyenDeContact = $MoyenDeContact;
         $this -> demande = $demande;
@@ -35,21 +35,21 @@ Class Utilisateur{
     }
 
 //  Id_compte
-    public function getId_compte() {
-        return $this->id_compte;
+    public function getIdCompte() {
+        return $this->idCompte;
     }
 
-    public function setId_compte($id_compte) {
-        $this->id_compte = $id_compte;
+    public function setIdCompte($idCompte) {
+        $this->idCompte = $idCompte;
     }
 
 //  Id_entreprise
-    public function getId_entreprise() {
-        return $this->id_entreprise;
+    public function getIdEntreprise() {
+        return $this->idEntreprise;
     }
 
-    public function setId_entreprise($id_entreprise) {
-        $this->id_entreprise = $id_entreprise;
+    public function setIdEntreprise($idEntreprise) {
+        $this->idEntreprise = $idEntreprise;
     }
 
 // Identifiants
