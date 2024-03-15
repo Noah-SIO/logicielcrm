@@ -56,14 +56,10 @@ Class Annuaire{
         $this->ValeurDeContact = $ValeurDeContact;
     }
 }
-
-Class AnnuaireManager{
-
-
-
-
-
-
-}
-
+class ManagerAnnuaire{
+    private $bd;
+    public function __construct() {
+        $this -> bd = new PDO("mysql:host=localhost;dbname=crm", 'root', '');
+    }
+}   
 ?>

@@ -3,25 +3,25 @@
 Class RappelAlerte{
     //Valeur privée
     private $id;
-    private $date_debut;
-    private $date_fin;
+    private $dateDebut;
+    private $dateFin;
     private $type;
-    private $utilisateur_exp;
-    private $utilisateur_dest;
+    private $utilisateurExp;
+    private $utilisateurDest;
     private $sujet;
-    private $societe_concerne;
+    private $societeConcerne;
     private $contenu;
     private $statut;
 //Constructeur
-    public function __construct($id,$date_debut,$date_fin,$type,$utilisateur_exp,$utilisateur_dest,$sujet,$societe_concerne,$contenu,$statut){
+    public function __construct($id,$dateDebut,$dateFin,$type,$utilisateurExp,$utilisateurDest,$sujet,$societeConcerne,$contenu,$statut){
         $this ->id=$id;
-        $this -> date_debut = $date_debut;
-        $this ->date_fin=$date_fin;
+        $this -> dateDebut = $dateDebut;
+        $this ->dateFin=$dateFin;
         $this ->type=$type;
-        $this ->utilisateur_exp=$utilisateur_exp;
-        $this ->utilisateur_dest=$utilisateur_dest;
+        $this ->utilisateurExp=$utilisateurExp;
+        $this ->utilisateurDest=$utilisateurDest;
         $this ->sujet=$sujet;
-        $this ->societe_concerne=$societe_concerne;
+        $this ->societeConcerne=$societeConcerne;
         $this ->contenu=$contenu;
         $this ->statut=$statut;
     }
@@ -34,18 +34,18 @@ Class RappelAlerte{
         $this->id = $id;
     }
     public function getDateDebut() {
-        return $this->date_debut;
+        return $this->dateDebut;
     }
 
-    public function setDateDebut($date_debut) {
-        $this->date_debut = $date_debut;
+    public function setDateDebut($dateDebut) {
+        $this->dateDebut = $dateDebut;
     }
     public function getDateFin() {
-        return $this->date_fin;
+        return $this->dateFin;
     }
 
-    public function setDateFin($date_fin) {
-        $this->date_fin = $date_fin;
+    public function setDateFin($dateFin) {
+        $this->dateFin = $dateFin;
     }
     public function getType() {
         return $this->type;
@@ -55,18 +55,18 @@ Class RappelAlerte{
         $this->type = $type;
     }
     public function getUtilisateurEXP() {
-        return $this->utilisateur_exp;
+        return $this->utilisateurExp;
     }
 
-    public function setUtilisateurEXP($utilisateur_exp) {
-        $this->utilisateur_exp = $utilisateur_exp;
+    public function setUtilisateurEXP($utilisateurExp) {
+        $this->utilisateurExp = $utilisateurExp;
     }
     public function getUtilisateurDEST() {
-        return $this->utilisateur_dest;
+        return $this->utilisateurDest;
     }
 
-    public function setUtilisateurDEST($utilisateur_dest) {
-        $this->utilisateur_dest = $utilisateur_dest;
+    public function setUtilisateurDEST($utilisateurDest) {
+        $this->utilisateurDest = $utilisateurDest;
     }
     public function getSujet() {
         return $this->sujet;
@@ -76,11 +76,11 @@ Class RappelAlerte{
         $this->sujet = $sujet;
     }
     public function getSociete() {
-        return $this->societe_concerne;
+        return $this->societeConcerne;
     }
 
-    public function setSociete($societe_concerne) {
-        $this->societe_concerne = $societe_concerne;
+    public function setSociete($societeConcerne) {
+        $this->societeConcerne = $societeConcerne;
     }
     public function getContenu() {
         return $this->contenu;
