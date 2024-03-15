@@ -110,6 +110,13 @@ class ManagerUtilisateur {
             return false;
         } 
     }
+    public function DeleteUser($id) {
+        $sql = 'DELETE FROM utilisateur WHERE id = :id';
+        $requete = $this->bd->prepare($sql);
+        $requete->bindParam(':id', $id, PDO::PARAM_INT);
+        return $requete->execute();
+    }
+
 }
 
 
