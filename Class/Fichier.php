@@ -1,6 +1,6 @@
 <?php 
 
-Class Entreprise{
+Class Fichier{
     //Valeur privée
     private $id;
     private $id_entreprise;
