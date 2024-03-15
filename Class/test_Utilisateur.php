@@ -23,5 +23,6 @@ $testManager = new ManagerUtilisateur();
 if (isset($_POST['login'])){
     $testManager -> verifIdentifiant($_POST['login']);
 }
+$testManager ->addUser($test);
 
 ?>
