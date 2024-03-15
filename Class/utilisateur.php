@@ -90,7 +90,7 @@ class ManagerUtilisateur {
         } 
     }
 
-    //ajoute un utilisateur dans la base de donnees a partir de l'objet utilisateur.
+    //ajoute un utilisateur dans la base de donnees a partir de l'objet utilisateur. || par Romain
     public function addUser($utilisateur){
     $bd = $this->bd;
     $creercompte = $bd->prepare("INSERT INTO utilisateur (nom, prenom, identifiant, mdp, droit) VALUES (:nom, :prenom, :identifiant, :mdp, :droit)");
