@@ -11,14 +11,12 @@ Class Utilisateur{
     private $numTel;
 
     
-    public function __construct($nom, $prenom, $identifiants, $profil, $mdp, $email,$numTel) {
+    public function __construct($nom, $prenom, $identifiants, $mdp, $profil) {
         $this -> nom = $nom;
         $this -> prenom = $prenom;
         $this -> identifiants = $identifiants;
-        $this -> profil = $profil;
         $this -> mdp = $mdp;
-        $this -> email = $email;
-        $this -> numTel = $numTel;
+        $this -> profil = $profil;
     }
 //  Id
     public function getId() {
@@ -74,23 +72,6 @@ Class Utilisateur{
         $this->mdp = $mdp;
     }
 
-//  Email
-    public function getEmail() {
-        return $this->email;
-    }
-
-    public function setEmail($email) {
-        $this->email = $email;
-    }
-
-//  Numero de telephone
-    public function getNumtel() {
-        return $this->numTel;
-    }
-
-    public function setTel($numTel) {
-        $this->numTel = $numTel;
-    }
 }
 
 class ManagerUtilisateur {
@@ -110,6 +91,46 @@ class ManagerUtilisateur {
             return false;
         } 
     }
+    //SearchUSER par Noah en cours de développement
+    public function SearchUserByType($recherche){
+        $sqlnom = "SELECT * FROM utilisateur WHERE nom LIKE '%$recherche%'";
+        $requetenom = $this -> bd -> query ($sqlnom);
+        $donneesnom= $requetenom->fetchall(PDO::FETCH_ASSOC); 
+        $tableauSearchByNom= array();      
+            if($donneesnom != NULL){
+                for ($i=0 ; $i<count($donneesnom) ;$i++){
+            $tableauSearchByNom[]= new Utilisateur($donneesnom[$i]['id'],$donneesnom[$i]['nom'],$donneesnom[$i]['prenom'],$donneesnom[$i]['identifiant'],
+            $donneesnom[$i]['mdp'],$donneesnom[$i]['droit']);                
+        }
+        var_dump($tableauSearchByNom);
+        return $tableauSearchByNom;
+    }
+    $sqlprenom = "SELECT * FROM utilisateur WHERE prenom LIKE '%$recherche%'";
+        $requeteprenom = $this -> bd -> query ($sqlprenom);
+        $donneesprenom= $requeteprenom->fetchall(PDO::FETCH_ASSOC); 
+        $tableauSearchByPrenom= array();      
+            if($donneesprenom != NULL){
+                for ($i=0 ; $i<count($donneesprenom) ;$i++){
+            $tableauSearchByPrenom[]= new Utilisateur($donneesprenom[$i]['id'],$donneesprenom[$i]['nom'],$donneesprenom[$i]['prenom'],$donneesprenom[$i]['identifiant'],
+            $donneesprenom[$i]['mdp'],$donneesprenom[$i]['droit']);                
+        }
+        var_dump($tableauSearchByPrenom);
+        return $tableauSearchByPrenom;
+    }
+    $sqlidentifiant = "SELECT * FROM utilisateur WHERE identifiant LIKE '%$recherche%'";
+        $requeteidentifiant = $this -> bd -> query ($sqlidentifiant);
+        $donneesidentifiant= $requeteidentifiant->fetchall(PDO::FETCH_ASSOC); 
+        $tableauSearchByIdentifiant= array();      
+            if($donneesidentifiant != NULL){
+                for ($i=0 ; $i<count($donneesidentifiant) ;$i++){
+            $tableauSearchByIdentifiant[]= new Utilisateur($donneesidentifiant[$i]['id'],$donneesidentifiant[$i]['nom'],$donneesidentifiant[$i]['prenom'],$donneesidentifiant[$i]['identifiant'],
+            $donneesidentifiant[$i]['mdp'],$donneesidentifiant[$i]['droit']);                
+        }
+        var_dump($tableauSearchByIdentifiant);
+        return $tableauSearchByIdentifiant;
+    }
+    }
+
 }
 
 
