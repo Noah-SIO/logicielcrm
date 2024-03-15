@@ -1,7 +1,7 @@
 <?php 
 require_once('utilisateur.php');
 $bdsqll = new PDO("mysql:host=localhost;dbname=mediatheque", 'root', '');
-$test = new ManagerUtilisateur($bdsqll);
+$tester = new ManagerUtilisateur($bdsqll);
 ///Romaric
 $test = new Utilisateur("Martin", "Robert", "Rmartin", 1, "martin71", "martin@test.fr", 0606060606);
 //$nom = $test -> getNom();
@@ -16,7 +16,10 @@ $test = new Utilisateur("Martin", "Robert", "Rmartin", 1, "martin71", "martin@te
             <input type="submit" name="connection" id='connection'>  </br></br>
             <label for="recherche"> Entré une Recherche : </label></br>
             <input type="text" name="recherche"></br>
-            <input type="submit" name="rechercher" id='rechercher'>  </br></br>
+            <label for="type"> Entré un Type de valeurs(nom,prenom,identifiants) : </label></br>
+            <input type="text" name="type"></br>
+            <input type="submit" name="rechercher" id='rechercher' value='Rechercher'>  </br></br>
+            
     </form>
 </html>
 <?php
@@ -25,7 +28,8 @@ $testManager = new ManagerUtilisateur();
 if (isset($_POST['login'])){
     $testManager -> verifIdentifiant($_POST['login']);
 }
-if (isset($_POST['recherche'])){
-    $test->SearchUserByType($_POST['recherche']);
+if (isset($_POST['recherche'])&&isset($_POST['type'])){
+    $tester->SearchUserByType($_POST['recherche'],$_POST['type']);
+    echo"true";//test
 }
 ?>

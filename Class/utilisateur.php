@@ -104,42 +104,27 @@ class ManagerUtilisateur {
 }
 
     //SearchUSER par Noah en cours de développement
-    public function SearchUserByType($recherche){
-        $sqlnom = "SELECT * FROM utilisateur WHERE nom LIKE '%$recherche%'";
-        $requetenom = $this -> bd -> query ($sqlnom);
-        $donneesnom= $requetenom->fetchall(PDO::FETCH_ASSOC); 
-        $tableauSearchByNom= array();      
-            if($donneesnom != NULL){
-                for ($i=0 ; $i<count($donneesnom) ;$i++){
-            $tableauSearchByNom[]= new Utilisateur($donneesnom[$i]['id'],$donneesnom[$i]['nom'],$donneesnom[$i]['prenom'],$donneesnom[$i]['identifiant'],
-            $donneesnom[$i]['mdp'],$donneesnom[$i]['droit']);                
+    public function SearchUserByType($recherche,$type){
+        $type = strtoupper($type);
+        if($type == "NOM"){
+        $sqlrecherche = "SELECT * FROM utilisateur WHERE nom LIKE '%$recherche%'";
         }
-        var_dump($tableauSearchByNom);
-        return $tableauSearchByNom;
-    }
-    $sqlprenom = "SELECT * FROM utilisateur WHERE prenom LIKE '%$recherche%'";
-        $requeteprenom = $this -> bd -> query ($sqlprenom);
-        $donneesprenom= $requeteprenom->fetchall(PDO::FETCH_ASSOC); 
-        $tableauSearchByPrenom= array();      
-            if($donneesprenom != NULL){
-                for ($i=0 ; $i<count($donneesprenom) ;$i++){
-            $tableauSearchByPrenom[]= new Utilisateur($donneesprenom[$i]['id'],$donneesprenom[$i]['nom'],$donneesprenom[$i]['prenom'],$donneesprenom[$i]['identifiant'],
-            $donneesprenom[$i]['mdp'],$donneesprenom[$i]['droit']);                
+        if($type == "PRENOM"){
+            $sqlrecherche = "SELECT * FROM utilisateur WHERE prenom LIKE '%$recherche%'";
         }
-        var_dump($tableauSearchByPrenom);
-        return $tableauSearchByPrenom;
-    }
-    $sqlidentifiant = "SELECT * FROM utilisateur WHERE identifiant LIKE '%$recherche%'";
-        $requeteidentifiant = $this -> bd -> query ($sqlidentifiant);
-        $donneesidentifiant= $requeteidentifiant->fetchall(PDO::FETCH_ASSOC); 
-        $tableauSearchByIdentifiant= array();      
-            if($donneesidentifiant != NULL){
-                for ($i=0 ; $i<count($donneesidentifiant) ;$i++){
-            $tableauSearchByIdentifiant[]= new Utilisateur($donneesidentifiant[$i]['id'],$donneesidentifiant[$i]['nom'],$donneesidentifiant[$i]['prenom'],$donneesidentifiant[$i]['identifiant'],
-            $donneesidentifiant[$i]['mdp'],$donneesidentifiant[$i]['droit']);                
+        if($type == "IDENTIFIANT"){
+            $sqlrecherche = "SELECT * FROM utilisateur WHERE identifiant LIKE '%$recherche%'";
         }
-        var_dump($tableauSearchByIdentifiant);
-        return $tableauSearchByIdentifiant;
+        $requeterecherche = $this -> bd -> query ($sqlrecherche);
+        $donneesrecherche= $requeterecherche->fetchall(PDO::FETCH_ASSOC); 
+        $tableauRecherche= array();      
+            if($donneesrecherche != NULL){
+                for ($i=0 ; $i<count($donneesrecherche) ;$i++){
+            $tableauRecherche[]= new Utilisateur($donneesrecherche[$i]['id'],$donneesrecherche[$i]['nom'],$donneesrecherche[$i]['prenom'],$donneesrecherche[$i]['identifiant'],
+            $donneesrecherche[$i]['mdp'],$donneesrecherche[$i]['droit']);                
+        }
+        var_dump($tableauRecherche);
+        return $tableauRecherche;
     }
 }
     public function DeleteUser($id) {
