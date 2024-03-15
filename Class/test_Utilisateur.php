@@ -28,4 +28,15 @@ if (isset($_POST['login'])){
 if (isset($_POST['recherche'])){
     $test->SearchUserByType($_POST['recherche']);
 }
+
+
+
+// test modif utilisateur || par Romain
+$test -> setNom('kefdgazliy');
+$test -> setPrenom('eqlizugzei');
+$test ->setProfil(1);
+$testManager -> ModifyUser($test)
+
+
+
 ?>
