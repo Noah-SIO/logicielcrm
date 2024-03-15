@@ -61,5 +61,28 @@ class ManagerAnnuaire{
     public function __construct() {
         $this -> bd = new PDO("mysql:host=localhost;dbname=crm", 'root', '');
     }
+    public function SearchAnnuaireByType($recherche,$type){
+        $type = strtoupper($type);
+        if($type == "TYPE"){
+        $sqlrecherche = "SELECT * FROM annuaire WHERE type LIKE '%$recherche%'";
+        }
+        if($type == "VALEUR DE CONTACT"){
+            $sqlrecherche = "SELECT * FROM annuaire WHERE valeur_contact LIKE '%$recherche%'";
+        }
+        $requeterecherche = $this -> bd -> query ($sqlrecherche);
+        $donneesrecherche= $requeterecherche->fetchall(PDO::FETCH_ASSOC); 
+        $tableauRecherche= array();      
+            if($donneesrecherche != NULL){
+                for ($i=0 ; $i<count($donneesrecherche) ;$i++){
+            $tableauRecherche[]= new Annuaire($donneesrecherche[$i]['id'],$donneesrecherche[$i]['id_entreprise'],$donneesrecherche[$i]['valeur_contact'],$donneesrecherche[$i]['type'],
+            $donneesrecherche[$i]['date']);                
+        }
+        var_dump($tableauRecherche);
+        return $tableauRecherche;
+    }
+
+
+    }
+
 }   
 ?>
