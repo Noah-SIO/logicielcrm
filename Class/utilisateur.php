@@ -129,6 +129,12 @@ class ManagerUtilisateur {
         var_dump($tableauSearchByIdentifiant);
         return $tableauSearchByIdentifiant;
     }
+}
+    public function DeleteUser($id) {
+        $sql = 'DELETE FROM utilisateur WHERE id = :id';
+        $requete = $this->bd->prepare($sql);
+        $requete->bindParam(':id', $id, PDO::PARAM_INT);
+        return $requete->execute();
     }
 
 }
