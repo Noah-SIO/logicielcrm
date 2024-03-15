@@ -1,5 +1,5 @@
 <?php
-Class annuaire{
+Class Annuaire{
 
     private $id;
     private $id_entreprise;
@@ -55,6 +55,15 @@ Class annuaire{
     public function setValeurDeContact($ValeurDeContact) {
         $this->ValeurDeContact = $ValeurDeContact;
     }
+}
+
+Class AnnuaireManager{
+
+
+
+
+
+
 }
 
 ?>
