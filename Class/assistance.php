@@ -3,16 +3,16 @@
 Class Assistance{
     //Valeur privée
     private $id;
-    private $id_utilisateur_responsable;
-    private $id_utilisateur_probleme;
+    private $idUtilisateurResponsable;
+    private $idUtilisateurProbleme;
     private $date;
     private $solution;
     private $statut;
 //Constructeur
-    public function __construct($id,$id_utilisateur_responsable,$id_utilisateur_probleme,$date,$solution,$statut){
+    public function __construct($id,$idUtilisateurResponsable,$idUtilisateurProbleme,$date,$solution,$statut){
         $this ->id=$id;
-        $this ->id_utilisateur_responsable = $id_utilisateur_responsable;
-        $this ->id_utilisateur_probleme=$id_utilisateur_probleme;
+        $this ->idUtilisateurResponsable = $idUtilisateurResponsable;
+        $this ->idUtilisateurProbleme=$idUtilisateurProbleme;
         $this ->date=$date;
         $this ->solution=$solution;
         $this ->statut=$statut;
@@ -25,19 +25,19 @@ Class Assistance{
     public function setId($id) {
         $this->id = $id;
     }
-    public function getId_utilisateur_responsable() {
+    public function getIdUtilisateurResponsable() {
         return $this->id_utilisateur_responsable;
     }
 
-    public function setId_utilisateur_responsable($id_utilisateur_responsable) {
-        $this->id_utilisateur_responsable = $id_utilisateur_responsable;
+    public function setIdUtilisateurResponsable($idUtilisateurResponsable) {
+        $this->idUtilisateurResponsable = $idUtilisateurResponsable;
     }
-    public function getId_utilisateur_probleme() {
-        return $this->id_utilisateur_probleme;
+    public function getIdUtilisateurProbleme() {
+        return $this->idUtilisateurProbleme;
     }
 
-    public function setId_utilisateur_probleme($id_utilisateur_probleme) {
-        $this->id_utilisateur_probleme = $id_utilisateur_probleme;
+    public function setIdUtilisateurProbleme($idUtilisateurProbleme) {
+        $this->idUtilisateurProbleme = $idUtilisateurProbleme;
     }
     public function getDate() {
         return $this->date;
@@ -62,7 +62,7 @@ Class Assistance{
     }
 }
 
-class ManagerEntreprise{
+class ManagerAssistance{
     private $bd;
     public function __construct() {
         $this -> bd = new PDO("mysql:host=localhost;dbname=crm", 'root', '');
