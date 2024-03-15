@@ -16,8 +16,14 @@ $test = new Utilisateur("Martin", "Robert", "Rmartin", 1, "martin71", "martin@te
             <input type="submit" name="connection" id='connection'>  </br></br>
             <label for="recherche"> Entré une Recherche : </label></br>
             <input type="text" name="recherche"></br>
-            <label for="type"> Entré un Type de valeurs(nom,prenom,identifiants) : </label></br>
-            <input type="text" name="type"></br>
+            <!--<label for="type"> Entré un Type de valeurs(nom,prenom,identifiants) : </label></br>
+            <input type="text" name="type"></br>-->
+            <select name="choosetype" id="selecttype">
+            <option value="">--Please choose an option--</option>
+            <option value="nom">Nom</option>
+            <option value="prenom">Prénom</option>
+            <option value="identifiant">Identifiants</option>
+            </select>
             <input type="submit" name="rechercher" id='rechercher' value='Rechercher'>  </br></br>
             
     </form>
@@ -28,8 +34,8 @@ $testManager = new ManagerUtilisateur();
 if (isset($_POST['login'])){
     $testManager -> verifIdentifiant($_POST['login']);
 }
-if (isset($_POST['recherche'])&&isset($_POST['type'])){
-    $tester->SearchUserByType($_POST['recherche'],$_POST['type']);
+if (isset($_POST['recherche'])&&isset($_POST['choosetype'])){
+    $tester->SearchUserByType($_POST['recherche'],$_POST['choosetype']);
     echo"true";//test
 }
 ?>
