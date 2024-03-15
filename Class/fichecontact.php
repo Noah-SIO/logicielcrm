@@ -5,7 +5,7 @@ Class Utilisateur{
     private $idCompte;
     private $idEntreprise;
     private $date;
-    private $MoyenDeContact;
+    private $moyenDeContact;
     private $demande;
     private $reponse;
     private $support;
@@ -13,12 +13,12 @@ Class Utilisateur{
 
 
     
-    public function __construct($id, $idCompte, $idEntreprise, $date, $MoyenDeContact, $demande, $reponse,$support,$resume){
+    public function __construct($id, $idCompte, $idEntreprise, $date, $moyenDeContact, $demande, $reponse,$support,$resume){
         $this -> id = $id ;
         $this -> idCompte = $idCompte;
         $this -> idEntreprise = $idEntreprise;
         $this -> date = $date;
-        $this -> MoyenDeContact = $MoyenDeContact;
+        $this -> moyenDeContact = $moyenDeContact;
         $this -> demande = $demande;
         $this -> reponse = $reponse;
         $this -> support = $support;
@@ -72,11 +72,11 @@ Class Utilisateur{
 
 //  Moyen de contact
     public function getMoyenDeContact() {
-        return $this->MoyenDeContact;
+        return $this->moyenDeContact;
     }
 
-    public function setMoyenDeContact($MoyenDeContact) {
-        $this->MoyenDeContact = $MoyenDeContact;
+    public function setMoyenDeContact($moyenDeContact) {
+        $this->moyenDeContact = $moyenDeContact;
     }
 
 //  Demande
