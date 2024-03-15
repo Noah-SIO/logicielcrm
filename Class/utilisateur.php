@@ -62,7 +62,7 @@ Class Utilisateur{
     }
 
 //  Mot de pass
-    public function getMpd() {
+    public function getMdp() {
         return $this->mdp;
     }
 
@@ -89,6 +89,20 @@ class ManagerUtilisateur {
             return false;
         } 
     }
+
+    //ajoute un utilisateur dans la base de donnees a partir de l'objet utilisateur. || par Romain
+    public function addUser($utilisateur){
+    $bd = $this->bd;
+    $creercompte = $bd->prepare("INSERT INTO utilisateur (nom, prenom, identifiant, mdp, droit) VALUES (:nom, :prenom, :identifiant, :mdp, :droit)");
+    $creercompte->execute([
+        ':nom' => $utilisateur->getNom(),
+        ':prenom' => $utilisateur->getPrenom(),
+        ':identifiant' => $utilisateur->getIdentifiants(),
+        ':mdp' => $utilisateur->getMdp(),
+        ':droit' => $utilisateur->getProfil()
+    ]);    
+}
+
     //SearchUSER par Noah en cours de développement
     public function SearchUserByType($recherche){
         $sqlnom = "SELECT * FROM utilisateur WHERE nom LIKE '%$recherche%'";

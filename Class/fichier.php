@@ -3,14 +3,14 @@
 Class Fichier{
     //Valeur privée
     private $id;
-    private $id_entreprise;
+    private $idEntreprise;
     private $type;
     private $lienDoc;
     private $date;
 //Constructeur
-    public function __construct($id,$id_entreprise,$type,$lienDoc,$date){
+    public function __construct($id,$idEntreprise,$type,$lienDoc,$date){
         $this ->id=$id;
-        $this -> id_entreprise = $id_entreprise;
+        $this -> idEntreprise = $idEntreprise;
         $this ->type=$type;
         $this ->lienDoc=$lienDoc;
         $this ->date=$date;
@@ -24,11 +24,11 @@ Class Fichier{
         $this->id = $id;
     }
     public function getIdEntreprise() {
-        return $this->id_entreprise;
+        return $this->idEntreprise;
     }
 
-    public function setIdEntreprise($id_entreprise) {
-        $this->id_entreprise = $id_entreprise;
+    public function setIdEntreprise($idEntreprise) {
+        $this->idEntreprise = $idEntreprise;
     }
     public function getType() {
         return $this->type;
