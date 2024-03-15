@@ -135,6 +135,21 @@ class ManagerUtilisateur {
         return $requete->execute();
     }
 
+    public function GetUser($nom) {
+        $sql = 'SELECT * FROM utilisateur WHERE nom = :nom';
+        $requete = $this->bd->prepare($sql);
+        $requete->bindParam(':nom', $nom, PDO::PARAM_STR);
+        $requete->execute();
+        return $requete->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function DeleteById($id) {
+        $sql = 'DELETE FROM utilisateur WHERE id = :id';
+        $requete = $this->bd->prepare($sql);
+        $requete->bindParam(':id', $id, PDO::PARAM_INT);
+        return $requete->execute();
+    }
+    
 }
 
 

@@ -62,7 +62,7 @@ Class Assistance{
     }
 }
 
-class ManagerEntreprise{
+class ManagerAssistance{
     private $bd;
     public function __construct() {
         $this -> bd = new PDO("mysql:host=localhost;dbname=crm", 'root', '');
