@@ -11,8 +11,7 @@ Class Utilisateur{
     private $numTel;
 
     
-    public function __construct($id, $nom, $prenom, $identifiants, $profil, $mdp, $email,$numTel){
-        $this -> id = $id ;
+    public function __construct($nom, $prenom, $identifiants, $profil, $mdp, $email,$numTel) {
         $this -> nom = $nom;
         $this -> prenom = $prenom;
         $this -> identifiants = $identifiants;
@@ -92,9 +91,26 @@ Class Utilisateur{
     public function setTel($numTel) {
         $this->numTel = $numTel;
     }
-
 }
 
+class ManagerUtilisateur {
+    private $bd;
+
+    public function __construct() {
+        $this -> bd = new PDO("mysql:host=localhost;dbname=crm", 'root', '');
+    }
+    
+    public function verifIdentifiant($login) {
+        $sql = 'SELECT identifiant FROM utilisateur WHERE identifiant="'.$login.'"';
+        $requete = $this -> bd -> query($sql);
+        $donnees = $requete -> fetch(PDO::FETCH_ASSOC);
+        if ($donnees == $login) {
+            return true;
+        } else {
+            return false;
+        } 
+    }
+}
 
 
 ?>
