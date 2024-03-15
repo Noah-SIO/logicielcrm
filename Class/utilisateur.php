@@ -7,8 +7,6 @@ Class Utilisateur{
     private $identifiants;
     private $profil;
     private $mdp;
-    private $email;
-    private $numTel;
 
     
     public function __construct($nom, $prenom, $identifiants, $mdp, $profil) {
