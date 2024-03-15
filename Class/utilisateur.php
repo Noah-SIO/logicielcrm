@@ -18,7 +18,13 @@ Class Utilisateur{
     }
 //  Id
     public function getId() {
-        return $this->id;
+        $bd = new PDO("mysql:host=localhost;dbname=crm", 'root', '');
+        $identifiant = $this -> identifiants;
+        $sqlnom = "SELECT id FROM utilisateur WHERE identifiant LIKE '$identifiant'";
+        $requetenom = $bd -> query ($sqlnom);
+        $donneesnom= $requetenom->fetchall(PDO::FETCH_ASSOC); 
+        $tableauSearchByNom= array();
+        return $donneesnom[0]['id'];
     }
 
     public function setId($id) {
@@ -100,9 +106,18 @@ class ManagerUtilisateur {
         ':identifiant' => $utilisateur->getIdentifiants(),
         ':mdp' => $utilisateur->getMdp(),
         ':droit' => $utilisateur->getProfil()
-    ]);    
+    ]);   
 }
 
+// Modifie les informations de l'utilisateur dans la base de données a partir de l'objet utilisateur.|| par Romain
+public function ModifyUser($utilisateur) {
+    var_dump($utilisateur);
+    $bd = $this->bd;
+    $creercompte = $bd->prepare("UPDATE utilisateur SET nom = '{$utilisateur->getNom()}', prenom = '{$utilisateur->getPrenom()}' , identifiant = '{$utilisateur->getIdentifiants()}', mdp = '{$utilisateur->getMdp()}', droit = '{$utilisateur->getProfil()}' WHERE id = {$utilisateur->getId()}");
+    $creercompte->execute();
+    
+        
+}
     //SearchUSER par Noah en cours de développement
     public function SearchUserByType($recherche,$type){
         $type = strtoupper($type);
@@ -149,6 +164,8 @@ class ManagerUtilisateur {
         return $requete->execute();
     }
     
+
+
 }
 
 
