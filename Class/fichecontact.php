@@ -116,6 +116,11 @@ Class Contact{
         ];
 
         $req->execute($params);
+        $sql = "SELECT id FROM contact ORDER BY id DESC LIMIT 1;";
+        $req = $this->bd->prepare($sql);
+        $req->execute();
+        $id = $req->fetch();
+        $ficheContact->setId($id);
     }
     public function getContact($nbr){
 
