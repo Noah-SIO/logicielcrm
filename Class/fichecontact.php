@@ -114,7 +114,7 @@ Class Contact{
     }
 
     public function createFicheContact($ficheContact){
-        $sql = "INSERT INTO contact (id_utilisateur, id_entreprise, date_contact, moyen_contact, demande, reponse) VALUES (:idCompte, :idEntreprise, :date_contact, :moyenDeContact, :demande, :reponse)";
+        $sql = "INSERT INTO contact (id_utilisateur, id_entreprise, date, moyen_contact, demande, reponse) VALUES (:idCompte, :idEntreprise, :date_contact, :moyenDeContact, :demande, :reponse)";
         $req = $this->bd->prepare($sql);
         
         $req->execute([
