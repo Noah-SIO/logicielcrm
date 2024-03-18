@@ -13,8 +13,7 @@ Class FicheContact{
 
 
     
-    public function __construct($id, $idCompte, $idEntreprise, $date, $moyenDeContact, $demande, $reponse,$support,$resume){
-        $this -> id = $id ;
+    public function __construct($idCompte, $idEntreprise, $date, $moyenDeContact, $demande, $reponse,$support,$resume){
         $this -> idCompte = $idCompte;
         $this -> idEntreprise = $idEntreprise;
         $this -> date = $date;
@@ -108,7 +107,7 @@ Class FicheContact{
 
 //  Resume
     public function getResume() {
-        return $this->reporesumense;
+        return $this->resume;
     }
 
     public function setResume($resume) {
@@ -127,18 +126,17 @@ Class Contact{
 
 //creation de la fiche de contact || par Romain
     public function createFicheContact($ficheContact){
-        //noter les differentes case a cocher, pas du tout fini !!!!!
-        $fichecontact = $bd->prepare("INSERT INTO utilisateur (nom, prenom, identifiant, mdp, droit) VALUES (:nom, :prenom, :identifiant, :mdp, :droit)");
-        $req = $this -> bd -> prepare($sql);
-        $req -> execute(array(
-            'idCompte' => $ficheContact -> getIdCompte(),
-            'idEntreprise' => $ficheContact -> getIdEntreprise(),
-            'date' => $ficheContact -> getDate(),
-            'moyenDeContact' => $ficheContact -> getMoyenDeContact(),
-            'demande' => $ficheContact -> getDemande(),
-            'reponse' => $ficheContact -> getReponse(),
-            'support' => $ficheContact -> getSupport(),
-            'resume' => $ficheContact -> getResume()
+        $bd = $this->bd; // Add the missing variable $bd
+        $sql = "INSERT INTO contact (id_utilisateur, id_entreprise, date_contact, moyen_contact, demande, reponse, support) VALUES (:idCompte, :idEntreprise, :date_contact, :moyenDeContact, :demande, :reponse, :support)"; // Correct the SQL query
+        $req = $bd->prepare($sql); // Use the correct variable $bd
+        $req->execute(array(
+            'id_utilisateur' => $ficheContact->getIdCompte(),
+            'id_entreprise' => $ficheContact->getIdEntreprise(),
+            'date_contact' => $ficheContact->getDate(),
+            'moyen_contact' => $ficheContact->getMoyenDeContact(),
+            'demande' => $ficheContact->getDemande(),
+            'reponse' => $ficheContact->getReponse(),
+            'support' => $ficheContact->getSupport()
         ));
     }
 
