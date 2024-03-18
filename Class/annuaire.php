@@ -7,7 +7,7 @@ Class Annuaire{
     private $ValeurDeContact;
 
 
-    public function __construct($id, $id_entreprise, $type, $ValeurDeContact){
+    public function __construct($id, $idEntreprise, $type, $ValeurDeContact){
         $this -> id = $id ;
         $this -> idEntreprise = $idEntreprise;
         $this -> type = $type;
@@ -26,13 +26,13 @@ Class Annuaire{
 
 
 //  Id_entreprise
-    public function setId_entreprise($id_entreprise) {
-        $this->id_entreprise = $id_entreprise;
+    public function setIdEntreprise($idEntreprise) {
+        $this->idEntreprise = $idEntreprise;
     }
 
 
-    public function getId_entreprise() {
-        return $this-> id_entreprise;
+    public function getIdEntreprise() {
+        return $this-> idEntreprise;
 
     }
 
