@@ -31,6 +31,10 @@
         <textarea id="resume" name="resume"></textarea>
         <br>
         <input type="submit" value="Submit">
+        <p>-----------------------Test get Contact Noah-------------------------------------- </p>
+        <label for="nbr"> Entré un Nombre de Contact : </label></br>
+            <input type="text" name="nbr"></br>
+            <input type="submit" name="rechercher" id='rechercher' value='Rechercher'>  </br></br>
     </form>
     <?php
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -47,7 +51,12 @@
         $contact = new Contact();
         $contact->createFicheContact($ficheDeContact);
     }
-
+    if (isset($_POST['nbr'])){
+        if($_POST['nbr'] != NULL){
+        $test->getContact($_POST['nbr']);
+        echo"true";//test
+        }
+    }
     ?>
 </body>
 </html>
