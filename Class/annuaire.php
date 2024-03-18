@@ -2,7 +2,7 @@
 Class Annuaire{
 
     private $id;
-    private $id_entreprise;
+    private $idEntreprise;
     private $type;  
     private $ValeurDeContact;
 
