@@ -4,27 +4,25 @@ Class Utilisateur{
     private $id;
     private $nom;
     private $prenom;
-    private $identifiants;
+    private $identifiant;
     private $profil;
     private $mdp;
+    private $email;
+    private $numTel;
 
     
-    public function __construct($nom, $prenom, $identifiants, $mdp, $profil) {
+    public function __construct($nom, $prenom, $identifiant, $profil, $mdp, $email,$numTel) {
         $this -> nom = $nom;
         $this -> prenom = $prenom;
-        $this -> identifiants = $identifiants;
-        $this -> mdp = $mdp;
+        $this -> identifiant = $identifiant;
         $this -> profil = $profil;
+        $this -> mdp = $mdp;
+        $this -> email = $email;
+        $this -> numTel = $numTel;
     }
 //  Id
     public function getId() {
-        $bd = new PDO("mysql:host=localhost;dbname=crm", 'root', '');
-        $identifiant = $this -> identifiants;
-        $sqlnom = "SELECT id FROM utilisateur WHERE identifiant LIKE '$identifiant'";
-        $requetenom = $bd -> query ($sqlnom);
-        $donneesnom= $requetenom->fetchall(PDO::FETCH_ASSOC); 
-        $tableauSearchByNom= array();
-        return $donneesnom[0]['id'];
+        return $this->id;
     }
 
     public function setId($id) {
@@ -50,12 +48,12 @@ Class Utilisateur{
     }
 
 //  Identifiants
-    public function getIdentifiants() {
-        return $this->identifiants;
+    public function getIdentifiant() {
+        return $this->identifiant;
     }
 
-    public function setIdentifiants($identifiants) {
-        $this->identifiants = $identifiants;
+    public function setIdentifiant($identifiant) {
+        $this->identifiant = $identifiant;
     }
 
 //  Profil
@@ -68,7 +66,7 @@ Class Utilisateur{
     }
 
 //  Mot de pass
-    public function getMdp() {
+    public function getMpd() {
         return $this->mdp;
     }
 
@@ -76,6 +74,23 @@ Class Utilisateur{
         $this->mdp = $mdp;
     }
 
+//  Email
+    public function getEmail() {
+        return $this->email;
+    }
+
+    public function setEmail($email) {
+        $this->email = $email;
+    }
+
+//  Numero de telephone
+    public function getNumtel() {
+        return $this->numTel;
+    }
+
+    public function setTel($numTel) {
+        $this->numTel = $numTel;
+    }
 }
 
 class ManagerUtilisateur {
@@ -86,87 +101,100 @@ class ManagerUtilisateur {
     }
     
     public function verifIdentifiant($login) {
-        $sql = 'SELECT identifiant FROM utilisateur WHERE identifiant="'.$login.'"';
+        $sql = 'SELECT identifiant FROM utilisateur';
         $requete = $this -> bd -> query($sql);
         $donnees = $requete -> fetch(PDO::FETCH_ASSOC);
-        if ($donnees == $login) {
-            return true;
-        } else {
-            return false;
-        } 
+        foreach($donnees as $value) {
+            if ($value != $login) {
+                return false;
+            } 
+            if ($value == $login) {
+                return true;
+            }
+        }
     }
 
-    //ajoute un utilisateur dans la base de donnees a partir de l'objet utilisateur. || par Romain
-    public function addUser($utilisateur){
-    $bd = $this->bd;
-    $creercompte = $bd->prepare("INSERT INTO utilisateur (nom, prenom, identifiant, mdp, droit) VALUES (:nom, :prenom, :identifiant, :mdp, :droit)");
-    $creercompte->execute([
-        ':nom' => $utilisateur->getNom(),
-        ':prenom' => $utilisateur->getPrenom(),
-        ':identifiant' => $utilisateur->getIdentifiants(),
-        ':mdp' => $utilisateur->getMdp(),
-        ':droit' => $utilisateur->getProfil()
-    ]);   
-}
-
-// Modifie les informations de l'utilisateur dans la base de données a partir de l'objet utilisateur.|| par Romain
-public function ModifyUser($utilisateur) {
-    var_dump($utilisateur);
-    $bd = $this->bd;
-    $creercompte = $bd->prepare("UPDATE utilisateur SET nom = '{$utilisateur->getNom()}', prenom = '{$utilisateur->getPrenom()}' , identifiant = '{$utilisateur->getIdentifiants()}', mdp = '{$utilisateur->getMdp()}', droit = '{$utilisateur->getProfil()}' WHERE id = {$utilisateur->getId()}");
-    $creercompte->execute();
+    public function verifPassword($mdp) {
+        $sql = 'SELECT mdp FROM utilisateur';
+        $requete = $this -> bd -> query($sql);
+        $donnees = $requete -> fetch(PDO::FETCH_ASSOC);
+        foreach($donnees as $value) {
+            if ($value != $mdp) {
+                return false;
+            } 
+            if ($value == $mdp) {
+                return true;
+            }
+        }
+    }
+     //ajoute un utilisateur dans la base de donnees a partir de l'objet utilisateur. || par Romain
+     public function addUser($utilisateur){
+        $bd = $this->bd;
+        $creercompte = $bd->prepare("INSERT INTO utilisateur (nom, prenom, identifiant, mdp, droit) VALUES (:nom, :prenom, :identifiant, :mdp, :droit)");
+        $creercompte->execute([
+            ':nom' => $utilisateur->getNom(),
+            ':prenom' => $utilisateur->getPrenom(),
+            ':identifiant' => $utilisateur->getIdentifiants(),
+            ':mdp' => $utilisateur->getMdp(),
+            ':droit' => $utilisateur->getProfil()
+        ]);   
+    }
     
+    // Modifie les informations de l'utilisateur dans la base de données a partir de l'objet utilisateur.|| par Romain
+    public function ModifyUser($utilisateur) {
+        var_dump($utilisateur);
+        $bd = $this->bd;
+        $creercompte = $bd->prepare("UPDATE utilisateur SET nom = '{$utilisateur->getNom()}', prenom = '{$utilisateur->getPrenom()}' , identifiant = '{$utilisateur->getIdentifiants()}', mdp = '{$utilisateur->getMdp()}', droit = '{$utilisateur->getProfil()}' WHERE id = {$utilisateur->getId()}");
+        $creercompte->execute();
         
-}
-    //SearchUSER par Noah en cours de développement
-    public function SearchUserByType($recherche,$type){
-        $type = strtoupper($type);
-        if($type == "NOM"){
-        $sqlrecherche = "SELECT * FROM utilisateur WHERE nom LIKE '%$recherche%'";
-        }
-        if($type == "PRENOM"){
-            $sqlrecherche = "SELECT * FROM utilisateur WHERE prenom LIKE '%$recherche%'";
-        }
-        if($type == "IDENTIFIANT"){
-            $sqlrecherche = "SELECT * FROM utilisateur WHERE identifiant LIKE '%$recherche%'";
-        }
-        $requeterecherche = $this -> bd -> query ($sqlrecherche);
-        $donneesrecherche= $requeterecherche->fetchall(PDO::FETCH_ASSOC); 
-        $tableauRecherche= array();      
-            if($donneesrecherche != NULL){
-                for ($i=0 ; $i<count($donneesrecherche) ;$i++){
-            $tableauRecherche[]= new Utilisateur($donneesrecherche[$i]['id'],$donneesrecherche[$i]['nom'],$donneesrecherche[$i]['prenom'],$donneesrecherche[$i]['identifiant'],
-            $donneesrecherche[$i]['mdp'],$donneesrecherche[$i]['droit']);                
-        }
-        var_dump($tableauRecherche);
-        return $tableauRecherche;
+            
     }
-}
-    public function DeleteUser($id) {
-        $sql = 'DELETE FROM utilisateur WHERE id = :id';
-        $requete = $this->bd->prepare($sql);
-        $requete->bindParam(':id', $id, PDO::PARAM_INT);
-        return $requete->execute();
+        //SearchUSER par Noah en cours de développement
+        public function SearchUserByType($recherche,$type){
+            $type = strtoupper($type);
+            if($type == "NOM"){
+            $sqlrecherche = "SELECT * FROM utilisateur WHERE nom LIKE '%$recherche%'";
+            }
+            if($type == "PRENOM"){
+                $sqlrecherche = "SELECT * FROM utilisateur WHERE prenom LIKE '%$recherche%'";
+            }
+            if($type == "IDENTIFIANT"){
+                $sqlrecherche = "SELECT * FROM utilisateur WHERE identifiant LIKE '%$recherche%'";
+            }
+            $requeterecherche = $this -> bd -> query ($sqlrecherche);
+            $donneesrecherche= $requeterecherche->fetchall(PDO::FETCH_ASSOC); 
+            $tableauRecherche= array();      
+                if($donneesrecherche != NULL){
+                    for ($i=0 ; $i<count($donneesrecherche) ;$i++){
+                $tableauRecherche[]= new Utilisateur($donneesrecherche[$i]['id'],$donneesrecherche[$i]['nom'],$donneesrecherche[$i]['prenom'],$donneesrecherche[$i]['identifiant'],
+                $donneesrecherche[$i]['mdp'],$donneesrecherche[$i]['droit']);                
+            }
+            var_dump($tableauRecherche);
+            return $tableauRecherche;
+        }
     }
-
-    public function GetUser($nom) {
-        $sql = 'SELECT * FROM utilisateur WHERE nom = :nom';
-        $requete = $this->bd->prepare($sql);
-        $requete->bindParam(':nom', $nom, PDO::PARAM_STR);
-        $requete->execute();
-        return $requete->fetch(PDO::FETCH_ASSOC);
-    }
-
-    public function DeleteById($id) {
-        $sql = 'DELETE FROM utilisateur WHERE id = :id';
-        $requete = $this->bd->prepare($sql);
-        $requete->bindParam(':id', $id, PDO::PARAM_INT);
-        return $requete->execute();
-    }
+        public function DeleteUser($id) {
+            $sql = 'DELETE FROM utilisateur WHERE id = :id';
+            $requete = $this->bd->prepare($sql);
+            $requete->bindParam(':id', $id, PDO::PARAM_INT);
+            return $requete->execute();
+        }
     
+        public function GetUser($nom) {
+            $sql = 'SELECT * FROM utilisateur WHERE nom = :nom';
+            $requete = $this->bd->prepare($sql);
+            $requete->bindParam(':nom', $nom, PDO::PARAM_STR);
+            $requete->execute();
+            return $requete->fetch(PDO::FETCH_ASSOC);
+        }
+    
+        public function DeleteById($id) {
+            $sql = 'DELETE FROM utilisateur WHERE id = :id';
+            $requete = $this->bd->prepare($sql);
+            $requete->bindParam(':id', $id, PDO::PARAM_INT);
+            return $requete->execute();
+        }
 
-
-}
-
+    }
 
 ?>

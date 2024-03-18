@@ -1,6 +1,6 @@
 <?php 
 
-Class Utilisateur{
+Class FicheContact{
     private $id;
     private $idCompte;
     private $idEntreprise;
@@ -113,6 +113,33 @@ Class Utilisateur{
 
     public function setResume($resume) {
         $this->resume = $resume;
+    }
+
+
+}
+
+
+Class Contact{
+    private $bd;
+    public function __construct() {
+        $this -> bd = new PDO("mysql:host=localhost;dbname=crm", 'root', '');
+    }
+
+//creation de la fiche de contact || par Romain
+    public function createFicheContact($ficheContact){
+        //noter les differentes case a cocher, pas du tout fini !!!!!
+        $fichecontact = $bd->prepare("INSERT INTO utilisateur (nom, prenom, identifiant, mdp, droit) VALUES (:nom, :prenom, :identifiant, :mdp, :droit)");
+        $req = $this -> bd -> prepare($sql);
+        $req -> execute(array(
+            'idCompte' => $ficheContact -> getIdCompte(),
+            'idEntreprise' => $ficheContact -> getIdEntreprise(),
+            'date' => $ficheContact -> getDate(),
+            'moyenDeContact' => $ficheContact -> getMoyenDeContact(),
+            'demande' => $ficheContact -> getDemande(),
+            'reponse' => $ficheContact -> getReponse(),
+            'support' => $ficheContact -> getSupport(),
+            'resume' => $ficheContact -> getResume()
+        ));
     }
 
 
