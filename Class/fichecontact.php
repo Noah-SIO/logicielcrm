@@ -11,8 +11,7 @@ Class FicheContact{
 
 
     
-    public function __construct($id,$idCompte, $idEntreprise, $date, $moyenDeContact, $demande, $reponse){
-        $this->id=$id;
+    public function __construct($idCompte, $idEntreprise, $date, $moyenDeContact, $demande, $reponse){
         $this -> idCompte = $idCompte;
         $this -> idEntreprise = $idEntreprise;
         $this -> date = $date;
@@ -102,20 +101,22 @@ Class Contact{
         $this -> bd = new PDO("mysql:host=localhost;dbname=crm", 'root', '');
     }
 
-    public function createFicheContact($ficheContact){
+    public function createFicheContact($ficheContact)
+    {
         $sql = "INSERT INTO contact (id_utilisateur, id_entreprise, date, moyen_contact, demande, reponse) VALUES (:idCompte, :idEntreprise, :date_contact, :moyenDeContact, :demande, :reponse)";
         $req = $this->bd->prepare($sql);
-        
-        $req->execute([
+
+        $params = [
             'idCompte' => $ficheContact->getIdCompte(),
             'idEntreprise' => $ficheContact->getIdEntreprise(),
             'date_contact' => $ficheContact->getDate(),
             'moyenDeContact' => $ficheContact->getMoyenDeContact(),
             'demande' => $ficheContact->getDemande(),
             'reponse' => $ficheContact->getReponse()
-        ]);
-    }
+        ];
 
+        $req->execute($params);
+    }
     public function getContact($nbr){
 
          
