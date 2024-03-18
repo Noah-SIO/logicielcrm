@@ -95,26 +95,26 @@ Class FicheContact{
 }
 
 
+//creation de la fiche de contact || par Romain
 Class Contact{
     private $bd;
     public function __construct() {
         $this -> bd = new PDO("mysql:host=localhost;dbname=crm", 'root', '');
     }
 
-//creation de la fiche de contact || par Romain
     public function createFicheContact($ficheContact){
-        $bd = $this->bd; // Add the missing variable $bd
-        $sql = "INSERT INTO contact (id_utilisateur, id_entreprise, date_contact, moyen_contact, demande, reponse, support) VALUES (:idCompte, :idEntreprise, :date_contact, :moyenDeContact, :demande, :reponse, :support)"; // Correct the SQL query
-        $req = $bd->prepare($sql); // Use the correct variable $bd
-        $req->execute(array(
-            'id_utilisateur' => $ficheContact->getIdCompte(),
-            'id_entreprise' => $ficheContact->getIdEntreprise(),
+        $sql = "INSERT INTO contact (id_utilisateur, id_entreprise, date_contact, moyen_contact, demande, reponse) VALUES (:idCompte, :idEntreprise, :date_contact, :moyenDeContact, :demande, :reponse)";
+        $req = $this->bd->prepare($sql);
+        
+        $req->execute([
+            'idCompte' => $ficheContact->getIdCompte(),
+            'idEntreprise' => $ficheContact->getIdEntreprise(),
             'date_contact' => $ficheContact->getDate(),
-            'moyen_contact' => $ficheContact->getMoyenDeContact(),
+            'moyenDeContact' => $ficheContact->getMoyenDeContact(),
             'demande' => $ficheContact->getDemande(),
             'reponse' => $ficheContact->getReponse(),
             'support' => $ficheContact->getSupport()
-        ));
+        ]);
     }
 
     public function getContact($nbr){

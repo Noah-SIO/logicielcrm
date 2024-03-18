@@ -5,6 +5,7 @@
     <title>Test</title>
 </head>
 <body>
+    <!--test pour la fonction createFicheContact|| Romain-->
     <form method="post">
         <label for="idCompte">Id Compte</label>
         <input type="text" id="idCompte" name="idCompte">
@@ -37,6 +38,7 @@
             <input type="submit" name="rechercher" id='rechercher' value='Rechercher'>  </br></br>
     </form>
     <?php
+    /**test pour la fonction createFicheContact|| Romain */
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         require_once('fichecontact.php');
         $idCompte = $_POST["idCompte"];
@@ -45,8 +47,7 @@
         $moyenDeContact = $_POST["moyenDeContact"];
         $demande = $_POST["demande"];
         $reponse = $_POST["reponse"];
-        $support = $_POST["support"];
-        $ficheDeContact = new FicheContact($idCompte, $idEntreprise, $date, $moyenDeContact, $demande, $reponse, $support);
+        $ficheDeContact = new FicheContact($idCompte, $idEntreprise, $date, $moyenDeContact, $demande, $reponse);
         
         $contact = new Contact();
         $contact->createFicheContact($ficheDeContact);
@@ -57,6 +58,7 @@
         echo"true";//test
         }
     }
+/**fin test pour la fonction createFicheContact || Romain */
     ?>
 </body>
 </html>
