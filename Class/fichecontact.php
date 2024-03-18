@@ -112,8 +112,7 @@ Class Contact{
             'date_contact' => $ficheContact->getDate(),
             'moyenDeContact' => $ficheContact->getMoyenDeContact(),
             'demande' => $ficheContact->getDemande(),
-            'reponse' => $ficheContact->getReponse(),
-            'support' => $ficheContact->getSupport()
+            'reponse' => $ficheContact->getReponse()
         ]);
     }
 
