@@ -20,11 +20,20 @@ $test = new Utilisateur("Martin", "Robert", "Rmartin", 1, "martin71", "martin@te
 <?php
 
 $testManager = new ManagerUtilisateur();
-if (isset($_POST['login'])){
+/*if (isset($_POST['login'])){
     $testManager -> verifIdentifiant($_POST['login']);
 }
 if (isset($_POST['password'])){
     $testManager -> verifPassword($_POST['password']);
-}
+}*/
 
+// test connexion 
+if (isset($_POST['login']) && isset($_POST['password'])){
+    $testManager -> verifConnexion($_POST['login'], $_POST['password']);
+    if ($testManager == true){
+        echo "true";
+    } else {
+        echo "false";
+    }
+}
 ?>
