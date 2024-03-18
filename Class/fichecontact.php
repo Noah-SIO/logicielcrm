@@ -8,19 +8,18 @@ Class FicheContact{
     private $moyenDeContact;
     private $demande;
     private $reponse;
-    private $support;
-    private $resume;
 
 
     
-    public function __construct($idCompte, $idEntreprise, $date, $moyenDeContact, $demande, $reponse){
+    public function __construct($id,$idCompte, $idEntreprise, $date, $moyenDeContact, $demande, $reponse){
+        $this->id=$id;
         $this -> idCompte = $idCompte;
         $this -> idEntreprise = $idEntreprise;
         $this -> date = $date;
         $this -> moyenDeContact = $moyenDeContact;
         $this -> demande = $demande;
         $this -> reponse = $reponse;
-        }
+    }
 
 //  id
     public function getId() {
@@ -93,16 +92,6 @@ Class FicheContact{
     public function setReponse($reponse) {
         $this->reponse = $reponse;
     }
-
-//  Support
-    public function getSupport() {
-        return $this->support;
-    }
-
-    public function setSupport($support) {
-        $this->support = $support;
-    }
-
 }
 
 
@@ -125,7 +114,25 @@ Class Contact{
             'demande' => $ficheContact->getDemande(),
             'reponse' => $ficheContact->getReponse()
         ]);
-}
+    }
+
+    public function getContact($nbr){
+
+         
+        $sqlcontact = "SELECT * FROM `contact` GROUP BY date DESC LIMIT '$nbr'";
+        $requetecontact = $this -> bd -> query ($sqlcontact);
+        $donneescontact= $requetecontact->fetchall(PDO::FETCH_ASSOC);
+        $tableauContact= array();      
+            if($donneescontact != NULL){
+                for ($i=0 ; $i<count($donneescontact) ;$i++){
+            $tableauContact[]= new Annuaire($donneescontact[$i]['id'],$donneescontact[$i]['id_entreprise'],$donneescontact[$i]['id_utilisateur'],$donneescontact[$i]['date'],$donneescontact[$i]['moyen_contact'],
+            $donneescontact[$i]['demande'],$donneescontact[$i]['reponse']);                
+        }
+        var_dump($tableauContact);
+        return $tableauContact;
+    } 
+    }
+
 }
 
 
