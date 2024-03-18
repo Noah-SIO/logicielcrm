@@ -20,6 +20,8 @@ $test = new ManagerAnnuaire($bdsqll);
 </html>
 <?php
 if (isset($_POST['recherche'])&&isset($_POST['choosetype'])){
+    if($_POST['recherche'] != NULL){
     $test->SearchAnnuaireByType($_POST['recherche'],$_POST['choosetype']);
     echo"true";//test
+    }
 }

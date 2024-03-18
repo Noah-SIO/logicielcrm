@@ -9,7 +9,7 @@ Class Annuaire{
 
     public function __construct($id, $idEntreprise, $type, $ValeurDeContact){
         $this -> id = $id ;
-        $this -> id_entreprise = $id_entreprise;
+        $this -> idEntreprise = $idEntreprise;
         $this -> type = $type;
         $this -> ValeurDeContact = $ValeurDeContact;
     }
