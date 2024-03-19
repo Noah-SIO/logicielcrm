@@ -115,5 +115,7 @@ class ManagerEntreprise{
         $requete->bindParam(':id', $id, PDO::PARAM_INT);
         return $requete->execute();
     }
+    public function ModifClient($id) {
+        $sql = 'REPLACE FROM entreprise WHERE  = :id';
 }    
 ?>
