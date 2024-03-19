@@ -100,35 +100,25 @@ class ManagerUtilisateur {
         $this -> bd = new PDO("mysql:host=localhost;dbname=crm", 'root', '');
     }
     
-    public function verifIdentifiant($login) {
-        $sql = 'SELECT identifiant FROM utilisateur';
+    // vérifie la connexion par l'identifiant et le mot de passe, retourne true ou false
+    public function verifConnexion($login, $mdp) {
+        $sql = 'SELECT id FROM utilisateur WHERE identifiant="'.$login.'" AND mdp="'.$mdp.'"';
         $requete = $this -> bd -> query($sql);
         $donnees = $requete -> fetch(PDO::FETCH_ASSOC);
-        foreach($donnees as $value) {
-            if ($value != $login) {
-                return false;
-            } 
-            if ($value == $login) {
+        $sql2 = 'SELECT identifiant, mdp FROM utilisateur WHERE id="'.$donnees["id"].'"';
+        $requete2 = $this -> bd -> query($sql2);
+        $donnees2 = $requete2 -> fetchAll(PDO::FETCH_ASSOC);
+        foreach($donnees2 as $value) {
+            if ($value["identifiant"] == $login && $value["mdp"] == $mdp) {
                 return true;
+            } else {
+                return false;
             }
         }
     }
-
-    public function verifPassword($mdp) {
-        $sql = 'SELECT mdp FROM utilisateur';
-        $requete = $this -> bd -> query($sql);
-        $donnees = $requete -> fetch(PDO::FETCH_ASSOC);
-        foreach($donnees as $value) {
-            if ($value != $mdp) {
-                return false;
-            } 
-            if ($value == $mdp) {
-                return true;
-            }
-        }
-    }
-     //ajoute un utilisateur dans la base de donnees a partir de l'objet utilisateur. || par Romain
-     public function addUser($utilisateur){
+    
+    //ajoute un utilisateur dans la base de donnees a partir de l'objet utilisateur. || par Romain
+    public function addUser($utilisateur){
         $bd = $this->bd;
         $creercompte = $bd->prepare("INSERT INTO utilisateur (nom, prenom, identifiant, mdp, droit) VALUES (:nom, :prenom, :identifiant, :mdp, :droit)");
         $creercompte->execute([
@@ -145,9 +135,23 @@ class ManagerUtilisateur {
         var_dump($utilisateur);
         $bd = $this->bd;
         $creercompte = $bd->prepare("UPDATE utilisateur SET nom = '{$utilisateur->getNom()}', prenom = '{$utilisateur->getPrenom()}' , identifiant = '{$utilisateur->getIdentifiants()}', mdp = '{$utilisateur->getMdp()}', droit = '{$utilisateur->getProfil()}' WHERE id = {$utilisateur->getId()}");
-        $creercompte->execute();
-        
-            
+        $creercompte->execute();    
+    }
+
+
+
+// Vérifie les informations de connexion de l'utilisateur. || par Romain
+    public function checkLoginInfos($login, $mdp) {
+        $bd = $this->bd;
+        $sql = 'SELECT COUNT(*) FROM utilisateur WHERE identifiant ='.$login.' AND mdp ='.$mdp;
+        $requete = $bd->prepare($sql);
+        $requete->execute();
+        $count = $requete->fetchColumn();
+        if ($count > 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
         //SearchUSER par Noah en cours de développement
         public function SearchUserByType($recherche,$type){
