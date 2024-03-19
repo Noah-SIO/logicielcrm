@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : jeu. 14 mars 2024 à 09:46
+-- Généré le : mar. 19 mars 2024 à 09:15
 -- Version du serveur : 5.7.36
 -- Version de PHP : 7.4.26
 
@@ -53,7 +53,19 @@ CREATE TABLE IF NOT EXISTS `assistance` (
   `contenu` text NOT NULL,
   `statut` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `assistance`
+--
+
+INSERT INTO `assistance` (`id`, `id_responsable`, `id_probleme`, `date`, `sujet`, `contenu`, `statut`) VALUES
+(1, 1, 1, '2024-03-17', 'bug', 'au secours', 1),
+(2, 1, 2, '2024-03-16', 'bla bla bla', 'problème pc', 2),
+(3, 2, 3, '2024-03-16', 'perte de temps', 'bug site', 3),
+(4, 3, 2, '2024-03-15', 'problème récurrent', 'duplication recherche', 3),
+(5, 1, 1, '2024-03-19', 'test', 'test', 0),
+(12, 4, 1, '2024-03-19', 'buuuug', 'aide plz', 0);
 
 -- --------------------------------------------------------
 
@@ -69,8 +81,18 @@ CREATE TABLE IF NOT EXISTS `contact` (
   `moyen_contact` int(11) NOT NULL,
   `demande` text NOT NULL,
   `reponse` text NOT NULL,
+  `date` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `contact`
+--
+
+INSERT INTO `contact` (`id`, `id_utilisateur`, `id_entreprise`, `moyen_contact`, `demande`, `reponse`, `date`) VALUES
+(1, 1, 15, 2, 'probleme d\'imprimante', 'bonjour nous traiteront votre problème d\'ici quelques minutes ', '2024-03-01'),
+(2, 15, 2, 1, 'Besoin d\'acceder aux factures', 'Nous vous les envoyons par courriels', '2018-03-15'),
+(3, 7, 24, 3, 'Demande ajout avoirs', 'Un avoir à été ajouté sur le compte de l\'entreprise ayant l\'id associé aux contacts', '2016-10-13');
 
 -- --------------------------------------------------------
 
@@ -140,7 +162,17 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
   `mdp` text NOT NULL,
   `droit` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `utilisateur`
+--
+
+INSERT INTO `utilisateur` (`id`, `nom`, `prenom`, `identifiant`, `mdp`, `droit`) VALUES
+(1, 'Martin', 'Robert', 'Rmartin', 'martin71', 6),
+(2, 'Lander', 'Bryan', 'bryL', 'bryan0000', 5),
+(3, 'Armil', 'Céline', 'lilineA', 'celine1234', 5),
+(4, 'Dupont', 'Désiré', 'dupontD', 'dupont0101', 5);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
