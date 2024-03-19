@@ -1,4 +1,8 @@
-
+<?php
+require_once('fichecontact.php');
+$bdsqll = new PDO("mysql:host=localhost;dbname=crm", 'root', '');
+$test = new Contact($bdsqll);
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,7 +43,7 @@
     </form>
     <?php
     /**test pour la fonction createFicheContact|| Romain */
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if ($_SERVER["REQUEST_METHOD"] == "POST"&& isset($_POST['name'])) {
         require_once('fichecontact.php');
         $idCompte = $_POST["idCompte"];
         $idEntreprise = $_POST["idEntreprise"];

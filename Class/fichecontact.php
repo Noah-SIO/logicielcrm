@@ -123,15 +123,16 @@ Class Contact{
         $ficheContact->setId($id);
     }
     public function getContact($nbr){
-
-         
-        $sqlcontact = "SELECT * FROM `contact` GROUP BY date DESC LIMIT '$nbr'";
+        $sqlcontact = "SELECT * FROM `contact` GROUP BY date DESC";
+        if($nbr != 0){ 
+        $sqlcontact = "SELECT * FROM `contact` GROUP BY date DESC LIMIT $nbr";
+        }
         $requetecontact = $this -> bd -> query ($sqlcontact);
         $donneescontact= $requetecontact->fetchall(PDO::FETCH_ASSOC);
         $tableauContact= array();      
             if($donneescontact != NULL){
                 for ($i=0 ; $i<count($donneescontact) ;$i++){
-            $tableauContact[]= new Annuaire($donneescontact[$i]['id'],$donneescontact[$i]['id_entreprise'],$donneescontact[$i]['id_utilisateur'],$donneescontact[$i]['date'],$donneescontact[$i]['moyen_contact'],
+            $tableauContact[]= new FicheContact($donneescontact[$i]['id_utilisateur'],$donneescontact[$i]['id_entreprise'],$donneescontact[$i]['date'],$donneescontact[$i]['moyen_contact'],
             $donneescontact[$i]['demande'],$donneescontact[$i]['reponse']);                
         }
         var_dump($tableauContact);
