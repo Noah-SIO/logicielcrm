@@ -139,7 +139,23 @@ Class Contact{
         return $tableauContact;
     } 
     }
-
+    public function getContactHistorique($id_entreprise,$nbr){
+        $sqlhistorique  = "SELECT * FROM `contact` WHERE id_entreprise=$id_entreprise GROUP BY date DESC";
+        if($nbr!=0){
+        $sqlhistorique  = "SELECT * FROM `contact` WHERE id_entreprise=$id_entreprise GROUP BY date DESC LIMIT $nbr";
+        }
+        $requetehistorique = $this -> bd -> query ($sqlhistorique);
+        $donneeshistorique= $requetehistorique->fetchall(PDO::FETCH_ASSOC);
+        $tableauHistorique= array();      
+            if($donneeshistorique != NULL){
+                for ($i=0 ; $i<count($donneeshistorique) ;$i++){
+            $tableauHistorique[]= new FicheContact($donneeshistorique[$i]['id_utilisateur'],$donneeshistorique[$i]['id_entreprise'],$donneeshistorique[$i]['date'],$donneeshistorique[$i]['moyen_contact'],
+            $donneeshistorique[$i]['demande'],$donneeshistorique[$i]['reponse']);                
+        }
+        var_dump($tableauHistorique);
+        return $tableauHistorique;
+    } 
+    }
 }
 
 

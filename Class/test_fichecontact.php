@@ -40,6 +40,12 @@ $test = new Contact($bdsqll);
         <label for="nbr"> Entré un Nombre de Contact : </label></br>
             <input type="text" name="nbr"></br>
             <input type="submit" name="rechercher" id='rechercher' value='Rechercher'>  </br></br>
+        <p>-----------------------Test get "Historique" Contact Noah-------------------------------------- </p>
+        <label for="nbr"> Entré un Nombre de Contact : </label></br>
+            <input type="text" name="nbr"></br>
+            <label for="identreprise"> Entré un Id d'Entreprise : </label></br>
+            <input type="text" name="identreprise"></br>    
+            <input type="submit" name="rechercher" id='rechercher' value='Rechercher'>  </br></br>    
     </form>
     <?php
     /**test pour la fonction createFicheContact|| Romain */
@@ -55,14 +61,21 @@ $test = new Contact($bdsqll);
         
         $contact = new Contact();
         $contact->createFicheContact($ficheDeContact);
+        /**fin test pour la fonction createFicheContact || Romain */
     }
-    if (isset($_POST['nbr'])){
+    //Noah test fonction getHistoriqueContact et GetContact//
+    if (isset($_POST['nbr']) && isset($_POST['identreprise'])==NULL){
         if($_POST['nbr'] != NULL){
         $test->getContact($_POST['nbr']);
         echo"true";//test
         }
     }
-/**fin test pour la fonction createFicheContact || Romain */
+    if (isset($_POST['nbr'])&&isset($_POST['identreprise'])){
+        if($_POST['nbr'] != NULL){
+        $test->getContactHistorique($_POST['identreprise'],$_POST['nbr']);
+        echo"true";//test
+        }
+    }
     ?>
 </body>
 </html>
