@@ -65,8 +65,20 @@ class ManagerFichier{
     $bd = new PDO("mysql:host=localhost;dbname=crm", 'root', '');
     $sql2 = "INSERT INTO fichier (id_utilisateur,date,lien,type) VALUES ('$iduser','$date','$lien','$type')";
     $requete2 = $bd -> query ($sql2);
-
-
    } 
+    public function GetFichierByClient($id_entreprise){
+        $bd = $this->bd;
+        $sql = "SELECT * FROM fichier WHERE id_entreprise = :id_entreprise";
+        $req = $bd->prepare($sql);
+        $req->execute(array('id_entreprise' => $id_entreprise));
+        $resultats = $req->fetchAll(PDO::FETCH_ASSOC);
+        $fichiers = array();
+        foreach ($resultats as $resultat) {
+            $fichier = new Fichier($resultat['id'], $resultat['idEntreprise'], $resultat['type'], $resultat['lienDoc'], $resultat['date']);
+            $fichiers[] = $fichier;
+        }
+        return $fichiers;
+    }
+    
 }
 ?>    
