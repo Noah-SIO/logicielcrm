@@ -82,38 +82,49 @@ class ManagerAssistance{
         }
     }
 
+    // change le $statut 1,2 ou 3 en fonction de l'id du problème
+    public function updateStatut($idProbleme, $statut){
+        if ($statut == 1 or $statut == 2 or $statut == 3){
+            $sql = 'UPDATE assistance SET statut='.$statut.' WHERE id='.$idProbleme.'';
+            $requete = $this -> bd -> query($sql);
+            $donnees = $requete -> fetchAll(PDO::FETCH_ASSOC);
+        } else {
+            return "1/2/3 seulement";
+        }
+    }
+
     // renvoie les derniers problèmes envoyés, le nombre vaire en fonction de $nbr
     public function getLastIssues($nbr){
-        $sql = 'SELECT `date`, statut, sujet, contenu FROM assistance ORDER BY `date` DESC LIMIT '.$nbr.'';
+        $sql = 'SELECT id, `date`, statut, sujet, contenu FROM assistance ORDER BY `date` DESC LIMIT '.$nbr.'';
         $requete = $this -> bd -> query($sql);
         $donnees = $requete -> fetchAll(PDO::FETCH_ASSOC);
         for ($i = 0; $i < count($donnees); $i++) {
             echo "<ul>";
-            echo "<li>date : ".$donnees[$i]['date']." | statut : ".$this->tradStatut($donnees[$i]['statut'])." | sujet : ".$donnees[$i]['sujet']." | contenu : ".$donnees[$i]['contenu']." </li>";
+            echo "<li>id : ".$donnees[$i]['id']." | date : ".$donnees[$i]['date']." | statut : ".$this->tradStatut($donnees[$i]['statut'])." | sujet : ".$donnees[$i]['sujet']." | contenu : ".$donnees[$i]['contenu']." </li>";
             echo "</ul>";
         }
     }
 
     // renvoie les problèmes résolus, le nombre varie en fonction de $nbr
     public function getSolvedIssues($nbr){
-        $sql = 'SELECT `date`, statut, sujet, contenu FROM assistance WHERE statut =3 ORDER BY `date` DESC LIMIT '.$nbr.'';
+        $sql = 'SELECT id, `date`, statut, sujet, contenu FROM assistance WHERE statut =3 ORDER BY `date` DESC LIMIT '.$nbr.'';
         $requete = $this -> bd -> query($sql);
         $donnees = $requete -> fetchAll(PDO::FETCH_ASSOC);
         for ($i = 0; $i < count($donnees); $i++) {
             echo "<ul>";
-            echo "<li>date : ".$donnees[$i]['date']." | sujet : ".$donnees[$i]['sujet']." | contenu : ".$donnees[$i]['contenu']." </li>";
+            echo "<li>id : ".$donnees[$i]['id']." | date : ".$donnees[$i]['date']." | sujet : ".$donnees[$i]['sujet']." | contenu : ".$donnees[$i]['contenu']." </li>";
             echo "</ul>";
         }
     }
 
     // renvoie les problèmes à faire ou en cours, le nombre varie en fonction de $nbr
     public function getUnsolvedIssues($nbr){
-        $sql = 'SELECT `date`, statut, sujet, contenu FROM assistance WHERE statut =1 or 2 ORDER BY `date` DESC LIMIT '.$nbr.'';
+        $sql = 'SELECT id, `date`, statut, sujet, contenu FROM assistance WHERE statut =1 or 2 ORDER BY `date` DESC LIMIT '.$nbr.'';
         $requete = $this -> bd -> query($sql);
         $donnees = $requete -> fetchAll(PDO::FETCH_ASSOC);
         for ($i = 0; $i < count($donnees); $i++) {
             echo "<ul>";
-            echo "<li>date : ".$donnees[$i]['date']." | statut : ".$this->tradStatut($donnees[$i]['statut'])." | sujet : ".$donnees[$i]['sujet']." | contenu : ".$donnees[$i]['contenu']." </li>";
+            echo "<li>id : ".$donnees[$i]['id']." | date : ".$donnees[$i]['date']." | statut : ".$this->tradStatut($donnees[$i]['statut'])." | sujet : ".$donnees[$i]['sujet']." | contenu : ".$donnees[$i]['contenu']." </li>";
             echo "</ul>";
         }
     }
