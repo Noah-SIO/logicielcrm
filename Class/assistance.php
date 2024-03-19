@@ -89,7 +89,7 @@ class ManagerAssistance{
         $donnees = $requete -> fetchAll(PDO::FETCH_ASSOC);
         for ($i = 0; $i < count($donnees); $i++) {
             echo "<ul>";
-            echo "<li>date : ".$donnees[$i]['date']." statut : ".$this->tradStatut($donnees[$i]['statut'])." sujet : ".$donnees[$i]['sujet']." contenu : ".$donnees[$i]['contenu']." </li>";
+            echo "<li>date : ".$donnees[$i]['date']." | statut : ".$this->tradStatut($donnees[$i]['statut'])." | sujet : ".$donnees[$i]['sujet']." | contenu : ".$donnees[$i]['contenu']." </li>";
             echo "</ul>";
         }
     }
@@ -101,7 +101,7 @@ class ManagerAssistance{
         $donnees = $requete -> fetchAll(PDO::FETCH_ASSOC);
         for ($i = 0; $i < count($donnees); $i++) {
             echo "<ul>";
-            echo "<li>date : ".$donnees[$i]['date']." sujet : ".$donnees[$i]['sujet']." contenu : ".$donnees[$i]['contenu']." </li>";
+            echo "<li>date : ".$donnees[$i]['date']." | sujet : ".$donnees[$i]['sujet']." | contenu : ".$donnees[$i]['contenu']." </li>";
             echo "</ul>";
         }
     }
@@ -113,7 +113,7 @@ class ManagerAssistance{
         $donnees = $requete -> fetchAll(PDO::FETCH_ASSOC);
         for ($i = 0; $i < count($donnees); $i++) {
             echo "<ul>";
-            echo "<li>date : ".$donnees[$i]['date']." statut : ".$this->tradStatut($donnees[$i]['statut'])." sujet : ".$donnees[$i]['sujet']." contenu : ".$donnees[$i]['contenu']." </li>";
+            echo "<li>date : ".$donnees[$i]['date']." | statut : ".$this->tradStatut($donnees[$i]['statut'])." | sujet : ".$donnees[$i]['sujet']." | contenu : ".$donnees[$i]['contenu']." </li>";
             echo "</ul>";
         }
     }
