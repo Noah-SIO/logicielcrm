@@ -29,11 +29,7 @@ if (isset($_POST['password'])){
 
 // test connexion 
 if (isset($_POST['login']) && isset($_POST['password'])){
-    $testManager -> verifConnexion($_POST['login'], $_POST['password']);
-    if ($testManager == true){
-        echo "true";
-    } else {
-        echo "false";
-    }
+    $result = $testManager -> checkLoginInfos($_POST['login'], $_POST['password']);
+    var_dump($result);
 }
 ?>
