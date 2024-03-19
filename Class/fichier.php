@@ -8,12 +8,11 @@ Class Fichier{
     private $lienDoc;
     private $date;
 //Constructeur
-    public function __construct($id,$idEntreprise,$type,$lienDoc,$date){
-        $this ->id=$id;
+    public function __construct($idEntreprise,$date,$lienDoc,$type){
         $this -> idEntreprise = $idEntreprise;
-        $this ->type=$type;
-        $this ->lienDoc=$lienDoc;
         $this ->date=$date;
+        $this ->lienDoc=$lienDoc;
+        $this ->type=$type;
     }
     //Fonction Get et Set
     public function getId() {
@@ -57,6 +56,17 @@ class ManagerFichier{
     public function __construct() {
         $this -> bd = new PDO("mysql:host=localhost;dbname=crm", 'root', '');
     }
-    
+
+   public function LinkDocumentToClient($Fichier){
+    $iduser = $Fichier->getIdEntreprise() ;
+    $date = $Fichier->getDate();
+    $lien = $Fichier->getLienDoc();
+    $type= $Fichier->getType();
+    $bd = new PDO("mysql:host=localhost;dbname=crm", 'root', '');
+    $sql2 = "INSERT INTO fichier (id_utilisateur,date,lien,type) VALUES ('$iduser','$date','$lien','$type')";
+    $requete2 = $bd -> query ($sql2);
+
+
+   } 
 }
 ?>    
