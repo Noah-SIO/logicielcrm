@@ -145,9 +145,23 @@ class ManagerUtilisateur {
         var_dump($utilisateur);
         $bd = $this->bd;
         $creercompte = $bd->prepare("UPDATE utilisateur SET nom = '{$utilisateur->getNom()}', prenom = '{$utilisateur->getPrenom()}' , identifiant = '{$utilisateur->getIdentifiants()}', mdp = '{$utilisateur->getMdp()}', droit = '{$utilisateur->getProfil()}' WHERE id = {$utilisateur->getId()}");
-        $creercompte->execute();
-        
-            
+        $creercompte->execute();    
+    }
+
+
+
+// Vérifie les informations de connexion de l'utilisateur. || par Romain
+    public function checkLoginInfos($login, $mdp) {
+        $bd = $this->bd;
+        $sql = 'SELECT COUNT(*) FROM utilisateur WHERE identifiant ='.$login.' AND mdp ='.$mdp;
+        $requete = $bd->prepare($sql);
+        $requete->execute();
+        $count = $requete->fetchColumn();
+        if ($count > 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
         //SearchUSER par Noah en cours de développement
         public function SearchUserByType($recherche,$type){
