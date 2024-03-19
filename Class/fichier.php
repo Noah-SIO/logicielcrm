@@ -57,6 +57,19 @@ class ManagerFichier{
     public function __construct() {
         $this -> bd = new PDO("mysql:host=localhost;dbname=crm", 'root', '');
     }
+    public function GetFichierByClient($id_entreprise){
+        $bd = $this->bd;
+        $sql = "SELECT * FROM fichier WHERE id_entreprise = :id_entreprise";
+        $req = $bd->prepare($sql);
+        $req->execute(array('id_entreprise' => $id_entreprise));
+        $resultats = $req->fetchAll(PDO::FETCH_ASSOC);
+        $fichiers = array();
+        foreach ($resultats as $resultat) {
+            $fichier = new Fichier($resultat['id'], $resultat['idEntreprise'], $resultat['type'], $resultat['lienDoc'], $resultat['date']);
+            $fichiers[] = $fichier;
+        }
+        return $fichiers;
+    }
     
 }
 ?>    

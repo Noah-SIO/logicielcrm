@@ -91,9 +91,23 @@ Class Entreprise{
 
 class ManagerEntreprise{
     private $bd;
+
     public function __construct() {
         $this -> bd = new PDO("mysql:host=localhost;dbname=crm", 'root', '');
     }
-    
+
+    public function SearchClientByName($nom){
+        $bd = $this->bd;
+        $sql = "SELECT * FROM entreprise WHERE nom LIKE :nom";
+        $req = $bd->prepare($sql);
+        $req->execute(array('nom' => '%' . $nom . '%'));
+        $resultats = $req->fetchAll(PDO::FETCH_ASSOC);
+        $entreprises = array();
+        foreach ($resultats as $resultat) {
+            $entreprise = new Entreprise($resultat['id'], $resultat['nom'], $resultat['prenom'], $resultat['numClient'], $resultat['societe'], $resultat['poste'], $resultat['email'], $resultat['idCommercial'], $resultat['dateCreationCompte']);
+            $entreprises[] = $entreprise;
+        }
+        return $entreprises;
+    }
 }    
 ?>
