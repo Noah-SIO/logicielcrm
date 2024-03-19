@@ -83,9 +83,9 @@ class ManagerAssistance{
     }
 
     // change le $statut 1,2 ou 3 en fonction de l'id du problème
-    public function updateStatut($idProbleme, $statut){
+    public function updateStatut($id, $statut){
         if ($statut == 1 or $statut == 2 or $statut == 3){
-            $sql = 'UPDATE assistance SET statut='.$statut.' WHERE id='.$idProbleme.'';
+            $sql = 'UPDATE assistance SET statut='.$statut.' WHERE id='.$id.'';
             $requete = $this -> bd -> query($sql);
             $donnees = $requete -> fetchAll(PDO::FETCH_ASSOC);
         } else {
@@ -127,6 +127,12 @@ class ManagerAssistance{
             echo "<li>id : ".$donnees[$i]['id']." | date : ".$donnees[$i]['date']." | statut : ".$this->tradStatut($donnees[$i]['statut'])." | sujet : ".$donnees[$i]['sujet']." | contenu : ".$donnees[$i]['contenu']." </li>";
             echo "</ul>";
         }
+    }
+
+    public function registerIssue($idRespInfo, $idProbleme, $sujet, $contenu){
+        $sql = 'INSERT INTO assistance (id_responsable, id_probleme, `date`, sujet, contenu, statut) VALUES ('.$idRespInfo.', '.$idProbleme.', "'.date("Y-m-d").'", "'.$sujet.'", "'.$contenu.'", 0)';
+        $requete = $this -> bd -> query($sql);
+        $donnees = $requete -> fetch(PDO::FETCH_ASSOC);
     }
 }    
 ?>
