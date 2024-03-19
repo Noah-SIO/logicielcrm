@@ -14,7 +14,7 @@ Class Entreprise{
 //Constructeur
     public function __construct($id,$nom,$prenom,$numClient,$societe,$poste,$email,$idCommercial,$dateCreationCompte){
         $this ->id=$id;
-        $this -> nom = $nom;
+        $this ->nom = $nom;
         $this ->prenom=$prenom;
         $this ->numClient=$numClient;
         $this ->societe=$societe;
@@ -108,6 +108,12 @@ class ManagerEntreprise{
             $entreprises[] = $entreprise;
         }
         return $entreprises;
+    }
+    public function DeleteClientById($id) {
+        $sql = 'DELETE FROM entreprise WHERE id = :id';
+        $requete = $this->bd->prepare($sql);
+        $requete->bindParam(':id', $id, PDO::PARAM_INT);
+        return $requete->execute();
     }
 }    
 ?>
