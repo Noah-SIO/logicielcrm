@@ -123,9 +123,10 @@ Class Contact{
         $ficheContact->setId($id);
     }
     public function getContact($nbr){
-
-         
+        $sqlcontact = "SELECT * FROM `contact` GROUP BY date DESC";
+        if($nbr != 0){ 
         $sqlcontact = "SELECT * FROM `contact` GROUP BY date DESC LIMIT $nbr";
+        }
         $requetecontact = $this -> bd -> query ($sqlcontact);
         $donneescontact= $requetecontact->fetchall(PDO::FETCH_ASSOC);
         $tableauContact= array();      
