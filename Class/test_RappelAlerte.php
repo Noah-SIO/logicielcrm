@@ -33,7 +33,7 @@
 <form method="post">
 <label for="id">ID Alerte : </label><br>
     <input type="number" id="id" name="id" required><br>
-<input type="submit" value="Envoyer">
+    <input type="submit" value="Envoyer">
 </form>
 
 
@@ -42,24 +42,10 @@ if (isset($_POST['submit'])) {
     require_once('rappelAlerte.php');
     $bdsqll = new PDO("mysql:host=localhost;dbname=crm", 'root', '');
     $test = new ManagerRappelAlerte($bdsqll);
-    $rappelAlerte = new RappelAlerte(
-        $_POST['id'],
-        $_POST['dateDebut'],
-        $_POST['dateFin'],
-        $_POST['type'],
-        $_POST['id_expediteur'],
-        $_POST['id_destinataire'],
-        $_POST['sujet'],
-        $_POST['societeConcerne'],
-        $_POST['contenu'],
-        $_POST['statut']
-    );
-    var_dump($rappelAlerte);
+    $rappelAlerte = new RappelAlerte( $_POST['id'],$_POST['dateDebut'],$_POST['dateFin'],$_POST['type'],$_POST['id_expediteur'],$_POST['id_destinataire'],$_POST['sujet'],$_POST['societeConcerne'],$_POST['contenu'],$_POST['statut']);
     $test->sendAlerteRappel($rappelAlerte);
 }
-if(isset($_POST['id'])){
-    $test->stopAlerte($_POST['id']);
-}
+
 ?>
 </body>
 </html>
