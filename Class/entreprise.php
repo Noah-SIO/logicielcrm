@@ -5,21 +5,17 @@ Class Entreprise{
     private $id;
     private $nom;
     private $prenom;
-    private $numClient;
     private $societe;
     private $poste;
-    private $email;
     private $idCommercial;
     private $dateCreationCompte;
 //Constructeur
-    public function __construct($id,$nom,$prenom,$numClient,$societe,$poste,$email,$idCommercial,$dateCreationCompte){
+    public function __construct($id,$nom,$prenom,$societe,$poste,$idCommercial,$dateCreationCompte){
         $this ->id=$id;
         $this ->nom = $nom;
         $this ->prenom=$prenom;
-        $this ->numClient=$numClient;
         $this ->societe=$societe;
         $this ->poste=$poste;
-        $this ->email=$email;
         $this ->idCommercial=$idCommercial;
         $this ->dateCreationCompte=$dateCreationCompte;
     }
@@ -115,5 +111,19 @@ class ManagerEntreprise{
         $requete->bindParam(':id', $id, PDO::PARAM_INT);
         return $requete->execute();
     }
-}    
+    public function SearchClientBySociete($societe){
+        $sqlsociete = "SELECT * FROM entreprise WHERE societe Like '%$societe%'";
+        $requetesociete = $this -> bd -> query ($sqlsociete);
+        $donneessociete= $requetesociete->fetchall(PDO::FETCH_ASSOC);
+        $tableauSociete= array();
+        if($donneessociete != NULL){
+            for ($i=0 ; $i<count($donneessociete) ;$i++){
+            $tableauSociete[] = new Entreprise($donneessociete[$i]['id'], $donneessociete[$i]['nom'], $donneessociete[$i]['prenom'],
+            $donneessociete[$i]['societe'],$donneessociete[$i]['poste'],$donneessociete[$i]['id_commercial'], $donneessociete[$i]['date']);
+        }
+        var_dump($tableauSociete);
+        return $tableauSociete;
+    }
+    }
+    }    
 ?>
