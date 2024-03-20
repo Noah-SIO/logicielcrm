@@ -9,11 +9,10 @@ Class RappelAlerte{
     private $utilisateurExp;
     private $utilisateurDest;
     private $sujet;
-    private $societeConcerne;
     private $contenu;
     private $statut;
 //Constructeur
-    public function __construct($id,$dateDebut,$dateFin,$type,$utilisateurExp,$utilisateurDest,$sujet,$societeConcerne,$contenu,$statut){
+    public function __construct($id,$dateDebut,$dateFin,$type,$utilisateurExp,$utilisateurDest,$sujet,$contenu,$statut){
         $this ->id=$id;
         $this -> dateDebut = $dateDebut;
         $this ->dateFin=$dateFin;
@@ -21,7 +20,6 @@ Class RappelAlerte{
         $this ->utilisateurExp=$utilisateurExp;
         $this ->utilisateurDest=$utilisateurDest;
         $this ->sujet=$sujet;
-        $this ->societeConcerne=$societeConcerne;
         $this ->contenu=$contenu;
         $this ->statut=$statut;
     }
@@ -115,6 +113,20 @@ class ManagerRappelAlerte{
         SET statut = REPLACE(statut, 1, 2)
         WHERE id=$idAlerte";
         $requete2 = $this->bd -> query ($sql2);
+    }
+    public function getAlerteRappel($userId){
+        $sqlrecherche = "SELECT * FROM `rappel_alerte` WHERE id_destinataire=$userId";
+        $requeterecherche = $this -> bd -> query ($sqlrecherche);
+        $donneesrecherche= $requeterecherche->fetchall(PDO::FETCH_ASSOC); 
+        $tableauRecherche= array();      
+            if($donneesrecherche != NULL){
+                for ($i=0 ; $i<count($donneesrecherche) ;$i++){
+            $tableauRecherche[]= new RappelAlerte($donneesrecherche[$i]['id'],$donneesrecherche[$i]['date_debut'],$donneesrecherche[$i]['date_fin'],$donneesrecherche[$i]['type'],
+            $donneesrecherche[$i]['id_expediteur'],$donneesrecherche[$i]['id_destinataire'],$donneesrecherche[$i]['sujet'],$donneesrecherche[$i]['contenu'],$donneesrecherche[$i]['statut']);                
+        }
+        var_dump($tableauRecherche);
+        return $tableauRecherche;
+        }
     }
 }
 ?>    

@@ -27,7 +27,13 @@
     <textarea id="contenu" name="contenu" required></textarea><br>
     <label for="statut">Statut:</label><br>
     <input type="number" id="statut" name="statut" required><br>
-    <input type="submit" value="Envoyer">
+    <input type="submit" name="submit" value="Envoyer">
+</form>
+<p>-------------Test stop alerte-------------------<p>
+<form method="post">
+<label for="id">ID Alerte : </label><br>
+    <input type="number" id="id" name="id" required><br>
+<input type="submit" value="Envoyer">
 </form>
 
 
@@ -51,7 +57,9 @@ if (isset($_POST['submit'])) {
     var_dump($rappelAlerte);
     $test->sendAlerteRappel($rappelAlerte);
 }
-
+if(isset($_POST['id'])){
+    $test->stopAlerte($_POST['id']);
+}
 ?>
 </body>
 </html>
