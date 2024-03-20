@@ -164,7 +164,6 @@ Class Contact{
         var_dump($tableauHistorique);
         return $tableauHistorique;
     } 
-<<<<<<< HEAD
 }
 
     public function deleteContact($idContact){
@@ -174,9 +173,6 @@ Class Contact{
     return $req->execute();
 }
 
-=======
-    }
-
     public function modifContact($ficheContact){
         $sql = "UPDATE contact SET id_utilisateur=:idCompte, id_entreprise=:idEntreprise, date=:date_contact, moyen_contact=:moyenDeContact, demande=:demande, reponse=:reponse WHERE id=:id";
         $req = $this->bd->prepare($sql);
@@ -184,9 +180,8 @@ Class Contact{
         var_dump($params);
         $req->execute($params);
     }
->>>>>>> 8b934529ecce2d6312663a39d70b06cfc541ab85
-}
 
+}
 
 
 
