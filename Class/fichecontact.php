@@ -22,7 +22,7 @@ Class FicheContact{
 
 //  id
     public function getId() {
-        return $this->id;
+        return $this->id['id'];
     }
 
     public function setId($id) {
@@ -122,6 +122,10 @@ Class Contact{
         $id = $req->fetch();
         $ficheContact->setId($id);
     }
+
+
+
+
     public function getContact($nbr){
         $sqlcontact = "SELECT * FROM `contact` GROUP BY date DESC";
         if($nbr != 0){ 
@@ -139,6 +143,11 @@ Class Contact{
         return $tableauContact;
     } 
     }
+
+
+
+
+
     public function getContactHistorique($id_entreprise,$nbr){
         $sqlhistorique  = "SELECT * FROM `contact` WHERE id_entreprise=$id_entreprise GROUP BY date DESC";
         if($nbr!=0){
@@ -156,7 +165,24 @@ Class Contact{
         return $tableauHistorique;
     } 
     }
+
+    public function modifContact($ficheContact){
+        $sql = "UPDATE contact SET id_utilisateur=:idCompte, id_entreprise=:idEntreprise, date=:date_contact, moyen_contact=:moyenDeContact, demande=:demande, reponse=:reponse WHERE id=:id";
+        $req = $this->bd->prepare($sql);
+        $params = [
+            'idCompte' => $ficheContact->getIdCompte(),
+            'idEntreprise' => $ficheContact->getIdEntreprise(),
+            'date_contact' => $ficheContact->getDate(),
+            'moyenDeContact' => $ficheContact->getMoyenDeContact(),
+            'demande' => $ficheContact->getDemande(),
+            'reponse' => $ficheContact->getReponse(),
+            'id' => $ficheContact->getId()
+        ];
+        var_dump($params);
+        $req->execute($params);
+    }
 }
+
 
 
 
