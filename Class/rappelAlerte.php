@@ -103,5 +103,9 @@ class ManagerRappelAlerte{
         $this -> bd = new PDO("mysql:host=localhost;dbname=crm", 'root', '');
     }
     
+
+    public function sendAlerteRappel($rappelAlerte){
+        
+    }
 }
 ?>    
