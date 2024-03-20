@@ -138,7 +138,11 @@ class ManagerAssistance{
 
 
     public function statsNumberOfIssues(){
-        
+        $date = date('Y-m-d', strtotime('-10 days'));
+        $sql = "SELECT COUNT(*) as nb FROM assistance WHERE `date` >= '{$date}'";
+        $requete = $this->bd->query($sql);
+        $donnees = $requete -> fetch(PDO::FETCH_ASSOC);
+        return $donnees['nb'];
     }
 }    
 ?>
