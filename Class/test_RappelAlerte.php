@@ -32,7 +32,10 @@
 <p>-------------Test stop alerte-------------------<p>
 <form method="post">
 <label for="id">ID Alerte : </label><br>
-    <input type="number" id="id" name="id" required><br>
+    <input type="number" id="id" name="id"><br>
+<p>-------------Test get AlerteRappel-------------------<p>
+    <label for="iddest">ID Alerte : </label><br>
+    <input type="number" id="iddest" name="iddest"><br>    
 <input type="submit" value="Envoyer">
 </form>
 <?php
@@ -55,8 +58,11 @@ if (isset($_POST['submit'])) {
     var_dump($rappelAlerte);
     $test->sendAlerteRappel($rappelAlerte);
 }
-if(isset($_POST['id'])){
+if(isset($_POST['id']) &&isset($_POST['iddest'])==NULL){
     $test->stopAlerte($_POST['id']);
+}
+if(isset($_POST['iddest'])){
+    $test->getAlerteRappel($_POST['iddest']);
 }
 ?>
 </body>
