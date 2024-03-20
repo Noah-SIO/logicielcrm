@@ -110,5 +110,11 @@ class ManagerRappelAlerte{
         $stmt = $this->bd->prepare($query);
         $stmt->execute(['dateDebut' => $rappelAlerte->getDateDebut(),'dateFin' => $rappelAlerte->getDateFin(),'type' => $rappelAlerte->getType(),'expediteur' => $rappelAlerte->getUtilisateurEXP(),'destinataire' => $rappelAlerte->getUtilisateurDEST(),'sujet' => $rappelAlerte->getSujet(),'contenu' => $rappelAlerte->getContenu(),'statut' => $rappelAlerte->getStatut()]);
     }
+    public function stopAlerte($idAlerte){
+        $sql2 = "UPDATE rappel_alerte
+        SET statut = REPLACE(statut, 1, 2)
+        WHERE id=$idAlerte";
+        $requete2 = $this->bd -> query ($sql2);
+    }
 }
 ?>    
