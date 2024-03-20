@@ -135,5 +135,10 @@ class ManagerAssistance{
         $requete = $this -> bd -> query($sql);
         $donnees = $requete -> fetch(PDO::FETCH_ASSOC);
     }
+
+
+    public function statsNumberOfIssues(){
+        
+    }
 }    
 ?>
