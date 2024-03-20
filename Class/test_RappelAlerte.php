@@ -6,7 +6,6 @@
     <title>Document</title>
 </head>
 <body>
-<h1>Test sendAlerteRappel()</h1>
 <form method="post">
     <label for="id">ID:</label><br>
     <input type="number" id="id" name="id" required><br>
@@ -33,37 +32,20 @@
 <p>-------------Test stop alerte-------------------<p>
 <form method="post">
 <label for="id">ID Alerte : </label><br>
-    <input type="number" id="id" name="id"><br>
-<p>-------------Test get AlerteRappel-------------------<p>
-    <label for="iddest">ID Alerte : </label><br>
-    <input type="number" id="iddest" name="iddest"><br>    
-<input type="submit" value="Envoyer">
+    <input type="number" id="id" name="id" required><br>
+    <input type="submit" value="Envoyer">
 </form>
+
+
 <?php
-require_once('rappelAlerte.php');
-$bdsqll = new PDO("mysql:host=localhost;dbname=crm", 'root', '');
-$test = new ManagerRappelAlerte($bdsqll);
 if (isset($_POST['submit'])) {
-    $rappelAlerte = new RappelAlerte(
-        $_POST['id'],
-        $_POST['dateDebut'],
-        $_POST['dateFin'],
-        $_POST['type'],
-        $_POST['id_expediteur'],
-        $_POST['id_destinataire'],
-        $_POST['sujet'],
-        $_POST['societeConcerne'],
-        $_POST['contenu'],
-        $_POST['statut']
-    );
+    require_once('rappelAlerte.php');
+    $bdsqll = new PDO("mysql:host=localhost;dbname=crm", 'root', '');
+    $test = new ManagerRappelAlerte($bdsqll);
+    $rappelAlerte = new RappelAlerte( $_POST['id'],$_POST['dateDebut'],$_POST['dateFin'],$_POST['type'],$_POST['id_expediteur'],$_POST['id_destinataire'],$_POST['sujet'],$_POST['societeConcerne'],$_POST['contenu'],$_POST['statut']);
     $test->sendAlerteRappel($rappelAlerte);
 }
-if(isset($_POST['id']) &&isset($_POST['iddest'])==NULL){
-    $test->stopAlerte($_POST['id']);
-}
-if(isset($_POST['iddest'])){
-    $test->getAlerteRappel($_POST['iddest']);
-}
+
 ?>
 </body>
 </html>
