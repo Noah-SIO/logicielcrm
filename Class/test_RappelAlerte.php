@@ -6,7 +6,6 @@
     <title>Document</title>
 </head>
 <body>
-<h1>Test sendAlerteRappel()</h1>
 <form method="post">
     <label for="id">ID:</label><br>
     <input type="number" id="id" name="id" required><br>
@@ -28,19 +27,15 @@
     <textarea id="contenu" name="contenu" required></textarea><br>
     <label for="statut">Statut:</label><br>
     <input type="number" id="statut" name="statut" required><br>
-    <input type="submit" name="submit" value="Envoyer">
+    <input type="submit" value="Envoyer">
 </form>
-<p>-------------Test stop alerte-------------------<p>
-<form method="post">
-<label for="id">ID Alerte : </label><br>
-    <input type="number" id="id" name="id" required><br>
-<input type="submit" value="Envoyer">
-</form>
+
+
 <?php
-require_once('rappelAlerte.php');
-$bdsqll = new PDO("mysql:host=localhost;dbname=crm", 'root', '');
-$test = new ManagerRappelAlerte($bdsqll);
 if (isset($_POST['submit'])) {
+    require_once('rappelAlerte.php');
+    $bdsqll = new PDO("mysql:host=localhost;dbname=crm", 'root', '');
+    $test = new ManagerRappelAlerte($bdsqll);
     $rappelAlerte = new RappelAlerte(
         $_POST['id'],
         $_POST['dateDebut'],
@@ -53,11 +48,10 @@ if (isset($_POST['submit'])) {
         $_POST['contenu'],
         $_POST['statut']
     );
+    var_dump($rappelAlerte);
     $test->sendAlerteRappel($rappelAlerte);
 }
-if(isset($_POST['id'])){
-    $test->stopAlerte($_POST['id']);
-}
+
 ?>
 </body>
 </html>
