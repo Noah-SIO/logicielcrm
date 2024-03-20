@@ -27,7 +27,7 @@
     <textarea id="contenu" name="contenu" required></textarea><br>
     <label for="statut">Statut:</label><br>
     <input type="number" id="statut" name="statut" required><br>
-    <input type="submit" value="Envoyer">
+    <input type="submit" name="submit" value="Envoyer">
 </form>
 
 
