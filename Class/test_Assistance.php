@@ -25,6 +25,26 @@ require_once('assistance.php');
             <input type="number" name="idStatut" id="idStatut" placeholder="entrer l'id"></br>
             <input type="submit" name="rechercher" id='rechercher' value='Rechercher'></br>
     </form>
+    <form method="post">
+            <label for="sujet"> Pour enregistrer un problème</label></br>
+            <input type="number" name="idProbleme" id="idProbleme" placeholder="entrer votre id"></br>
+            <input type="text" name="sujet" id="sujet" placeholder="entrer le sujet"></br>
+            <input type="text" name="contenu" id="contenu" placeholder="entrer le contenu"></br>          
+            <label> responsable :</label>
+                <div>
+                    <input type="radio" id="bryan" name="idResp" value=2 />
+                    <label for="bryan">Bryan Lander</label>
+                </div>
+                <div>
+                    <input type="radio" id="celine" name="idResp" value=3 />
+                    <label for="celine">Céline Armil</label>
+                </div>
+                <div>
+                    <input type="radio" id="desire" name="idResp" value=4 />
+                    <label for="desire">Désiré Dupont</label>
+                </div>
+            <input type="submit" name="envoyer" id='envoyer' value='Envoyer'></br>
+    </form>
 </html>
 <?php
 
@@ -44,5 +64,10 @@ if (isset($_POST['statut']) && isset($_POST['idStatut'])){
     $testManager = new ManagerAssistance();
     $testManager -> updateStatut($_POST['idStatut'], $_POST['statut']);
 }
+if (isset($_POST['sujet']) && isset($_POST['contenu']) && isset($_POST['idResp']) && isset($_POST['idProbleme'])){
+    $testManager = new ManagerAssistance();
+    $testManager -> registerIssue($_POST['idResp'], $_POST['idProbleme'], $_POST['sujet'], $_POST['contenu']);
+}
+
 
 ?>

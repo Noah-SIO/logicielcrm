@@ -5,13 +5,16 @@ Class Annuaire{
     private $idEntreprise;
     private $type;  
     private $ValeurDeContact;
+    private $date;
 
 
-    public function __construct($id, $idEntreprise, $type, $ValeurDeContact){
-        $this -> id = $id ;
-        $this -> idEntreprise = $idEntreprise;
-        $this -> type = $type;
-        $this -> ValeurDeContact = $ValeurDeContact;
+
+    public function __construct($id, $idEntreprise, $type, $ValeurDeContact,$date){
+        $this->id = $id;
+        $this->idEntreprise = $idEntreprise;
+        $this->type = $type;
+        $this->ValeurDeContact = $ValeurDeContact;
+        $this->date = $date;
     }
 
 //  id
@@ -55,6 +58,16 @@ Class Annuaire{
     public function setValeurDeContact($ValeurDeContact) {
         $this->ValeurDeContact = $ValeurDeContact;
     }
+
+//  Date
+    public function getDate() {
+        return $this->date;
+    }
+
+    public function setDate($date) {
+        $this->date = $date;
+    
+    }
 }
 
 class ManagerAnnuaire{
@@ -80,8 +93,22 @@ class ManagerAnnuaire{
         }
         var_dump($tableauRecherche);
         return $tableauRecherche;
+        }
     }
-}
+
+    // ajoute un numero de téléphone ou un mail dans la base de donnees a partir de l'objet annuaire. || par Romain
+    public function addContactToAnnuaire($annuaire){
+        $stmt = $this->bd->prepare("INSERT INTO annuaire (id_entreprise, valeur_contact, type, date) VALUES (?, ?, ?, ?)");
+        $stmt->execute([
+            $annuaire->getIdEntreprise(),
+            $annuaire->getValeurDeContact(),
+            $annuaire->gettype(),
+            $annuaire->getDate()
+        ]);
+    }
+
+
+
 }
 
 ?>
