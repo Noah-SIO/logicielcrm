@@ -104,24 +104,23 @@ class ManagerRappelAlerte{
     }
     
 
-    public function sendAlerteRappel(RappelAlerte $rappelAlerte){
+    public function sendAlerteRappel($rappelAlerte)
+    {
         $query = "INSERT INTO rappel_alerte 
-                  (`id`, `dateDebut`, `dateFin`, `type`, `d_expediteur`, `id_destinataire`, `sujet`, `contenu`, `statut`) 
-                  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                  (id, date_debut, date_fin, type, id_expediteur, id_destinataire, sujet, contenu, statut) 
+                  VALUES 
+                  (null, :dateDebut, :dateFin, :type, :expediteur, :destinataire, :sujet, :contenu, :statut)";
         
         $stmt = $this->bd->prepare($query);
-        
         $stmt->execute([
-            $rappelAlerte->getId(),
-            $rappelAlerte->getDateDebut(),
-            $rappelAlerte->getDateFin(),
-            $rappelAlerte->getType(),
-            $rappelAlerte->getUtilisateurEXP(),
-            $rappelAlerte->getUtilisateurDEST(),
-            $rappelAlerte->getSujet(),
-            $rappelAlerte->getSociete(),
-            $rappelAlerte->getContenu(),
-            $rappelAlerte->getStatut()
+            'dateDebut' => $rappelAlerte->getDateDebut(),
+            'dateFin' => $rappelAlerte->getDateFin(),
+            'type' => $rappelAlerte->getType(),
+            'expediteur' => $rappelAlerte->getUtilisateurEXP(),
+            'destinataire' => $rappelAlerte->getUtilisateurDEST(),
+            'sujet' => $rappelAlerte->getSujet(),
+            'contenu' => $rappelAlerte->getContenu(),
+            'statut' => $rappelAlerte->getStatut(),
         ]);
     }
     public function stopAlerte($idAlerte){
