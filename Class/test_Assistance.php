@@ -27,7 +27,7 @@ require_once('assistance.php');
     </form>
     <form method="post">
         <fieldset>
-            <legend> Fiche entreprise </legend>
+            <legend> Fiche problème </legend>
             <label for="sujet"> Pour enregistrer un problème</label></br>
             <input type="number" name="idProbleme" id="idProbleme" placeholder="entrer votre id"></br>
             <input type="text" name="sujet" id="sujet" placeholder="entrer le sujet"></br>
