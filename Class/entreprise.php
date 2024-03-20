@@ -125,7 +125,7 @@ class ManagerEntreprise{
         return $tableauSociete;
     }
     }
-    }    
+
     public function ModifClient($entreprise) {
         $sql = 'UPDATE entreprise SET nom = :nom, prenom = :prenom, numClient = :numClient, societe = :societe, poste = :poste, email = :email, idCommercial = :idCommercial, dateCreationCompte = :dateCreationCompte WHERE id = :id';
         
@@ -142,5 +142,6 @@ class ManagerEntreprise{
         
         return $requete->execute();
     }
+}
       
 ?>
