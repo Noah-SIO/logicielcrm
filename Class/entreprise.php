@@ -5,21 +5,17 @@ Class Entreprise{
     private $id;
     private $nom;
     private $prenom;
-    private $numClient;
     private $societe;
     private $poste;
-    private $email;
     private $idCommercial;
     private $dateCreationCompte;
 //Constructeur
-    public function __construct($id,$nom,$prenom,$numClient,$societe,$poste,$email,$idCommercial,$dateCreationCompte){
+    public function __construct($id,$nom,$prenom,$societe,$poste,$idCommercial,$dateCreationCompte){
         $this ->id=$id;
         $this ->nom = $nom;
         $this ->prenom=$prenom;
-        $this ->numClient=$numClient;
         $this ->societe=$societe;
         $this ->poste=$poste;
-        $this ->email=$email;
         $this ->idCommercial=$idCommercial;
         $this ->dateCreationCompte=$dateCreationCompte;
     }
@@ -115,7 +111,36 @@ class ManagerEntreprise{
         $requete->bindParam(':id', $id, PDO::PARAM_INT);
         return $requete->execute();
     }
-    public function ModifClient($id) {
-        $sql = 'REPLACE FROM entreprise WHERE  = :id';
-}    
+    public function SearchClientBySociete($societe){
+        $sqlsociete = "SELECT * FROM entreprise WHERE societe Like '%$societe%'";
+        $requetesociete = $this -> bd -> query ($sqlsociete);
+        $donneessociete= $requetesociete->fetchall(PDO::FETCH_ASSOC);
+        $tableauSociete= array();
+        if($donneessociete != NULL){
+            for ($i=0 ; $i<count($donneessociete) ;$i++){
+            $tableauSociete[] = new Entreprise($donneessociete[$i]['id'], $donneessociete[$i]['nom'], $donneessociete[$i]['prenom'],
+            $donneessociete[$i]['societe'],$donneessociete[$i]['poste'],$donneessociete[$i]['id_commercial'], $donneessociete[$i]['date']);
+        }
+        var_dump($tableauSociete);
+        return $tableauSociete;
+    }
+    }
+    }    
+    public function ModifClient($entreprise) {
+        $sql = 'UPDATE entreprise SET nom = :nom, prenom = :prenom, numClient = :numClient, societe = :societe, poste = :poste, email = :email, idCommercial = :idCommercial, dateCreationCompte = :dateCreationCompte WHERE id = :id';
+        
+        $requete = $this->bd->prepare($sql);
+        $requete->bindParam(':id', $entreprise->getId(), PDO::PARAM_INT);
+        $requete->bindParam(':nom', $entreprise->getNom(), PDO::PARAM_STR);
+        $requete->bindParam(':prenom', $entreprise->getPrenom(), PDO::PARAM_STR);
+        $requete->bindParam(':numClient', $entreprise->getNumClient(), PDO::PARAM_STR);
+        $requete->bindParam(':societe', $entreprise->getSociete(), PDO::PARAM_STR);
+        $requete->bindParam(':poste', $entreprise->getPoste(), PDO::PARAM_STR);
+        $requete->bindParam(':email', $entreprise->getEmail(), PDO::PARAM_STR);
+        $requete->bindParam(':idCommercial', $entreprise->getIdCommercial(), PDO::PARAM_INT);
+        $requete->bindParam(':dateCreationCompte', $entreprise->getDateCreationCompte(), PDO::PARAM_STR);
+        
+        return $requete->execute();
+    }
+      
 ?>

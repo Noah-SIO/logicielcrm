@@ -30,19 +30,19 @@ require_once('assistance.php');
             <input type="number" name="idProbleme" id="idProbleme" placeholder="entrer votre id"></br>
             <input type="text" name="sujet" id="sujet" placeholder="entrer le sujet"></br>
             <input type="text" name="contenu" id="contenu" placeholder="entrer le contenu"></br>          
-            <label> responsable :</label>
-                <div>
-                    <input type="radio" id="bryan" name="idResp" value=2 />
-                    <label for="bryan">Bryan Lander</label>
-                </div>
-                <div>
-                    <input type="radio" id="celine" name="idResp" value=3 />
-                    <label for="celine">Céline Armil</label>
-                </div>
-                <div>
-                    <input type="radio" id="desire" name="idResp" value=4 />
-                    <label for="desire">Désiré Dupont</label>
-                </div>
+            <label> responsable(s) informatique(s) :</label>
+<?php
+$bd = new PDO("mysql:host=localhost;dbname=crm", 'root', '');
+$s = 'SELECT id, nom, prenom, droit FROM utilisateur WHERE droit = 5';
+$r = $bd -> query($s);
+$donnees = $r -> fetchAll(PDO::FETCH_ASSOC);
+for ($i = 0; $i < count($donnees); $i++) {
+    echo "<div>
+          <input type='radio' id='".$donnees[$i]['prenom']."' name='idResp' value=".$donnees[$i]['id']." />
+          <label for='".$donnees[$i]['prenom']."'>".$donnees[$i]['nom']." ".$donnees[$i]['prenom']."</label>
+          </div>";
+}
+?>
             <input type="submit" name="envoyer" id='envoyer' value='Envoyer'></br>
     </form>
 </html>
