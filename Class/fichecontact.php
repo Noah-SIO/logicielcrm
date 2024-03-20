@@ -164,7 +164,14 @@ Class Contact{
         var_dump($tableauHistorique);
         return $tableauHistorique;
     } 
-    }
+}
+
+    public function deleteContact($idContact){
+    $sql = "DELETE FROM contact WHERE id = :idContact";
+    $req = $this->bd->prepare($sql);
+    $req->bindParam(':idContact', $idContact, PDO::PARAM_INT);
+    return $req->execute();
+}
 
     public function modifContact($ficheContact){
         $sql = "UPDATE contact SET id_utilisateur=:idCompte, id_entreprise=:idEntreprise, date=:date_contact, moyen_contact=:moyenDeContact, demande=:demande, reponse=:reponse WHERE id=:id";
@@ -173,8 +180,8 @@ Class Contact{
         var_dump($params);
         $req->execute($params);
     }
-}
 
+}
 
 
 
