@@ -26,6 +26,8 @@ require_once('assistance.php');
             <input type="submit" name="rechercher" id='rechercher' value='Rechercher'></br>
     </form>
     <form method="post">
+        <fieldset>
+            <legend> Fiche entreprise </legend>
             <label for="sujet"> Pour enregistrer un problème</label></br>
             <input type="number" name="idProbleme" id="idProbleme" placeholder="entrer votre id"></br>
             <input type="text" name="sujet" id="sujet" placeholder="entrer le sujet"></br>
@@ -44,6 +46,7 @@ for ($i = 0; $i < count($donnees); $i++) {
 }
 ?>
             <input type="submit" name="envoyer" id='envoyer' value='Envoyer'></br>
+        </fieldset>
     </form>
 </html>
 <?php
