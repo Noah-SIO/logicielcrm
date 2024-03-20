@@ -155,7 +155,15 @@ Class Contact{
         var_dump($tableauHistorique);
         return $tableauHistorique;
     } 
-    }
+}
+
+    public function deleteContact($idContact){
+    $sql = "DELETE FROM contact WHERE id = :idContact";
+    $req = $this->bd->prepare($sql);
+    $req->bindParam(':idContact', $idContact, PDO::PARAM_INT);
+    return $req->execute();
+}
+
 }
 
 
