@@ -115,7 +115,21 @@ class ManagerEntreprise{
         $requete->bindParam(':id', $id, PDO::PARAM_INT);
         return $requete->execute();
     }
-    public function ModifClient($id) {
-        $sql = 'REPLACE FROM entreprise WHERE  = :id';
-}    
+    public function ModifClient($entreprise) {
+        $sql = 'UPDATE entreprise SET nom = :nom, prenom = :prenom, numClient = :numClient, societe = :societe, poste = :poste, email = :email, idCommercial = :idCommercial, dateCreationCompte = :dateCreationCompte WHERE id = :id';
+        
+        $requete = $this->bd->prepare($sql);
+        $requete->bindParam(':id', $entreprise->getId(), PDO::PARAM_INT);
+        $requete->bindParam(':nom', $entreprise->getNom(), PDO::PARAM_STR);
+        $requete->bindParam(':prenom', $entreprise->getPrenom(), PDO::PARAM_STR);
+        $requete->bindParam(':numClient', $entreprise->getNumClient(), PDO::PARAM_STR);
+        $requete->bindParam(':societe', $entreprise->getSociete(), PDO::PARAM_STR);
+        $requete->bindParam(':poste', $entreprise->getPoste(), PDO::PARAM_STR);
+        $requete->bindParam(':email', $entreprise->getEmail(), PDO::PARAM_STR);
+        $requete->bindParam(':idCommercial', $entreprise->getIdCommercial(), PDO::PARAM_INT);
+        $requete->bindParam(':dateCreationCompte', $entreprise->getDateCreationCompte(), PDO::PARAM_STR);
+        
+        return $requete->execute();
+    }
+      
 ?>
