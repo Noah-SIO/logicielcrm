@@ -6,6 +6,7 @@
     <title>Document</title>
 </head>
 <body>
+<h1>Test sendAlerteRappel()</h1>
 <form method="post">
     <label for="id">ID:</label><br>
     <input type="number" id="id" name="id" required><br>
@@ -55,7 +56,6 @@ if (isset($_POST['submit'])) {
         $_POST['contenu'],
         $_POST['statut']
     );
-    var_dump($rappelAlerte);
     $test->sendAlerteRappel($rappelAlerte);
 }
 if(isset($_POST['id']) &&isset($_POST['iddest'])==NULL){
