@@ -104,8 +104,25 @@ class ManagerRappelAlerte{
     }
     
 
-    public function sendAlerteRappel($rappelAlerte){
+    public function sendAlerteRappel(RappelAlerte $rappelAlerte){
+        $query = "INSERT INTO rappel_alerte 
+                  (`id`, `dateDebut`, `dateFin`, `type`, `d_expediteur`, `id_destinataire`, `sujet`, `contenu`, `statut`) 
+                  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         
+        $stmt = $this->bd->prepare($query);
+        
+        $stmt->execute([
+            $rappelAlerte->getId(),
+            $rappelAlerte->getDateDebut(),
+            $rappelAlerte->getDateFin(),
+            $rappelAlerte->getType(),
+            $rappelAlerte->getUtilisateurEXP(),
+            $rappelAlerte->getUtilisateurDEST(),
+            $rappelAlerte->getSujet(),
+            $rappelAlerte->getSociete(),
+            $rappelAlerte->getContenu(),
+            $rappelAlerte->getStatut()
+        ]);
     }
 }
 ?>    
