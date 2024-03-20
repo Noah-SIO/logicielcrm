@@ -62,9 +62,8 @@ class ManagerFichier{
     $date = $Fichier->getDate();
     $lien = $Fichier->getLienDoc();
     $type= $Fichier->getType();
-    $bd = new PDO("mysql:host=localhost;dbname=crm", 'root', '');
     $sql2 = "INSERT INTO fichier (id_utilisateur,date,lien,type) VALUES ('$iduser','$date','$lien','$type')";
-    $requete2 = $bd -> query ($sql2);
+    $requete2 = $this-> bd -> query ($sql2);
    } 
     public function GetFichierByClient($id_entreprise){
         $bd = $this->bd;

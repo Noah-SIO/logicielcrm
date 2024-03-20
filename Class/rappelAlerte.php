@@ -124,5 +124,11 @@ class ManagerRappelAlerte{
             $rappelAlerte->getStatut()
         ]);
     }
+    public function stopAlerte($idAlerte){
+        $sql2 = "UPDATE rappel_alerte
+        SET statut = REPLACE(statut, 1, 2)
+        WHERE id=$idAlerte";
+        $requete2 = $this->bd -> query ($sql2);
+    }
 }
 ?>    
