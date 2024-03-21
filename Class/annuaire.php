@@ -24,7 +24,9 @@ Class Annuaire{
     }
 
     public function setId($Id) {
-        $this->id = $id;
+        //$this->id = $Id;
+        $ValeurDeContact = $this->ValeurDeContact;
+        $sqlrecherche = "SELECT id FROM annuaire WHERE valeur_contact = $ValeurDeContact";
     }
 
 
