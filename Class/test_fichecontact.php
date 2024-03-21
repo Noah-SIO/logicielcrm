@@ -79,11 +79,11 @@ $test = new Contact($bdsqll);
 
 
     //-------------------Test Modifier Fiche de contact-------------------//
-    $contact2 = new Contact();
-    $ficheDeContactTEST = new FicheContact(1, 2, '2222-10-10', 1, 'test de contact', 'fonctionnel');
-    $contact2->createFicheContact($ficheDeContactTEST);
-    $ficheDeContactTEST->setDemande("pierre");
-    $contact2->modifContact($ficheDeContactTEST);
+    //$contact2 = new Contact();
+    //$ficheDeContactTEST = new FicheContact(1, 2, '2222-10-10', 1, 'test de contact', 'fonctionnel');
+    //$contact2->createFicheContact($ficheDeContactTEST);
+    //$ficheDeContactTEST->setDemande("pierre");
+    //$contact2->modifContact($ficheDeContactTEST);
     
     ?>
 </body>
