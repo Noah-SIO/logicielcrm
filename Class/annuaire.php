@@ -107,6 +107,16 @@ class ManagerAnnuaire{
         ]);
     }
 
+    //Modifie les données presante dans l'annuaire a partire d'un objet annuaire|| par Romain
+    public function Modifierannuaire($annuaire){
+        $valeur = $annuaire->getValeurDeContact();
+        $type = $annuaire->gettype();
+        $date = $annuaire->getDate();
+        $id = $annuaire->getId();
+        $stmt = $this->bd->prepare("UPDATE annuaire SET valeur_contact = $valeur, type = $type, date = $date WHERE id = $id");
+        $stmt->execute();
+    }
+
 
 
 }
