@@ -144,5 +144,13 @@ class ManagerAssistance{
         $donnees = $requete -> fetch(PDO::FETCH_ASSOC);
         return $donnees['nb'];
     }
+
+    public function statsTimeSolvedIssues(){
+        $date = date('Y-m-d', strtotime('-10 days'));
+        $sql = "SELECT AVG(TIMESTAMPDIFF(DAY, date, date_resolution)) AS avg_time_diff_seconds FROM assistance;";
+        $requete = $this->bd->query($sql);
+        $donnees = $requete -> fetch(PDO::FETCH_ASSOC);
+        return $donnees['moy'];
+    }
 }    
 ?>

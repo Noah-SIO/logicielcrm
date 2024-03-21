@@ -76,5 +76,8 @@ if (isset($_POST['sujet']) && isset($_POST['contenu']) && isset($_POST['idResp']
 $testManager = new ManagerAssistance();
 echo $testManager -> statsNumberOfIssues();
 
+// test Stats on Time Solved Issues
+var_dump($testManager -> statsTimeSolvedIssues());
+
 
 ?>
