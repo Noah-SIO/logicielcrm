@@ -1,19 +1,25 @@
 <?php 
+require_once("annuaire.php");
 
 Class Entreprise{
     //Valeur privée
     private $id;
     private $nom;
     private $prenom;
+    private $numClient;
+    private $numClient2;
     private $societe;
     private $poste;
+    private $email;
     private $idCommercial;
     private $dateCreationCompte;
 //Constructeur
-    public function __construct($id,$nom,$prenom,$societe,$poste,$idCommercial,$dateCreationCompte){
-        $this ->id=$id;
+    public function __construct($nom,$prenom,$numClient, $numClient2, $email, $societe,$poste,$idCommercial,$dateCreationCompte){
         $this ->nom = $nom;
         $this ->prenom=$prenom;
+        $this ->numClient=$numClient;
+        $this -> numClient2 = $numClient2;
+        $this ->email = $email;
         $this ->societe=$societe;
         $this ->poste=$poste;
         $this ->idCommercial=$idCommercial;
@@ -48,6 +54,14 @@ Class Entreprise{
     public function setNumClient($numClient) {
         $this->numClient = $numClient;
     }
+    public function getNumClient2() {
+        return $this->numClient2;
+    }
+
+    public function setNumClient2($numClient2) {
+        $this->numClient2 = $numClient2;
+    }
+
     public function getSociete() {
         return $this->societe;
     }
@@ -123,7 +137,7 @@ class ManagerEntreprise{
         }
         var_dump($tableauSociete);
         return $tableauSociete;
-    }
+        }
     }
 
     public function ModifClient($entreprise) {
@@ -142,6 +156,15 @@ class ManagerEntreprise{
         
         return $requete->execute();
     }
+
+    public function createClientFiche(Entreprise $objet){
+        $sql = 'INSERT INTO entreprise (nom, prenom, `date`, societe, poste, id_commercial) VALUES ("'.$objet->getNom().'", "'.$objet->getPrenom().'", "'.$objet->getDateCreationCompte().'", "'.$objet->getSociete().'", "'.$objet->getPoste().'", '.$objet->getIdCommercial().')';
+        $requete = $this -> bd -> query($sql);
+        $donnees = $requete -> fetch(PDO::FETCH_ASSOC);
+   
+        $sql2 = 'INSERT INTO annuaire (id_entreprise, telephone, telephone2, email, `date`) VALUES ('.$objet->getIdCommercial().', '.$objet->getNumClient().', '.$objet->getNumClient2().', "'.$objet->getEmail().'", "'.$objet->getDateCreationCompte().'")';
+        $requete2 = $this -> bd -> query($sql2);
+        $donnees2 = $requete2 -> fetch(PDO::FETCH_ASSOC);
+    }
 }
-      
 ?>
