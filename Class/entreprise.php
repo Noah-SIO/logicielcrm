@@ -7,22 +7,20 @@ Class Entreprise{
     private $nom;
     private $prenom;
     private $numClient;
-    private $numClient2;
     private $societe;
     private $poste;
     private $email;
     private $idCommercial;
     private $dateCreationCompte;
 //Constructeur
-    public function __construct($nom,$prenom,$numClient, $numClient2, $email, $societe,$poste,$idCommercial,$dateCreationCompte){
+    public function __construct($nom,$prenom,$numClient, $email, $societe,$poste,$idCommercial,$dateCreationCompte){
         $this ->nom = $nom;
         $this ->prenom=$prenom;
         $this ->numClient=$numClient;
-        $this -> numClient2 = $numClient2;
         $this ->email = $email;
         $this ->societe=$societe;
         $this ->poste=$poste;
-        $this ->idCommercial=$idCommercial;
+        $this -> idCommercial= $idCommercial;
         $this ->dateCreationCompte=$dateCreationCompte;
     }
     //Fonction Get et Set
@@ -53,13 +51,6 @@ Class Entreprise{
 
     public function setNumClient($numClient) {
         $this->numClient = $numClient;
-    }
-    public function getNumClient2() {
-        return $this->numClient2;
-    }
-
-    public function setNumClient2($numClient2) {
-        $this->numClient2 = $numClient2;
     }
 
     public function getSociete() {
@@ -157,14 +148,17 @@ class ManagerEntreprise{
         return $requete->execute();
     }
 
+    // crée une fiche entreprise et renvoie son id dans la class Entreprise
     public function createClientFiche(Entreprise $objet){
         $sql = 'INSERT INTO entreprise (nom, prenom, `date`, societe, poste, id_commercial) VALUES ("'.$objet->getNom().'", "'.$objet->getPrenom().'", "'.$objet->getDateCreationCompte().'", "'.$objet->getSociete().'", "'.$objet->getPoste().'", '.$objet->getIdCommercial().')';
         $requete = $this -> bd -> query($sql);
         $donnees = $requete -> fetch(PDO::FETCH_ASSOC);
-   
-        $sql2 = 'INSERT INTO annuaire (id_entreprise, telephone, telephone2, email, `date`) VALUES ('.$objet->getIdCommercial().', '.$objet->getNumClient().', '.$objet->getNumClient2().', "'.$objet->getEmail().'", "'.$objet->getDateCreationCompte().'")';
+
+        $sql2 = 'SELECT id FROM entreprise WHERE societe="'.$objet->getSociete().'"';
         $requete2 = $this -> bd -> query($sql2);
         $donnees2 = $requete2 -> fetch(PDO::FETCH_ASSOC);
+
+        return $objet->setId($donnees2['id']);
     }
 }
 ?>

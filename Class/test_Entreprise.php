@@ -1,7 +1,6 @@
 <?php 
 
 require_once('entreprise.php');
-require_once('annuaire.php');
 
 ?>
 <html>
@@ -17,20 +16,14 @@ require_once('annuaire.php');
             <label for="societe"> Société </label></br>
             <input type="text" name="societe" id="societe" placeholder="Auto Clean"></br>
 
-            <label for="poste"> Poste (dans votre société)</label></br>
+            <label for="poste"> Poste (dans votre société) </label></br>
             <input type="text" name="poste" id="poste" placeholder="DRH"></br>
 
-            <label for="idEnt"> Identifiant commercial ou entreprise (SIREN)</label></br>
-            <input type="number" name="idEnt" id="idEnt" placeholder="ex : 123 456 789"></br>
+            <label for="tel"> Numéro de téléphone </label></br>
+            <input type="tel" name="tel" id="tel" placeholder="0303030303"></br>
 
-            <label for="tel"> Numéro de téléphone (fixe ou portable)</label></br>
-            <input type="tel" name="tel" id="valeur_contact" placeholder="ex : 0303030303"></br>
-
-            <label for="tel2"> Numéro de téléphone supplémentaire (fixe ou portable)</label></br>
-            <input type="tel" name="tel2" id="tel2" placeholder="ex : 0606060606"></br>
-
-            <label for="mail"> E-mail</label></br>
-            <input type="email" name="mail" id="mail" placeholder="ex : dupont@michel.fr"></br>
+            <label for="mail"> E-mail </label></br>
+            <input type="email" name="mail" id="mail" placeholder="dupont@michel.fr"></br>
 
             <input type="submit" name="envoyer" id='envoyer' value='Envoyer'></br>
         </fieldset>
@@ -38,10 +31,11 @@ require_once('annuaire.php');
 </html>
 <?php
 
-if (isset($_POST['idEnt'], $_POST['tel'], $_POST['tel2'], $_POST['mail'], $_POST['nom'], $_POST['prenom'], $_POST['poste'], $_POST['societe'])){
-    $test = new Entreprise($_POST['nom'], $_POST['prenom'], $_POST['tel'], $_POST['tel2'], $_POST['mail'], $_POST['societe'], $_POST['poste'], $_POST['idEnt'], date("Y-m-d"));
+if (isset($_POST['tel'], $_POST['mail'], $_POST['nom'], $_POST['prenom'], $_POST['poste'], $_POST['societe'])){
+    $test = new Entreprise($_POST['nom'], $_POST['prenom'], $_POST['tel'], $_POST['mail'], $_POST['societe'], $_POST['poste'], 1 /*à remplacer par $_SESSION['id']*/, date("Y-m-d"));
     $testManager = new ManagerEntreprise();
     $testManager -> createClientFiche($test);
+    //echo $test -> getId();
 }
 
 
