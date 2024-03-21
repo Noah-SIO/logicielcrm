@@ -27,11 +27,13 @@ if (isset($_POST['recherche'])&&isset($_POST['choosetype'])){
 }
 
 // test fonction modifier Annuaire || Romain
-echo "---------test fonction modifier Annuaire || Romain----------";
+echo "---------test fonction modifier Annuaire || Romain----------</br>";
 $annuaire = new Annuaire(null, 2, 2, '0909090909', '2022-10-23');
-echo "--anuaire sans modifier--";
+echo "--anuaire sans modifier--</br>";
 var_dump($annuaire);
-$annuaire->setValeurDeContact('mail@mail.com');
+$annuaire->setValeurDeContact('0999999999');
 $Manager = new ManagerAnnuaire($annuaire);
-$Manager->updateAnnuaire($annuaire);
+$Manager->addContactToAnnuaire($annuaire);
+$Manager->Modifierannuaire($annuaire);
+echo "</br>--anuaire apres modification--</br>";
 var_dump($annuaire);
