@@ -180,7 +180,19 @@ Class Contact{
         var_dump($params);
         $req->execute($params);
     }
-
+    
+    public function  StatOnContact(){
+        $sqlnbclient = $this->bd->query("SELECT COUNT(DISTINCT id_entreprise) as Nbclient FROM contact");
+        $donneesnbclient= $sqlnbclient->fetch();
+        $sqlnbclient->closeCursor();
+        //le nombre de client, le pourcentages par moi et le nombre par jour.
+        //En Cours de crétion Noah
+        $date= date("Y-m-d");
+        $sqldate=$this->bd->query("SELECT count(*) as Nbjour FROM contact WHERE date = '$date'");
+        $donneesdate= $sqldate->fetch();
+        $sqldate->closeCursor();
+        //return $donneesnbclient['Nbclient'], $donneesdate['Nbjour'];
+    }
 }
 
 
