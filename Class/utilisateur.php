@@ -175,9 +175,26 @@ class ManagerUtilisateur {
             $requete->execute();
             return $requete->fetch(PDO::FETCH_ASSOC);
         }
+
+        public function returnAllUsers() {
+            $sql = 'SELECT * FROM utilisateur WHERE nom LIKE :recherche';
+            $requete = $this->bd->prepare($sql);
+            $requete->bindValue(':recherche', '%' . $recherche . '%');
+            $requete->execute();
+            $donneesrecherche = $requete->fetchAll(PDO::FETCH_ASSOC);
+            $tableauRecherche = array();
+            var_dump($donneesrecherche);
+            
+            if ($donneesrecherche != null) {
+                foreach ($donneesrecherche as $ligne) {
+                    $utilisateur = new Utilisateur($ligne['nom'], $ligne['prenom'], $ligne['identifiant'],$ligne['profil'], $ligne['mdp'], $ligne['email'],$ligne['numTel']);
+                    $tableauRecherche[] = $utilisateur;
+                }
+            }
+            
+            return $tableauRecherche;
     
-
-
     }
+}
 
 ?>
