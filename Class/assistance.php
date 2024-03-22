@@ -77,12 +77,17 @@ class ManagerAssistance{
             $sql = 'UPDATE assistance SET statut='.$statut.' WHERE id='.$id.'';
             $requete = $this -> bd -> query($sql);
             $donnees = $requete -> fetchAll(PDO::FETCH_ASSOC);
+            if ($donnees == true){
+                return true;
+            } else if ($donnees == false){
+                return false;
+            }
         } else {
-            return "1/2/3 seulement";
+            return false;
         }
     }
 
-    // renvoie les derniers problèmes envoyés, le nombre vaire en fonction de $nbr
+    // renvoie les derniers problèmes envoyés, le nombre varie en fonction de $nbr
     public function getLastIssues($nbr){
         $sql = 'SELECT id, `date`, statut, sujet, contenu FROM assistance ORDER BY `date` DESC LIMIT '.$nbr.'';
         $requete = $this -> bd -> query($sql);
@@ -123,18 +128,6 @@ class ManagerAssistance{
         $sql = 'INSERT INTO assistance (id_responsable, id_probleme, `date`, sujet, contenu, statut) VALUES ('.$idRespInfo.', '.$idProbleme.', "'.date("Y-m-d").'", "'.$sujet.'", "'.$contenu.'", 0)';
         $requete = $this -> bd -> query($sql);
         $donnees = $requete -> fetch(PDO::FETCH_ASSOC);
-    }
-    public function registerIssueNoConnect($idRespInfo, $nom, $sujet, $contenu){
-        $sqlid = "SELECT id FROM utilisateur WHERE nom LIKE '$nom'";
-        $requeteid = $this -> bd -> query ($sqlid);
-        $donneesid= $requeteid->fetch(PDO::FETCH_ASSOC);
-        if($donneesid != NULL){
-        $date= date("Y-m-d");
-        $idProbleme=$donneesid['id'];
-        $sql = 'INSERT INTO assistance (id_responsable, id_probleme, `date`, sujet, contenu, statut) VALUES ('.$idRespInfo.', '.$idProbleme.', "'.$date.'", "'.$sujet.'", "'.$contenu.'", 0)';
-        $requete = $this -> bd -> query($sql);
-        $donnees = $requete -> fetch(PDO::FETCH_ASSOC);
-        }
     }
 }    
 ?>
