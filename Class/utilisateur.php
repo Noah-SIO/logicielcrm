@@ -202,6 +202,6 @@ class ManagerUtilisateur {
         }
 
     }
-
+    
 
 ?>
