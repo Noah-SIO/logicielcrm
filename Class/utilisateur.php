@@ -10,20 +10,26 @@ Class Utilisateur{
     private $email;
     private $numTel;
     
-    public function __construct($nom, $prenom, $identifiant, $profil, $mdp, $email,$numTel) {
+    public function __construct($nom, $prenom, $identifiant, $profil, $mdp) {
         $this -> nom = $nom;
         $this -> prenom = $prenom;
         $this -> identifiant = $identifiant;
         $this -> profil = $profil;
         $this -> mdp = $mdp;
-        $this -> email = $email;
-        $this -> numTel = $numTel;
+        //$this -> email = $email;
+        //$this -> numTel = $numTel;
     }
 //  Id
     public function getId() {
-        return $this->id;
-    }
+        $identifiant = $this->identifiant;
+        $bd = new PDO("mysql:host=localhost;dbname=crm", 'root', '');
+        $sql = 'SELECT id FROM utilisateur WHERE identifiant = ?';
+        $requete = $bd->prepare($sql);
+        $requete->bindParam(1, $identifiant);
+        $requete->execute();
 
+        return $requete->fetchColumn();
+    }
     public function setId($id) {
         $this->id = $id;
     }
@@ -130,7 +136,6 @@ class ManagerUtilisateur {
     
     // Modifie les informations de l'utilisateur dans la base de données a partir de l'objet utilisateur.|| par Romain
     public function ModifyUser($utilisateur) {
-        var_dump($utilisateur);
         $bd = $this->bd;
         $creercompte = $bd->prepare("UPDATE utilisateur SET nom = '{$utilisateur->getNom()}', prenom = '{$utilisateur->getPrenom()}' , identifiant = '{$utilisateur->getIdentifiants()}', mdp = '{$utilisateur->getMdp()}', droit = '{$utilisateur->getProfil()}' WHERE id = {$utilisateur->getId()}");
         $creercompte->execute();    
@@ -156,7 +161,6 @@ class ManagerUtilisateur {
                 $tableauRecherche[]= new Utilisateur($donneesrecherche[$i]['id'],$donneesrecherche[$i]['nom'],$donneesrecherche[$i]['prenom'],$donneesrecherche[$i]['identifiant'],
                 $donneesrecherche[$i]['mdp'],$donneesrecherche[$i]['droit']);                
             }
-            var_dump($tableauRecherche);
             return $tableauRecherche;
         }
     }
@@ -176,17 +180,15 @@ class ManagerUtilisateur {
         }
 
         public function returnAllUsers() {
-            $sql = 'SELECT * FROM utilisateur WHERE nom LIKE :recherche';
+            $sql = 'SELECT * FROM utilisateur ';
             $requete = $this->bd->prepare($sql);
-            $requete->bindValue(':recherche', '%' . $recherche . '%');
             $requete->execute();
             $donneesrecherche = $requete->fetchAll(PDO::FETCH_ASSOC);
             $tableauRecherche = array();
-            var_dump($donneesrecherche);
             
             if ($donneesrecherche != null) {
                 foreach ($donneesrecherche as $ligne) {
-                    $utilisateur = new Utilisateur($ligne['nom'], $ligne['prenom'], $ligne['identifiant'],$ligne['profil'], $ligne['mdp'], $ligne['email'],$ligne['numTel']);
+                    $utilisateur = new Utilisateur($ligne['nom'], $ligne['prenom'], $ligne['identifiant'],$ligne['droit'], $ligne['mdp']);
                     $tableauRecherche[] = $utilisateur;
                 }
         
@@ -202,6 +204,6 @@ class ManagerUtilisateur {
         }
 
     }
-    
+
 
 ?>

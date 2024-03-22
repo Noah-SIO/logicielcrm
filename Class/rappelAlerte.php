@@ -106,7 +106,8 @@ class ManagerRappelAlerte{
     {
         $query = "INSERT INTO rappel_alerte (id, date_debut, date_fin, type, id_expediteur, id_destinataire, sujet, contenu, statut) VALUES (null, :dateDebut, :dateFin, :type, :expediteur, :destinataire, :sujet, :contenu, :statut)";
         $stmt = $this->bd->prepare($query);
-        $stmt->execute(['dateDebut' => $rappelAlerte->getDateDebut(),'dateFin' => $rappelAlerte->getDateFin(),'type' => $rappelAlerte->getType(),'expediteur' => $rappelAlerte->getUtilisateurEXP(),'destinataire' => $rappelAlerte->getUtilisateurDEST(),'sujet' => $rappelAlerte->getSujet(),'contenu' => $rappelAlerte->getContenu(),'statut' => $rappelAlerte->getStatut()]);
+        var_dump($rappelAlerte);
+        $stmt->execute(['dateDebut' => date('Y-m-d'),'dateFin' => $rappelAlerte->getDateFin(),'type' => $rappelAlerte->getType(),'expediteur' => $rappelAlerte->getUtilisateurEXP(),'destinataire' => $rappelAlerte->getUtilisateurDEST(),'sujet' => $rappelAlerte->getSujet(),'contenu' => $rappelAlerte->getContenu(),'statut' => $rappelAlerte->getStatut()]);
     }
     public function stopAlerte($idAlerte){
         $sql2 = "UPDATE rappel_alerte
@@ -124,7 +125,6 @@ class ManagerRappelAlerte{
             $tableauRecherche[]= new RappelAlerte($donneesrecherche[$i]['id'],$donneesrecherche[$i]['date_debut'],$donneesrecherche[$i]['date_fin'],$donneesrecherche[$i]['type'],
             $donneesrecherche[$i]['id_expediteur'],$donneesrecherche[$i]['id_destinataire'],$donneesrecherche[$i]['sujet'],$donneesrecherche[$i]['contenu'],$donneesrecherche[$i]['statut']);                
         }
-        var_dump($tableauRecherche);
         return $tableauRecherche;
         }
     }
