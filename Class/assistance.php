@@ -15,7 +15,7 @@ Class Assistance{
         $this ->idUtilisateurProbleme=$idUtilisateurProbleme;
         $this ->date=$date;
         $this ->solution=$solution;
-        $this ->statut=$statut;
+        $this ->statut= $statut;
     }
     //Fonction Get et Set
     public function getId() {
@@ -64,22 +64,11 @@ Class Assistance{
 
 class ManagerAssistance{
     private $bd;
+    private $statut;
 
     public function __construct() {
         $this -> bd = new PDO("mysql:host=localhost;dbname=crm", 'root', '');
-    }
-
-    // traduit le statut, de int à string
-    public function tradStatut($statut){
-        if ($statut == 1){
-            return "à faire";
-        }
-        if ($statut == 2){
-            return "en cours";
-        }
-        if ($statut == 3){
-            return "terminé";
-        }
+        $this ->statut= [1 => "à faire", 2 => "en cours", 3 => "terminé"];
     }
 
     // change le $statut 1,2 ou 3 en fonction de l'id du problème
@@ -100,7 +89,7 @@ class ManagerAssistance{
         $donnees = $requete -> fetchAll(PDO::FETCH_ASSOC);
         for ($i = 0; $i < count($donnees); $i++) {
             echo "<ul>";
-            echo "<li>id : ".$donnees[$i]['id']." | date : ".$donnees[$i]['date']." | statut : ".$this->tradStatut($donnees[$i]['statut'])." | sujet : ".$donnees[$i]['sujet']." | contenu : ".$donnees[$i]['contenu']." </li>";
+            echo "<li>id : ".$donnees[$i]['id']." | date : ".$donnees[$i]['date']." | statut : ".$this->statut[$donnees[$i]['statut']]." | sujet : ".$donnees[$i]['sujet']." | contenu : ".$donnees[$i]['contenu']." </li>";
             echo "</ul>";
         }
     }
@@ -124,7 +113,7 @@ class ManagerAssistance{
         $donnees = $requete -> fetchAll(PDO::FETCH_ASSOC);
         for ($i = 0; $i < count($donnees); $i++) {
             echo "<ul>";
-            echo "<li>id : ".$donnees[$i]['id']." | date : ".$donnees[$i]['date']." | statut : ".$this->tradStatut($donnees[$i]['statut'])." | sujet : ".$donnees[$i]['sujet']." | contenu : ".$donnees[$i]['contenu']." </li>";
+            echo "<li>id : ".$donnees[$i]['id']." | date : ".$donnees[$i]['date']." | statut : ".$this->statut[$donnees[$i]['statut']]." | sujet : ".$donnees[$i]['sujet']." | contenu : ".$donnees[$i]['contenu']." </li>";
             echo "</ul>";
         }
     }
@@ -134,23 +123,6 @@ class ManagerAssistance{
         $sql = 'INSERT INTO assistance (id_responsable, id_probleme, `date`, sujet, contenu, statut) VALUES ('.$idRespInfo.', '.$idProbleme.', "'.date("Y-m-d").'", "'.$sujet.'", "'.$contenu.'", 0)';
         $requete = $this -> bd -> query($sql);
         $donnees = $requete -> fetch(PDO::FETCH_ASSOC);
-    }
-
-
-    public function statsNumberOfIssues(){
-        $date = date('Y-m-d', strtotime('-10 days'));
-        $sql = "SELECT COUNT(*) as nb FROM assistance WHERE `date` >= '{$date}'";
-        $requete = $this->bd->query($sql);
-        $donnees = $requete -> fetch(PDO::FETCH_ASSOC);
-        return $donnees['nb'];
-    }
-
-    public function statsTimeSolvedIssues(){
-        $date = date('Y-m-d', strtotime('-10 days'));
-        $sql = "SELECT AVG(TIMESTAMPDIFF(DAY, date, date_resolution)) AS moy FROM assistance;";
-        $requete = $this->bd->query($sql);
-        $donnees = $requete -> fetch(PDO::FETCH_ASSOC);
-        return $donnees['moy'];
     }
 }    
 ?>

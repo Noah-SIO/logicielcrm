@@ -2,6 +2,9 @@
 require_once('fichecontact.php');
 $bdsqll = new PDO("mysql:host=localhost;dbname=crm", 'root', '');
 $test = new Contact($bdsqll);
+//Stat on Contact Test Noah
+$donnees = $test->StatOnContact();
+echo"nb par mois -> ", $donnees['nombreparmois'];
 ?>
 <!DOCTYPE html>
 <html>

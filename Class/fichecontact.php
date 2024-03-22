@@ -165,6 +165,7 @@ Class Contact{
         return $tableauHistorique;
     } 
 }
+    }
 
     public function deleteContact($idContact){
     $sql = "DELETE FROM contact WHERE id = :idContact";
@@ -191,11 +192,11 @@ Class Contact{
         $sqldate=$this->bd->query("SELECT count(*) as Nbjour FROM contact WHERE date = '$date'");
         $donneesdate= $sqldate->fetch();
         $sqldate->closeCursor();
-        //return $donneesnbclient['Nbclient'], $donneesdate['Nbjour'];
+        $sqlmois =$this->bd->query("SELECT count(*) as Nbmois FROM contact WHERE date >= DATE_SUB(CURRENT_DATE, INTERVAL 1 MONTH)");
+        $donneesmois= $sqlmois->fetch();
+        $sqlmois->closeCursor();  
+        $Tableau = ['nombreclient' => $donneesnbclient['Nbclient'], 'nombreparjour' =>$donneesdate['Nbjour'], 'nombreparmois' =>$donneesmois['Nbmois']];
+        return $Tableau;
     }
 }
-
-
-
-
 ?>

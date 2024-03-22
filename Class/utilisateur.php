@@ -9,7 +9,6 @@ Class Utilisateur{
     private $mdp;
     private $email;
     private $numTel;
-
     
     public function __construct($nom, $prenom, $identifiant, $profil, $mdp, $email,$numTel) {
         $this -> nom = $nom;
@@ -95,9 +94,11 @@ Class Utilisateur{
 
 class ManagerUtilisateur {
     private $bd;
+    private $droit;
 
     public function __construct() {
         $this -> bd = new PDO("mysql:host=localhost;dbname=crm", 'root', '');
+        $this -> droit = [1 => "conseiller client", 2 => "manager", 3 => "commercial", 4 => "comptable", 5 => "responsable informatique", 6 => "directeur général"];
     }
     
     // vérifie la connexion par l'identifiant et le mot de passe, retourne true ou false
@@ -175,12 +176,7 @@ class ManagerUtilisateur {
             return $requete->fetch(PDO::FETCH_ASSOC);
         }
     
-        public function DeleteById($id) {
-            $sql = 'DELETE FROM utilisateur WHERE id = :id';
-            $requete = $this->bd->prepare($sql);
-            $requete->bindParam(':id', $id, PDO::PARAM_INT);
-            return $requete->execute();
-        }
+
 
     }
 
