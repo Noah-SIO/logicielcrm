@@ -9,7 +9,7 @@ if (isset($_SESSION['login']) && isset($_SESSION['mdp'])) {
         $utilisateur = $managerUtilisateur->GetUser($login);
     }
 }
-?>
+?>x 
 </head>
     <h1>Profil de <?= $utilisateur['prenom'] . ' ' . $utilisateur['nom']; ?></h1>
     <p><strong>Identifiant:</strong> <?= $utilisateur['identifiant']; ?></p>

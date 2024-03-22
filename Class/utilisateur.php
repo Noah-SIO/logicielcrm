@@ -169,7 +169,7 @@ class ManagerUtilisateur {
         }
     
         public function GetUser($nom) {
-            $sql = 'SELECT * FROM utilisateur WHERE nom = :nom';
+            $sql = 'SELECT * FROM utilisateur WHERE nom = id';
             $requete = $this->bd->prepare($sql);
             $requete->bindParam(':nom', $nom, PDO::PARAM_STR);
             $requete->execute();
