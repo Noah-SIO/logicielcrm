@@ -124,5 +124,17 @@ class ManagerAssistance{
         $requete = $this -> bd -> query($sql);
         $donnees = $requete -> fetch(PDO::FETCH_ASSOC);
     }
+    public function registerIssueNoConnect($idRespInfo, $nom, $sujet, $contenu){
+        $sqlid = "SELECT id FROM utilisateur WHERE nom LIKE '$nom'";
+        $requeteid = $this -> bd -> query ($sqlid);
+        $donneesid= $requeteid->fetch(PDO::FETCH_ASSOC);
+        if($donneesid != NULL){
+        $date= date("Y-m-d");
+        $idProbleme=$donneesid['id'];
+        $sql = 'INSERT INTO assistance (id_responsable, id_probleme, `date`, sujet, contenu, statut) VALUES ('.$idRespInfo.', '.$idProbleme.', "'.$date.'", "'.$sujet.'", "'.$contenu.'", 0)';
+        $requete = $this -> bd -> query($sql);
+        $donnees = $requete -> fetch(PDO::FETCH_ASSOC);
+        }
+    }
 }    
 ?>
