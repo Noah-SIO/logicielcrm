@@ -189,10 +189,11 @@ class ManagerUtilisateur {
                     $utilisateur = new Utilisateur($ligne['nom'], $ligne['prenom'], $ligne['identifiant'],$ligne['profil'], $ligne['mdp'], $ligne['email'],$ligne['numTel']);
                     $tableauRecherche[] = $utilisateur;
                 }
-            }
+        
             
             return $tableauRecherche;
-    
+            }
+        }
         public function DeleteById($id) {
             $sql = 'DELETE FROM utilisateur WHERE id = :id';
             $requete = $this->bd->prepare($sql);
@@ -201,6 +202,6 @@ class ManagerUtilisateur {
         }
 
     }
-}
+
 
 ?>
