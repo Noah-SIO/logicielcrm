@@ -167,8 +167,13 @@ class ManagerUtilisateur {
             return $requete->execute();
         }
     
+<<<<<<< HEAD
+        public function GetUser($nom) {
+            $sql = 'SELECT * FROM utilisateur WHERE nom = id';
+=======
         public function GetUser($identifiant) {
             $sql = 'SELECT * FROM utilisateur WHERE identifiant = :identifiant';
+>>>>>>> 279c51295ac82f8f851d161de185c3bc841ed0e1
             $requete = $this->bd->prepare($sql);
             $requete->bindParam(':identifiant', $identifiant, PDO::PARAM_STR);
             $requete->execute();
