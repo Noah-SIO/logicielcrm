@@ -165,8 +165,7 @@ Class Contact{
         return $tableauHistorique;
     } 
 }
-    }
-
+    
     public function deleteContact($idContact){
     $sql = "DELETE FROM contact WHERE id = :idContact";
     $req = $this->bd->prepare($sql);
