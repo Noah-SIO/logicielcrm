@@ -167,6 +167,13 @@ Class Contact{
 }
     }
 
+    public function deleteContact($idContact){
+    $sql = "DELETE FROM contact WHERE id = :idContact";
+    $req = $this->bd->prepare($sql);
+    $req->bindParam(':idContact', $idContact, PDO::PARAM_INT);
+    return $req->execute();
+}
+
     public function modifContact($ficheContact){
         $sql = "UPDATE contact SET id_utilisateur=:idCompte, id_entreprise=:idEntreprise, date=:date_contact, moyen_contact=:moyenDeContact, demande=:demande, reponse=:reponse WHERE id=:id";
         $req = $this->bd->prepare($sql);
@@ -174,18 +181,18 @@ Class Contact{
         var_dump($params);
         $req->execute($params);
     }
-
-    public function deleteContact($idContact){
-        $sql = "DELETE FROM contact WHERE id = :idContact";
-        $req = $this->bd->prepare($sql);
-        $req->bindParam(':idContact', $idContact, PDO::PARAM_INT);
-        return $req->execute();
+    
+    public function  StatOnContact(){
+        $sqlnbclient = $this->bd->query("SELECT COUNT(DISTINCT id_entreprise) as Nbclient FROM contact");
+        $donneesnbclient= $sqlnbclient->fetch();
+        $sqlnbclient->closeCursor();
+        //le nombre de client, le pourcentages par moi et le nombre par jour.
+        //En Cours de crétion Noah
+        $date= date("Y-m-d");
+        $sqldate=$this->bd->query("SELECT count(*) as Nbjour FROM contact WHERE date = '$date'");
+        $donneesdate= $sqldate->fetch();
+        $sqldate->closeCursor();
+        //return $donneesnbclient['Nbclient'], $donneesdate['Nbjour'];
     }
 }
-
-
-
-
-
-
 ?>

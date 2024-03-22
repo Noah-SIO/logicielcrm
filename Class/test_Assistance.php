@@ -72,5 +72,14 @@ if (isset($_POST['sujet']) && isset($_POST['contenu']) && isset($_POST['idResp']
     $testManager -> registerIssue($_POST['idResp'], $_POST['idProbleme'], $_POST['sujet'], $_POST['contenu']);
 }
 
+// test assistance 
+$testManager = new ManagerAssistance();
+echo "<p>nombre de problème les 10 derniers jours : </p>";
+echo $testManager -> statsNumberOfIssues();
+
+// test Stats on Time Solved Issues
+echo "</br><p>temps moyen pour résoudre un problème : </p>";
+echo $testManager -> statsTimeSolvedIssues();
+
 
 ?>

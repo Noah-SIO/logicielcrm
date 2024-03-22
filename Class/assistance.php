@@ -135,5 +135,22 @@ class ManagerAssistance{
         $requete = $this -> bd -> query($sql);
         $donnees = $requete -> fetch(PDO::FETCH_ASSOC);
     }
+
+
+    public function statsNumberOfIssues(){
+        $date = date('Y-m-d', strtotime('-10 days'));
+        $sql = "SELECT COUNT(*) as nb FROM assistance WHERE `date` >= '{$date}'";
+        $requete = $this->bd->query($sql);
+        $donnees = $requete -> fetch(PDO::FETCH_ASSOC);
+        return $donnees['nb'];
+    }
+
+    public function statsTimeSolvedIssues(){
+        $date = date('Y-m-d', strtotime('-10 days'));
+        $sql = "SELECT AVG(TIMESTAMPDIFF(DAY, date, date_resolution)) AS moy FROM assistance;";
+        $requete = $this->bd->query($sql);
+        $donnees = $requete -> fetch(PDO::FETCH_ASSOC);
+        return $donnees['moy'];
+    }
 }    
 ?>
