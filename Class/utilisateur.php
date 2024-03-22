@@ -113,7 +113,6 @@ class ManagerUtilisateur {
         }else{
             return false;
         }
-        
     }
     
     //ajoute un utilisateur dans la base de donnees a partir de l'objet utilisateur. || par Romain
@@ -168,15 +167,20 @@ class ManagerUtilisateur {
             return $requete->execute();
         }
     
-        public function GetUser($nom) {
-            $sql = 'SELECT * FROM utilisateur WHERE nom = :nom';
+        public function GetUser($identifiant) {
+            $sql = 'SELECT * FROM utilisateur WHERE identifiant = :identifiant';
             $requete = $this->bd->prepare($sql);
-            $requete->bindParam(':nom', $nom, PDO::PARAM_STR);
+            $requete->bindParam(':identifiant', $identifiant, PDO::PARAM_STR);
             $requete->execute();
             return $requete->fetch(PDO::FETCH_ASSOC);
         }
     
-
+        public function DeleteById($id) {
+            $sql = 'DELETE FROM utilisateur WHERE id = :id';
+            $requete = $this->bd->prepare($sql);
+            $requete->bindParam(':id', $id, PDO::PARAM_INT);
+            return $requete->execute();
+        }
 
     }
 
