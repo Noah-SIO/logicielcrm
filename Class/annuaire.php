@@ -119,6 +119,12 @@ class ManagerAnnuaire{
         $stmt->execute();
     }
 
+    //suprime les donnée qui ont pour id $id || par Romain
+    public function Supprimerannuaire($id){
+        $stmt = $this->bd->prepare("DELETE FROM annuaire WHERE id = $id");
+        $stmt->execute();
+    }
+
 
 
 }

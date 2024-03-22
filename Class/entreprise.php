@@ -13,11 +13,10 @@ Class Entreprise{
     private $idCommercial;
     private $dateCreationCompte;
 //Constructeur
-    public function __construct($nom,$prenom,$numClient, $email, $societe,$poste,$idCommercial,$dateCreationCompte){
+    public function __construct($nom,$prenom,$numClient, $societe,$poste,$idCommercial,$dateCreationCompte){
         $this ->nom = $nom;
         $this ->prenom=$prenom;
         $this ->numClient=$numClient;
-        $this ->email = $email;
         $this ->societe=$societe;
         $this ->poste=$poste;
         $this -> idCommercial= $idCommercial;
@@ -97,6 +96,19 @@ class ManagerEntreprise{
         $this -> bd = new PDO("mysql:host=localhost;dbname=crm", 'root', '');
     }
 
+    public function getAllEntreprise(){
+        $bd = $this->bd;
+        $sql = "SELECT * FROM entreprise";
+        $req = $bd->prepare($sql);
+        $req->execute(array());
+        $resultats = $req->fetchAll(PDO::FETCH_ASSOC);
+        $entreprises = array();
+        foreach ($resultats as $resultat) {
+            $entreprise = new Entreprise($resultat['id'], $resultat['nom'], $resultat['prenom'], $resultat['societe'], $resultat['poste'], $resultat['id_commercial'], $resultat['date']);
+            $entreprises[] = $entreprise;
+        }
+        return $entreprises;
+    }
     public function SearchClientByName($nom){
         $bd = $this->bd;
         $sql = "SELECT * FROM entreprise WHERE nom LIKE :nom";
@@ -126,7 +138,6 @@ class ManagerEntreprise{
             $tableauSociete[] = new Entreprise($donneessociete[$i]['id'], $donneessociete[$i]['nom'], $donneessociete[$i]['prenom'],
             $donneessociete[$i]['societe'],$donneessociete[$i]['poste'],$donneessociete[$i]['id_commercial'], $donneessociete[$i]['date']);
         }
-        var_dump($tableauSociete);
         return $tableauSociete;
         }
     }
