@@ -10,8 +10,7 @@ Class Utilisateur{
     private $email;
     private $numTel;
     
-    public function __construct($id, $nom, $prenom, $identifiant, $profil, $mdp) {
-        $this -> id = $id;
+    public function __construct($nom, $prenom, $identifiant, $profil, $mdp) {
         $this -> nom = $nom;
         $this -> prenom = $prenom;
         $this -> identifiant = $identifiant;
@@ -107,7 +106,6 @@ class ManagerUtilisateur {
         $requete = $bd->prepare($sql);
         $requete->execute();
         $result = $requete->fetch();
-        //var_dump($result);
         if ($result == true){
             return true;
         } else if ($result == false){
@@ -130,7 +128,6 @@ class ManagerUtilisateur {
     
     // Modifie les informations de l'utilisateur dans la base de données a partir de l'objet utilisateur.|| par Romain
     public function ModifyUser($utilisateur) {
-        var_dump($utilisateur);
         $bd = $this->bd;
         $creercompte = $bd->prepare("UPDATE utilisateur SET nom = '{$utilisateur->getNom()}', prenom = '{$utilisateur->getPrenom()}' , identifiant = '{$utilisateur->getIdentifiants()}', mdp = '{$utilisateur->getMdp()}', droit = '{$utilisateur->getProfil()}' WHERE id = {$utilisateur->getId()}");
         $creercompte->execute();    
@@ -173,7 +170,24 @@ class ManagerUtilisateur {
             $donnees = $requete -> fetchAll(PDO::FETCH_ASSOC);
             return $donnees;
         }
-    
+        
+        public function returnAllUsers() {
+            $sql = 'SELECT * FROM utilisateur ';
+            $requete = $this->bd->prepare($sql);
+            $requete->execute();
+            $donneesrecherche = $requete->fetchAll(PDO::FETCH_ASSOC);
+            $tableauRecherche = array();
+
+            if ($donneesrecherche != null) {
+                foreach ($donneesrecherche as $ligne) {
+                    $utilisateur = new Utilisateur($ligne['nom'], $ligne['prenom'], $ligne['identifiant'],$ligne['droit'], $ligne['mdp']);
+                    $tableauRecherche[] = $utilisateur;
+                }
+                
+            return $tableauRecherche;
+            }
+        }
+
         public function DeleteById($id) {
             $sql = 'DELETE FROM utilisateur WHERE id = :id';
             $requete = $this->bd->prepare($sql);
