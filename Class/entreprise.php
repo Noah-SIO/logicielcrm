@@ -124,7 +124,7 @@ class ManagerEntreprise{
     }
 
     // Fonction pour rechercher un client par son ID || Romain
-    public function SearchClientById($id){
+    public function returnClientById($id){
         $sqlId = "SELECT * FROM entreprise WHERE id= :id";
         $reqId = $this -> bd -> prepare ($sqlId);
         $reqId -> execute(array('id' => $id));
