@@ -19,6 +19,12 @@ Class Utilisateur{
     }
 //  Id
     public function getId() {
+        $sql = "SELECT id FROM utilisateur WHERE identifiant = '".$this->identifiant."'";
+        $bd = new PDO('mysql:host=localhost;dbname=crm', 'root', '');
+        $requete = $bd->prepare($sql);
+        $requete->execute();
+        $donnees = $requete->fetch();
+        $this->id = $donnees['id'];
         return $this->id;
     }
 

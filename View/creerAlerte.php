@@ -11,12 +11,13 @@ $rappeleAlerteManager = new ManagerRappelAlerte();
 <form method="POST">
     <label for="destinataire">Destinataire :</label><br>
     <select name="destinataire" id="destinataire">
-        <?php foreach ($utilisateurs as $utilisateur) : ?>
-            <option value="<?php echo $utilisateur->getId(); ?>">
-            <?php echo $utilisateur->getNom() . " " . $utilisateur->getPrenom(); ?>
-            </option>
-        <?php endforeach; ?>
-    </select><br><br>
+        <?php  ?>
+            <?php foreach ($utilisateurs as $utilisateur) : ?>
+                <option value="<?php echo $utilisateur->getId();?>">
+                    <?php echo $utilisateur->getNom() . " " . $utilisateur->getPrenom(); ?>
+                </option>
+            <?php endforeach; ?>
+        </select><br><br>
 
     <label for="titre">Titre :</label><br>
     <input type="text" name="titre" id="titre"><br>
@@ -30,7 +31,6 @@ $rappeleAlerteManager = new ManagerRappelAlerte();
 
 <?php
 if (isset($_POST['submit'])) {
-    var_dump($_POST['destinataire']);
     $rappelAlerte = new RappelAlerte(null,null,$_POST['date'],1,$_GET['id'],$_POST['destinataire'],$_POST['titre'],$_POST['contenu'],1);
     $rappeleAlerteManager->sendAlerteRappel($rappelAlerte);
 }
