@@ -122,6 +122,18 @@ class ManagerEntreprise{
         }
         return $entreprises;
     }
+
+    // Fonction pour rechercher un client par son ID || Romain
+    public function SearchClientById($id){
+        $sqlId = "SELECT * FROM entreprise WHERE id= :id";
+        $reqId = $this -> bd -> prepare ($sqlId);
+        $reqId -> execute(array('id' => $id));
+        $donneesId = $reqId -> fetch(PDO::FETCH_ASSOC);
+        $entreprise = new Entreprise($donneesId['id'], $donneesId['nom'], $donneesId['prenom'], $donneesId['numClient'], $donneesId['societe'], $donneesId['poste'], $donneesId['email'], $donneesId['idCommercial'], $donneesId['dateCreationCompte']);
+        return $entreprise;
+    }
+
+
     public function DeleteClientById($id) {
         $sql = 'DELETE FROM entreprise WHERE id = :id';
         $requete = $this->bd->prepare($sql);
@@ -171,5 +183,20 @@ class ManagerEntreprise{
 
         return $objet->setId($donnees2['id']);
     }
+
+    
+    public function returnAllEntreprise() {
+        $sql = 'SELECT * FROM entreprise';
+        $requete = $this->bd->query($sql);
+        $donnees = $requete->fetchAll(PDO::FETCH_ASSOC);
+        
+        $tableauEntreprise = array();
+        foreach ($donnees as $entreprise) {
+            $tableauEntreprise[] = new Entreprise($entreprise['id'], $entreprise['nom'], $entreprise['prenom'], $entreprise['numClient'], $entreprise['societe'], $entreprise['poste'], $entreprise['email'], $entreprise['idCommercial'], $entreprise['dateCreationCompte']);
+        }
+        
+        return $tableauEntreprise;
+    }
+
 }
 ?>
