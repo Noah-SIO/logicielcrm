@@ -18,6 +18,7 @@ echo"</form>";
 if(isset($_POST['idrespinfo'])){
 $assistance->registerIssueNoConnect($_POST['idrespinfo'],$_POST['nom'],$_POST['suj'],$_POST['mess']);
 //echo"true"; test a supprimer
+echo"Votre problème à bien été transmis à nos Administrateur";
 }
 echo"<form action='connexion.php'>";
 echo"<input type='submit' name='valider' class='button' value='Retourner page Connexion'/>";
