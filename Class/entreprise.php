@@ -167,16 +167,14 @@ class ManagerEntreprise{
     }
 
     // crée une fiche entreprise et renvoie son id dans la class Entreprise
-    public function createClientFiche(Entreprise $objet){
-        $sql = 'INSERT INTO entreprise (nom, prenom, `date`, societe, poste, id_commercial) VALUES ("'.$objet->getNom().'", "'.$objet->getPrenom().'", "'.$objet->getDateCreationCompte().'", "'.$objet->getSociete().'", "'.$objet->getPoste().'", '.$objet->getIdCommercial().')';
+    public function createClientFiche($Entreprise){
+        $sql = 'INSERT INTO entreprise (nom, prenom, date, societe, poste, id_commercial) VALUES ("'.$Entreprise->getNom().'", "'.$Entreprise->getPrenom().'", "'.$Entreprise->getDateCreationCompte().'", "'.$Entreprise->getSociete().'", "'.$Entreprise->getPoste().'", '.$Entreprise->getIdCommercial().')';
         $requete = $this -> bd -> query($sql);
         $donnees = $requete -> fetch(PDO::FETCH_ASSOC);
-
-        $sql2 = 'SELECT id FROM entreprise WHERE societe="'.$objet->getSociete().'"';
+        $sql2 = 'SELECT id FROM entreprise WHERE societe="'.$Entreprise->getSociete().'"';
         $requete2 = $this -> bd -> query($sql2);
         $donnees2 = $requete2 -> fetch(PDO::FETCH_ASSOC);
-
-        return $objet->setId($donnees2['id']);
+        return $Entreprise->setId($donnees2['id']);
     }
 
     
