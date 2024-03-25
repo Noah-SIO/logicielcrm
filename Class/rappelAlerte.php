@@ -106,7 +106,6 @@ class ManagerRappelAlerte{
     {
         $query = "INSERT INTO rappel_alerte (id, date_debut, date_fin, type, id_expediteur, id_destinataire, sujet, contenu, statut) VALUES (null, :dateDebut, :dateFin, :type, :expediteur, :destinataire, :sujet, :contenu, :statut)";
         $stmt = $this->bd->prepare($query);
-        var_dump($rappelAlerte);
         $stmt->execute(['dateDebut' => date('Y-m-d'),'dateFin' => $rappelAlerte->getDateFin(),'type' => $rappelAlerte->getType(),'expediteur' => $rappelAlerte->getUtilisateurEXP(),'destinataire' => $rappelAlerte->getUtilisateurDEST(),'sujet' => $rappelAlerte->getSujet(),'contenu' => $rappelAlerte->getContenu(),'statut' => $rappelAlerte->getStatut()]);
     }
     public function stopAlerte($idAlerte){
