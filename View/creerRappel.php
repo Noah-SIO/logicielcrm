@@ -5,7 +5,7 @@ $bdsqll = new PDO("mysql:host=localhost;dbname=crm", 'root', '');//même chose
 $rappel = new ManagerRappelAlerte($bdsqll);//même chose
 $user = new ManagerUtilisateur($bdsqll);//même chose
 echo"<h1>Formulaire Création de Rappel</h1>";
-echo"<p>Ce service sert aux employés de l'entreprise à ne pas oublié les taches qu'il auront à effectuer en créer un rappel qu'il recevront d'ici quelques jour.</p></br>";
+echo"<p>Ce service sert aux employés de l'entreprise à ne pas oublié les taches qu'il auront à effectuer en créant un rappel qu'il recevront d'ici quelques jour.</p></br>";
 echo"<form method='post'>";
     echo"<label for='nom'>Entrer votre Identifiant :</label></br></br>";
     echo"<input type='text' name='identif' placeholder='ex : Latour.jerome' required></br></br>";
