@@ -10,7 +10,7 @@ Class Fichier{
     private $date;
 //Constructeur
     public function __construct($id,$idEntreprise,$nom,$date,$lienDoc,$type){
-        $this -> id = $id;// si ID n'est pas utilisatble mettez null en paramètre :)
+        $this -> id = $id;// si ID n'est pas utilisatble mettez null en paramètre 
         $this -> idEntreprise = $idEntreprise;
         $this ->nom=$nom;
         $this ->date=$date;
@@ -76,34 +76,27 @@ class ManagerFichier {
     $requete2 = $this-> bd -> query ($sql2);
    } 
     public function GetFichierByClient($id_entreprise){
-        if ($id_entreprise == 0){
-            $sql = "SELECT * FROM fichier ORDER BY type";$bd = $this->bd;
-            $req = $bd->prepare($sql);
-            $req->execute();
-            $resultats = $req->fetchAll(PDO::FETCH_ASSOC);
-            $fichiers = array();
-        }
-        else{
-            $sql = "SELECT * FROM fichier WHERE idutilisateur = :identreprise ORDER BY type";$bd = $this->bd;
-            $req = $bd->prepare($sql);
+        $sql = ($id_entreprise == 0) ? "SELECT * FROM fichier ORDER BY type" : "SELECT * FROM fichier WHERE idutilisateur = :identreprise ORDER BY type";
+        $req = $this->bd->prepare($sql);
+        if ($id_entreprise != 0) {
             $req->bindValue(':identreprise', $id_entreprise, PDO::PARAM_INT);
-            $req->execute();
-            $resultats = $req->fetchAll(PDO::FETCH_ASSOC);
-            $fichiers = array();
         }
-        
+        $req->execute();
+        $fichiers = array();
         foreach ($req->fetchAll(PDO::FETCH_ASSOC) as $resultat) {
             $fichier = new Fichier(
+                $resultat['id'],
                 $resultat['id_utilisateur'],
                 $resultat['nom'],
-                $resultat['type'],
-                $resultat['lienDoc'],
-                $resultat['date']
+                $resultat['date'],
+                $resultat['lien'],
+                $resultat['type']
+                
             );
             $fichiers[] = $fichier;
         }
         return $fichiers;
-    }
     
+}
 }
 ?>    
