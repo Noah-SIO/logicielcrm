@@ -4,12 +4,15 @@ Class Fichier{
     //Valeur privée
     private $id;
     private $idEntreprise;
+    private $nom;
     private $type;
     private $lienDoc;
     private $date;
 //Constructeur
-    public function __construct($idEntreprise,$date,$lienDoc,$type){
+    public function __construct($id,$idEntreprise,$nom,$date,$lienDoc,$type){
+        $this -> id = $id;// si ID n'est pas utilisatble mettez null en paramètre :)
         $this -> idEntreprise = $idEntreprise;
+        $this ->nom=$nom;
         $this ->date=$date;
         $this ->lienDoc=$lienDoc;
         $this ->type=$type;
@@ -28,6 +31,12 @@ Class Fichier{
 
     public function setIdEntreprise($idEntreprise) {
         $this->idEntreprise = $idEntreprise;
+    }
+    public function getNom() {
+        return $this->nom;
+    }
+    public function setNom($nom) {
+        $this->nom = $nom;
     }
     public function getType() {
         return $this->type;
@@ -51,29 +60,46 @@ Class Fichier{
         $this->date = $date;
     }
 }
-class ManagerFichier{
+class ManagerFichier {
     private $bd;
-    public function __construct() {
+    public function __construct(){
         $this -> bd = new PDO("mysql:host=localhost;dbname=crm", 'root', '');
     }
 
    public function LinkDocumentToClient($Fichier){
     $iduser = $Fichier->getIdEntreprise() ;
+    $nom = $Fichier->getNom();
     $date = $Fichier->getDate();
     $lien = $Fichier->getLienDoc();
     $type= $Fichier->getType();
-    $sql2 = "INSERT INTO fichier (id_utilisateur,date,lien,type) VALUES ('$iduser','$date','$lien','$type')";
+    $sql2 = "INSERT INTO fichier (id_utilisateur,date,lien,type) VALUES ('$iduser','$nom','$date','$lien','$type')";
     $requete2 = $this-> bd -> query ($sql2);
    } 
     public function GetFichierByClient($id_entreprise){
-        $bd = $this->bd;
-        $sql = "SELECT * FROM fichier WHERE id_entreprise = :id_entreprise";
-        $req = $bd->prepare($sql);
-        $req->execute(array('id_entreprise' => $id_entreprise));
-        $resultats = $req->fetchAll(PDO::FETCH_ASSOC);
-        $fichiers = array();
-        foreach ($resultats as $resultat) {
-            $fichier = new Fichier($resultat['id'], $resultat['idEntreprise'], $resultat['type'], $resultat['lienDoc'], $resultat['date']);
+        if ($id_entreprise == 0){
+            $sql = "SELECT * FROM fichier ORDER BY type";$bd = $this->bd;
+            $req = $bd->prepare($sql);
+            $req->execute();
+            $resultats = $req->fetchAll(PDO::FETCH_ASSOC);
+            $fichiers = array();
+        }
+        else{
+            $sql = "SELECT * FROM fichier WHERE idutilisateur = :identreprise ORDER BY type";$bd = $this->bd;
+            $req = $bd->prepare($sql);
+            $req->bindValue(':identreprise', $id_entreprise, PDO::PARAM_INT);
+            $req->execute();
+            $resultats = $req->fetchAll(PDO::FETCH_ASSOC);
+            $fichiers = array();
+        }
+        
+        foreach ($req->fetchAll(PDO::FETCH_ASSOC) as $resultat) {
+            $fichier = new Fichier(
+                $resultat['id_utilisateur'],
+                $resultat['nom'],
+                $resultat['type'],
+                $resultat['lienDoc'],
+                $resultat['date']
+            );
             $fichiers[] = $fichier;
         }
         return $fichiers;
