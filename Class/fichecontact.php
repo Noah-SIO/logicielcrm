@@ -126,23 +126,29 @@ Class Contact{
 
 
 
-    public function getContact($nbr){
-        $sqlcontact = "SELECT * FROM `contact` GROUP BY date DESC";
-        if($nbr != 0){ 
-        $sqlcontact = "SELECT * FROM `contact` GROUP BY date DESC LIMIT $nbr";
-        }
-        $requetecontact = $this -> bd -> query ($sqlcontact);
-        $donneescontact= $requetecontact->fetchall(PDO::FETCH_ASSOC);
-        $tableauContact= array();      
-            if($donneescontact != NULL){
-                for ($i=0 ; $i<count($donneescontact) ;$i++){
-            $tableauContact[]= new FicheContact($donneescontact[$i]['id_utilisateur'],$donneescontact[$i]['id_entreprise'],$donneescontact[$i]['date'],$donneescontact[$i]['moyen_contact'],
-            $donneescontact[$i]['demande'],$donneescontact[$i]['reponse']);                
-        }
-        var_dump($tableauContact);
-        return $tableauContact;
-    } 
+    public function getContact() {
+        $sql = "SELECT * FROM `contact` ORDER BY date DESC";
+        $requete = $this->bd->query($sql);
+        $donnees = $requete->fetchAll(PDO::FETCH_ASSOC);
+        $tableauContacts = array();      
+        
+        if ($donnees != NULL) {
+            foreach ($donnees as $contactData) {
+                $contact = new FicheContact(
+                    $contactData['id_utilisateur'],
+                    $contactData['id_entreprise'],
+                    $contactData['date'],
+                    $contactData['moyen_contact'],
+                    $contactData['demande'],
+                    $contactData['reponse']
+                );
+                $tableauContacts[] = $contact;
+            }
+        } 
+        
+        return $tableauContacts;
     }
+    
 
 
 

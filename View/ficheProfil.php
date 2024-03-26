@@ -14,8 +14,6 @@ if (isset($_SESSION['login']) && isset($_SESSION['mdp'])) {
     <h1>Profil de <?= $utilisateur['prenom'] . ' ' . $utilisateur['nom']; ?></h1>
     <p><strong>Identifiant:</strong> <?= $utilisateur['identifiant']; ?></p>
     <p><strong>Profil:</strong> <?= $managerUtilisateur->getProfilById($utilisateur['profil']); ?></p>
-    <p><strong>Email:</strong> <?= $utilisateur['email']; ?></p>
-    <p><strong>Numéro de téléphone:</strong> <?= $utilisateur['numTel']; ?></p>
 </html>
 
 
