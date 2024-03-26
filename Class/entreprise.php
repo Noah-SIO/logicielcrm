@@ -176,20 +176,18 @@ class ManagerEntreprise{
         $donnees2 = $requete2 -> fetch(PDO::FETCH_ASSOC);
         return $Entreprise->setId($donnees2['id']);
     }
-
-    
-    public function returnAllEntreprise() {
-        $sql = 'SELECT * FROM entreprise';
-        $requete = $this->bd->query($sql);
-        $donnees = $requete->fetchAll(PDO::FETCH_ASSOC);
-        
-        $tableauEntreprise = array();
-        foreach ($donnees as $entreprise) {
-            $tableauEntreprise[] = new Entreprise($entreprise['id'], $entreprise['nom'], $entreprise['prenom'], $entreprise['numClient'], $entreprise['societe'], $entreprise['poste'], $entreprise['email'], $entreprise['idCommercial'], $entreprise['dateCreationCompte']);
+    public function getHistoriqueEntreprise($nbr){
+        $bd = $this->bd;
+        $sql = "SELECT * FROM entreprise GROUP BY date DESC LIMIT $nbr";
+        $req = $bd->prepare($sql);
+        $req->execute(array());
+        $resultats = $req->fetchAll(PDO::FETCH_ASSOC);
+        $entreprises = array();
+        foreach ($resultats as $resultat) {
+            $entreprise = new Entreprise($resultat['nom'], $resultat['prenom'], $resultat['societe'], $resultat['poste'], $resultat['id_commercial'], $resultat['date']);
+            $entreprises[] = $entreprise;
         }
-        
-        return $tableauEntreprise;
+        return $entreprises;
     }
-
 }
 ?>

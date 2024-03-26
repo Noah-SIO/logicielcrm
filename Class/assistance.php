@@ -95,19 +95,7 @@ class ManagerAssistance{
         }
     }
 
-    // renvoie les problèmes résolus, le nombre varie en fonction de $nbr
-    public function getSolvedIssues($nbr){
-        if ($nbr != NULL) {
-            $sql = 'SELECT id, `date`, statut, sujet, contenu FROM assistance WHERE statut =3 ORDER BY `date` DESC LIMIT '.$nbr.'';
-            $requete = $this -> bd -> query($sql);
-            $donnees = $requete -> fetchAll(PDO::FETCH_ASSOC);
-            for ($i = 0; $i < count($donnees); $i++) {
-                echo "<ul>";
-                echo "<li>id : ".$donnees[$i]['id']." | date : ".$donnees[$i]['date']." | sujet : ".$donnees[$i]['sujet']." | contenu : ".$donnees[$i]['contenu']." </li>";
-                echo "</ul>";
-            }
-        }
-    }
+    
 
     // renvoie les problèmes à faire ou en cours, le nombre varie en fonction de $nbr
     public function getUnsolvedIssues($nbr){
@@ -125,22 +113,53 @@ class ManagerAssistance{
 
     // enregistre une fiche problème, selon l'id du responsable info, l'id de l'user qui a un problème, le sujet et le contenu
     public function registerIssue($idRespInfo, $idProbleme, $sujet, $contenu){
-        $sql = 'INSERT INTO assistance (id_responsable, id_probleme, `date`, sujet, contenu, statut) VALUES ('.$idRespInfo.', '.$idProbleme.', "'.date("Y-m-d").'", "'.$sujet.'", "'.$contenu.'", 0)';
-        $requete = $this -> bd -> query($sql);
-        $donnees = $requete -> fetch(PDO::FETCH_ASSOC);
+        if ($idProbleme != NULL && $sujet != NULL && $contenu != NULL){
+            $sql = 'INSERT INTO assistance (id_responsable, id_probleme, `date`, sujet, contenu, statut) VALUES ('.$idRespInfo.', '.$idProbleme.', "'.date("Y-m-d").'", "'.$sujet.'", "'.$contenu.'", 0)';
+            $requete = $this -> bd -> query($sql);
+            $donnees = $requete -> fetch(PDO::FETCH_ASSOC);
+        }
     }
 
     public function registerIssueNoConnect($idRespInfo, $nom, $sujet, $contenu){
         $sqlid = "SELECT id FROM utilisateur WHERE nom LIKE '$nom'";
         $requeteid = $this -> bd -> query ($sqlid);
         $donneesid= $requeteid->fetch(PDO::FETCH_ASSOC);
-        if($donneesid != NULL){
-        $date= date("Y-m-d");
-        $idProbleme=$donneesid['id'];
-        $sql = 'INSERT INTO assistance (id_responsable, id_probleme, `date`, sujet, contenu, statut) VALUES ('.$idRespInfo.', '.$idProbleme.', "'.$date.'", "'.$sujet.'", "'.$contenu.'", 0)';
-        $requete = $this -> bd -> query($sql);
-        $donnees = $requete -> fetch(PDO::FETCH_ASSOC);
+        if($donneesid != NULL && $contenu != NULL){
+            $date= date("Y-m-d");
+            $idProbleme=$donneesid['id'];
+            $sql = 'INSERT INTO assistance (id_responsable, id_probleme, `date`, sujet, contenu, statut) VALUES ('.$idRespInfo.', '.$idProbleme.', "'.$date.'", "'.$sujet.'", "'.$contenu.'", 0)';
+            $requete = $this -> bd -> query($sql);
+            $donnees = $requete -> fetch(PDO::FETCH_ASSOC);
         }
     }
-}    
+        // renvoie les problèmes résolus, le nombre varie en fonction de $nbr
+        public function getSolvedIssues($nbr){
+            $sql = 'SELECT id, `date`, statut, sujet, contenu FROM assistance WHERE statut =3 ORDER BY `date` DESC LIMIT '.$nbr.'';
+            $requete = $this -> bd -> query($sql);
+            $donnees = $requete -> fetchAll(PDO::FETCH_ASSOC);
+            for ($i = 0; $i < count($donnees); $i++) {
+                echo "<ul>";
+                echo "<li>id : ".$donnees[$i]['id']." | date : ".$donnees[$i]['date']." | sujet : ".$donnees[$i]['sujet']." | contenu : ".$donnees[$i]['contenu']." </li>";
+                echo "</ul>";
+            }
+        }
+
+        
+        public function statsNumberOfIssues(){
+            $date = date('Y-m-d', strtotime('-10 days'));
+            $sql = "SELECT COUNT(*) as nb FROM assistance WHERE `date` >= '{$date}'";
+            $requete = $this->bd->query($sql);
+            $donnees = $requete -> fetch(PDO::FETCH_ASSOC);
+            return $donnees['nb'];
+        }
+    
+        public function statsTimeSolvedIssues(){
+            $date = date('Y-m-d', strtotime('-10 days'));
+            $sql = "SELECT AVG(TIMESTAMPDIFF(DAY, date, date_resolution)) AS moy FROM assistance;";
+            $requete = $this->bd->query($sql);
+            $donnees = $requete -> fetch(PDO::FETCH_ASSOC);
+            return $donnees['moy'];
+        }
+    }    
+    
 ?>
