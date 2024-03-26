@@ -4,20 +4,20 @@ Class FicheContact{
     private $id;
     private $idCompte;
     private $idEntreprise;
-    private $date;
     private $moyenDeContact;
     private $demande;
     private $reponse;
+    private $date;
 
 
     
-    public function __construct($idCompte, $idEntreprise, $date, $moyenDeContact, $demande, $reponse){
+    public function __construct($idCompte, $idEntreprise, $moyenDeContact, $demande, $reponse, $date){
         $this -> idCompte = $idCompte;
         $this -> idEntreprise = $idEntreprise;
-        $this -> date = $date;
         $this -> moyenDeContact = $moyenDeContact;
         $this -> demande = $demande;
         $this -> reponse = $reponse;
+        $this -> date = $date;
     }
 
 //  id
@@ -103,16 +103,16 @@ Class Contact{
 
     public function createFicheContact($ficheContact)
     {
-        $sql = "INSERT INTO contact (id_utilisateur, id_entreprise, date, moyen_contact, demande, reponse) VALUES (:idCompte, :idEntreprise, :date_contact, :moyenDeContact, :demande, :reponse)";
+        $sql = "INSERT INTO contact (id_utilisateur, id_entreprise,moyen_contact, demande, reponse,date) VALUES (:idCompte, :idEntreprise, :moyenDeContact, :demande, :reponse,:date_contact)";
         $req = $this->bd->prepare($sql);
 
         $params = [
             'idCompte' => $ficheContact->getIdCompte(),
             'idEntreprise' => $ficheContact->getIdEntreprise(),
-            'date_contact' => $ficheContact->getDate(),
             'moyenDeContact' => $ficheContact->getMoyenDeContact(),
             'demande' => $ficheContact->getDemande(),
-            'reponse' => $ficheContact->getReponse()
+            'reponse' => $ficheContact->getReponse(),
+            'date_contact' => $ficheContact->getDate()
         ];
 
         $req->execute($params);
