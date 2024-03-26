@@ -6,17 +6,14 @@ Class Entreprise{
     private $id;
     private $nom;
     private $prenom;
-    private $numClient;
     private $societe;
     private $poste;
-    private $email;
     private $idCommercial;
     private $dateCreationCompte;
 //Constructeur
-    public function __construct($nom,$prenom,$numClient, $societe,$poste,$idCommercial,$dateCreationCompte){
+    public function __construct($nom,$prenom,$societe,$poste,$idCommercial,$dateCreationCompte){
         $this ->nom = $nom;
         $this ->prenom=$prenom;
-        $this ->numClient=$numClient;
         $this ->societe=$societe;
         $this ->poste=$poste;
         $this -> idCommercial= $idCommercial;
@@ -117,7 +114,7 @@ class ManagerEntreprise{
         $resultats = $req->fetchAll(PDO::FETCH_ASSOC);
         $entreprises = array();
         foreach ($resultats as $resultat) {
-            $entreprise = new Entreprise($resultat['id'], $resultat['nom'], $resultat['prenom'], $resultat['numClient'], $resultat['societe'], $resultat['poste'], $resultat['email'], $resultat['idCommercial'], $resultat['dateCreationCompte']);
+            $entreprise = new Entreprise($resultat['id'], $resultat['nom'], $resultat['prenom'], $resultat['societe'], $resultat['poste'], $resultat['idCommercial'], $resultat['date']);
             $entreprises[] = $entreprise;
         }
         return $entreprises;
@@ -129,7 +126,7 @@ class ManagerEntreprise{
         $reqId = $this -> bd -> prepare ($sqlId);
         $reqId -> execute(array('id' => $id));
         $donneesId = $reqId -> fetch(PDO::FETCH_ASSOC);
-        $entreprise = new Entreprise($donneesId['id'], $donneesId['nom'], $donneesId['prenom'], $donneesId['numClient'], $donneesId['societe'], $donneesId['poste'], $donneesId['email'], $donneesId['idCommercial'], $donneesId['dateCreationCompte']);
+        $entreprise = new Entreprise($donneesId['nom'], $donneesId['prenom'], $donneesId['societe'], $donneesId['poste'], $donneesId['id_commercial'], $donneesId['date']);
         return $entreprise;
     }
 
@@ -154,34 +151,30 @@ class ManagerEntreprise{
         }
     }
 
-    public function ModifClient($entreprise) {
-        $sql = 'UPDATE entreprise SET nom = :nom, prenom = :prenom, numClient = :numClient, societe = :societe, poste = :poste, email = :email, idCommercial = :idCommercial, dateCreationCompte = :dateCreationCompte WHERE id = :id';
+    public function ModifClient(Entreprise $entreprise) {
+        $sql = 'UPDATE entreprise SET nom = :nom, prenom = :prenom,  societe = :societe, poste = :poste, id_commercial = :idCommercial, date = :dateCreationCompte WHERE id = :id';
         
         $requete = $this->bd->prepare($sql);
-        $requete->bindParam(':id', $entreprise->getId(), PDO::PARAM_INT);
-        $requete->bindParam(':nom', $entreprise->getNom(), PDO::PARAM_STR);
-        $requete->bindParam(':prenom', $entreprise->getPrenom(), PDO::PARAM_STR);
-        $requete->bindParam(':numClient', $entreprise->getNumClient(), PDO::PARAM_STR);
-        $requete->bindParam(':societe', $entreprise->getSociete(), PDO::PARAM_STR);
-        $requete->bindParam(':poste', $entreprise->getPoste(), PDO::PARAM_STR);
-        $requete->bindParam(':email', $entreprise->getEmail(), PDO::PARAM_STR);
-        $requete->bindParam(':idCommercial', $entreprise->getIdCommercial(), PDO::PARAM_INT);
-        $requete->bindParam(':dateCreationCompte', $entreprise->getDateCreationCompte(), PDO::PARAM_STR);
+        $requete->bindValue(':id', $entreprise->getId(), PDO::PARAM_INT);
+        $requete->bindValue(':nom', $entreprise->getNom(), PDO::PARAM_STR);
+        $requete->bindValue(':prenom', $entreprise->getPrenom(), PDO::PARAM_STR);
+        $requete->bindValue(':societe', $entreprise->getSociete(), PDO::PARAM_STR);
+        $requete->bindValue(':poste', $entreprise->getPoste(), PDO::PARAM_STR);
+        $requete->bindValue(':idCommercial', $entreprise->getIdCommercial(), PDO::PARAM_INT);
+        $requete->bindValue(':dateCreationCompte', $entreprise->getDateCreationCompte(), PDO::PARAM_STR);
         
         return $requete->execute();
     }
 
     // crée une fiche entreprise et renvoie son id dans la class Entreprise
-    public function createClientFiche(Entreprise $objet){
-        $sql = 'INSERT INTO entreprise (nom, prenom, `date`, societe, poste, id_commercial) VALUES ("'.$objet->getNom().'", "'.$objet->getPrenom().'", "'.$objet->getDateCreationCompte().'", "'.$objet->getSociete().'", "'.$objet->getPoste().'", '.$objet->getIdCommercial().')';
+    public function createClientFiche($Entreprise){
+        $sql = 'INSERT INTO entreprise (nom, prenom, date, societe, poste, id_commercial) VALUES ("'.$Entreprise->getNom().'", "'.$Entreprise->getPrenom().'", "'.$Entreprise->getDateCreationCompte().'", "'.$Entreprise->getSociete().'", "'.$Entreprise->getPoste().'", '.$Entreprise->getIdCommercial().')';
         $requete = $this -> bd -> query($sql);
         $donnees = $requete -> fetch(PDO::FETCH_ASSOC);
-
-        $sql2 = 'SELECT id FROM entreprise WHERE societe="'.$objet->getSociete().'"';
+        $sql2 = 'SELECT id FROM entreprise WHERE societe="'.$Entreprise->getSociete().'"';
         $requete2 = $this -> bd -> query($sql2);
         $donnees2 = $requete2 -> fetch(PDO::FETCH_ASSOC);
-
-        return $objet->setId($donnees2['id']);
+        return $Entreprise->setId($donnees2['id']);
     }
 
     
