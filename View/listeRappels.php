@@ -3,7 +3,7 @@ require_once("../Class/rappelAlerte.php");///////A supprimer quand constructeur 
 $bdsqll = new PDO("mysql:host=localhost;dbname=crm", 'root', '');//même chose
 $rappel = new ManagerRappelAlerte($bdsqll);//même chose
 $donneestableau = $rappel->getAlerteRappel($_SESSION['id']);
-    echo "<h2>Vos Rappel et Alerte</h2></br>";
+    echo "<h2>Vos Rappel</h2></br>";
     if($donneestableau != NULL){
     for ($i = 0; $i < count($donneestableau); $i++) {
         if($donneestableau[$i]->getType()==1){

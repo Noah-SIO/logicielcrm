@@ -1,36 +1,15 @@
 <?php
-session_start();
-if (isset($_SESSION['id'])) {
-    $userId = $_SESSION['id'];
-    require_once '../Class/rappelAlerte.php';
-    $managerRappelAlerte = new ManagerRappelAlerte();
-    $alertes = $managerRappelAlerte->getAlerteRappel($userId);
-
-    if (!empty($alertes)) {
-        echo '<table>
-                <tr>
-                    <th>ID</th>
-                    <th>Date début</th>
-                    <th>Date fin</th>
-                    <th>Type</th>
-                    <th>Sujet</th>
-                    <th>Contenu</th>
-                    <th>Statut</th>
-                </tr>';
-        foreach ($alertes as $alerte) {
-            echo '<tr>
-                    <td>' . $alerte->getId() . '</td>
-                    <td>' . $alerte->getDateDebut() . '</td>
-                    <td>' . $alerte->getDateFin() . '</td>
-                    <td>' . $alerte->getType() . '</td>
-                    <td>' . $alerte->getSujet() . '</td>
-                    <td>' . $alerte->getContenu() . '</td>
-                    <td>' . $alerte->getStatut() . '</td>
-                </tr>';
+require_once("../Class/rappelAlerte.php");///////A supprimer quand constructeur en place 
+$bdsqll = new PDO("mysql:host=localhost;dbname=crm", 'root', '');//même chose
+$rappel = new ManagerRappelAlerte($bdsqll);//même chose
+$donneestableau = $rappel->getAlerteRappel($_SESSION['id']);//$_SESSION['id']
+    echo "<h2>Vos Alerte</h2></br>";
+    if($donneestableau != NULL){
+    for ($i = 0; $i < count($donneestableau); $i++) {
+        if($donneestableau[$i]->getType()==2){
+        echo $donneestableau[$i]->getDateDebut(). " -- ".$donneestableau[$i]->getDateFin()."</br>";
+        echo "<p>".$donneestableau[$i]->getSujet()."</p>";
+        echo "<p>".$donneestableau[$i]->getContenu()."</p></br>";
         }
-        echo '</table>';
-    } else {
-        echo "<p>Aucune alerte d'enregistrer.</p>";
-    }
-}
+    }}
 ?>
