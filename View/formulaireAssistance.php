@@ -1,7 +1,5 @@
 <?php
-require_once("../Class/assistance.php");///////A supprimer quand constructeur en place 
-$bdsqll = new PDO("mysql:host=localhost;dbname=crm", 'root', '');//même chose
-$assistance = new ManagerAssistance($bdsqll);//même chose
+$assistance = new ManagerAssistance();
 echo"<h1>Formulaire De Contact Services Informatique</h1>";
 echo"<p>Pour les problème de mot de passe tapper 1, pour la création de compte tapper 2.</p></br></br></br>";
 echo"<form method='post'>";
@@ -16,11 +14,10 @@ echo"<form method='post'>";
     echo"<input type='submit' name='valider'class='button' value='Envoyer au Service Informatique'/>";
 echo"</form>";    
 if(isset($_POST['idrespinfo'])){
-$assistance->registerIssueNoConnect($_POST['idrespinfo'],$_POST['nom'],$_POST['suj'],$_POST['mess']);
-//echo"true"; test a supprimer
+$assistance->registerIssueNoConnect($_POST['idrespinfo'],$_POST['suj'],$_POST['suj'],$_POST['mess']);
 echo"Votre problème à bien été transmis à nos Administrateur";
 }
-echo"<form action='connexion.php'>";
-echo"<input type='submit' name='valider' class='button' value='Retourner page Connexion'/>";
+echo"<form action=''>";
+echo"<input type='submit' name='valider' class='button' value='Retourner page connexion'/>";
 echo"</form>";
 ?>
