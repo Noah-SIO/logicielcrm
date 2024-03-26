@@ -11,44 +11,40 @@ if ($_SESSION['droit'] == 1){
 
 if ($_SESSION['droit'] == 2){
     echo "<div class=''>";
-    require_once('View/.php');
+    require('View/.php');
     echo "</div>";
 }
 
 if ($_SESSION['droit'] == 3){
     echo "<div class=''>";
-    require_once('View/.php');
+    require('View/.php');
     echo "</div>";
 }
 
 if ($_SESSION['droit'] == 4){
     echo "<div class=''>";
-    require_once('View/.php');
+    require('View/.php');
     echo "</div>";
 }
 
 if ($_SESSION['droit'] == 5){
     echo "<div class='dernierProbleme'>";
-    require_once('View/dernierProbleme.php');
+    require('View/dernierProbleme.php');
     echo "</div>";
     echo "<div class='problemeEnCours'>";
-    require_once('View/problemeEnCours.php');
+    require('View/problemeEnCours.php');
     echo "</div>";
     echo "<div class='problemeResolus'>";
-    require_once('View/problemeResolus.php');
+    require('View/problemeResolus.php');
     echo "</div>";
     echo "<div class='modifStatut'>";
-    require_once('View/modifStatut.php');
+    require('View/modifStatut.php');
     echo "</div>";
 }
 
 if ($_SESSION['droit'] == 6){
     echo "<div class='dernierProbleme'>";
-    require_once('View/dernierProbleme.php');
+    require('View/dernierProbleme.php');
     echo "</div>";
 }
-
-echo"<form action=''>
-    <input type='submit' name='valider' class='button' value='Se déconnecter'/>
-    </form>";
 ?>
