@@ -26,6 +26,5 @@ if (isset($_POST['login']) && isset($_POST['password'])){
         echo "-- Erreur de connexion --";
     }
 }
-require_once("View/appelAdmin.php");
 
 ?>
