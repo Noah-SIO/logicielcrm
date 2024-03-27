@@ -76,27 +76,18 @@ class ManagerFichier {
     $requete2 = $this-> bd -> query ($sql2);
    } 
 
-    public function GetFichierByClient($id_entreprise){
-        $sql = ($id_entreprise == 0) ? "SELECT * FROM fichier ORDER BY type" : "SELECT * FROM fichier WHERE id_utilisateur = :identreprise ORDER BY type";
-        $req = $this->bd->prepare($sql);
-        if ($id_entreprise != 0) {
-            $req->bindValue(':identreprise', $id_entreprise, PDO::PARAM_INT);
-        }
-        $req->execute();
-        $fichiers = array();
-        foreach ($req->fetchAll(PDO::FETCH_ASSOC) as $resultat) {
-            $fichier = new Fichier(
-                $resultat['id'],
-                $resultat['id_utilisateur'],
-                $resultat['nom'],
-                $resultat['date'],
-                $resultat['lien'],
-                $resultat['type']
-                
-            );
-            return $fichiers = [$fichier];
-        }
-        return $fichiers;
+    public function GetFichierByClient($userid){
+            $sqlrecherche = "SELECT * FROM `fichier` WHERE id_utilisateur=$userid";
+            $requeterecherche = $this -> bd -> query ($sqlrecherche);
+            $donneesrecherche= $requeterecherche->fetchall(PDO::FETCH_ASSOC); 
+            $tableauRecherche= array();      
+                if($donneesrecherche != NULL){
+                    for ($i=0 ; $i<count($donneesrecherche) ;$i++){
+                $tableauRecherche[]= new Fichier($donneesrecherche[$i]['id'],$donneesrecherche[$i]['id_utilisateur'],$donneesrecherche[$i]['nom'],$donneesrecherche[$i]['date'],
+                $donneesrecherche[$i]['lien'],$donneesrecherche[$i]['type']);                
+            }
+            return $tableauRecherche;
+            }
     }
     public function DeleteDoc($id) {
         $sql = 'DELETE FROM fichier WHERE id_utilisateur = :id';
