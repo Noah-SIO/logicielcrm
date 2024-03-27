@@ -121,9 +121,9 @@ Class Contact{
         $ficheContact->setId($id);
     }
 
-    public function getContact($nbr, $ordre) {
-        if ($nbr != NULL && $ordre != NULL){
-            $sql = "SELECT * FROM `contact` ORDER BY date $ordre LIMIT $nbr";
+    public function getContact($nbr, $filtre, $ordre) {
+        if ($nbr != NULL){
+            $sql = "SELECT * FROM `contact` ORDER BY $filtre $ordre LIMIT $nbr";
             $requete = $this->bd->query($sql);
             $donnees = $requete->fetchAll(PDO::FETCH_ASSOC);
             return $donnees;
