@@ -10,7 +10,8 @@ Class Entreprise{
     private $idCommercial;
     private $dateCreationCompte;
 //Constructeur
-    public function __construct($nom,$prenom,$societe,$poste,$idCommercial,$dateCreationCompte){
+    public function __construct($id,$nom,$prenom,$societe,$poste,$idCommercial,$dateCreationCompte){
+        $this ->id = $id;
         $this ->nom = $nom;
         $this ->prenom=$prenom;
         $this ->societe=$societe;
@@ -99,7 +100,7 @@ class ManagerEntreprise{
         $req->execute(array());
         $resultats = $req->fetchAll(PDO::FETCH_ASSOC);
         foreach ($resultats as $resultat) {
-            $entreprise = new Entreprise($resultat['nom'], $resultat['prenom'], $resultat['societe'], $resultat['poste'], $resultat['id_commercial'], $resultat['date']);
+            $entreprise = new Entreprise($resultat['id'], $resultat['nom'], $resultat['prenom'], $resultat['societe'], $resultat['poste'], $resultat['id_commercial'], $resultat['date']);
             $entreprises[] = $entreprise;
         }
         return $entreprises;
