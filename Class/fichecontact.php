@@ -94,11 +94,9 @@ Class Contact{
         $this -> bd = new PDO("mysql:host=localhost;dbname=crm", 'root', '');
     }
 
-    public function createFicheContact($ficheContact)
-    {
-        $sql = "INSERT INTO contact (id_utilisateur, id_entreprise,moyen_contact, demande, reponse,date) VALUES (:idCompte, :idEntreprise, :moyenDeContact, :demande, :reponse,:date_contact)";
+    public function createFicheContact(FicheContact $ficheContact) {
+        $sql = "INSERT INTO contact (id_utilisateur, id_entreprise, moyen_contact, demande, reponse, date) VALUES (:idCompte, :idEntreprise, :moyenDeContact, :demande, :reponse,:date_contact)";
         $req = $this->bd->prepare($sql);
-
         $params = [
             'idCompte' => $ficheContact->getIdCompte(),
             'idEntreprise' => $ficheContact->getIdEntreprise(),
@@ -107,13 +105,8 @@ Class Contact{
             'reponse' => $ficheContact->getReponse(),
             'date_contact' => $ficheContact->getDate()
         ];
-
         $req->execute($params);
-        $sql = "SELECT id FROM contact ORDER BY id DESC LIMIT 1;";
-        $req = $this->bd->prepare($sql);
-        $req->execute();
-        $id = $req->fetch();
-        $ficheContact->setId($id);
+        $ficheContact->setId($this->bd->lastInsertId());
     }
 
 
@@ -207,7 +200,6 @@ Class Contact{
             $tableauHistorique[]= new FicheContact(null,$donneeshistorique[$i]['id_utilisateur'],$donneeshistorique[$i]['id_entreprise'],$donneeshistorique[$i]['date'],$donneeshistorique[$i]['moyen_contact'],
             $donneeshistorique[$i]['demande'],$donneeshistorique[$i]['reponse']);                
         }
-        var_dump($tableauHistorique);
         return $tableauHistorique;
     } 
 }
@@ -220,11 +212,9 @@ Class Contact{
 }
 
     public function modifContact($ficheContact){
-        var_dump($ficheContact);
         $sql = "UPDATE contact SET id_utilisateur=:idCompte, id_entreprise=:idEntreprise, date=:date_contact, moyen_contact=:moyenDeContact, demande=:demande, reponse=:reponse WHERE id=:id";
         $req = $this->bd->prepare($sql);
         $params = ['idCompte' => $ficheContact->getIdCompte(),'idEntreprise' => $ficheContact->getIdEntreprise(),'date_contact' => $ficheContact->getDate(),'moyenDeContact' => $ficheContact->getMoyenDeContact(),'demande' => $ficheContact->getDemande(),'reponse' => $ficheContact->getReponse(),'id' => $ficheContact->getId()];
-        var_dump($params);
         $req->execute($params);
     }
     
