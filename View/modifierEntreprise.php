@@ -2,7 +2,7 @@
 require_once('../Class/rappelAlerte.php');
 require_once('../Class/entreprise.php');
 require_once('../Class/utilisateur.php');
-$idEntreprise = $_GET['id_entreprise'];
+$idEntreprise = 5;///modifier après
 $utilisateurManager = new ManagerUtilisateur();
 $commercial = $utilisateurManager->returnAllUsers();
 $entrepriseManager = new ManagerEntreprise();
@@ -26,12 +26,10 @@ $date = $infosEntreprise->getDateCreationCompte();
     <input type="text" name="societe" value="<?php echo $societe; ?>"><br>
     <label for="poste">Poste:</label>
     <input type="text" name="poste" value="<?php echo $infosEntreprise->getPoste(); ?>"><br>
-    <label for="id_commercial">ID commercial:</label>
-    <input type="text" name="id_commercial" value="<?php echo $id_commercial; ?>"><br>
     <label for="commercial">Commercial :</label><br>
     <select name="commercial" id="commercial">
         <?php foreach ($commercial as $com) : ?>
-            <option value="<?php echo $com->getId();?>">
+            <option value="<?php echo $com->getId();?>" <?php if ($com->getId() == $id_commercial) echo 'selected'; ?>>
                 <?php echo $com->getNom() . " " . $com->getPrenom(); ?>
             </option>
         <?php endforeach; ?>
@@ -46,8 +44,7 @@ if (isset($_POST['modifier'])) {
     $prenom = $_POST['prenom'];
     $societe = $_POST['societe'];
     $poste = $_POST['poste'];
-    $id_commercial = $_POST['id_commercial'];
-    $commercial = $_POST['commercial'];
+    $id_commercial = $_POST['commercial'];
     $date = $_POST['date'];
     $modifEntreprie = new Entreprise($nom, $prenom, $societe,$poste, $id_commercial, $date);
     $modifEntreprie->setId($idEntreprise);
