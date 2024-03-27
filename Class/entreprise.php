@@ -1,5 +1,4 @@
 <?php 
-require_once("annuaire.php");
 
 Class Entreprise{
     //Valeur privée
@@ -99,13 +98,18 @@ class ManagerEntreprise{
         $req = $bd->prepare($sql);
         $req->execute(array());
         $resultats = $req->fetchAll(PDO::FETCH_ASSOC);
-        $entreprises = array();
-        foreach ($resultats as $resultat) {
-            $entreprise = new Entreprise($resultat['id'], $resultat['nom'], $resultat['prenom'], $resultat['societe'], $resultat['poste'], $resultat['id_commercial'], $resultat['date']);
-            $entreprises[] = $entreprise;
-        }
-        return $entreprises;
+        return $resultats;
     }
+
+    public function getAnnuaireEntreprise($idEntreprise){
+        if ($idEntreprise != NULL){
+            $sql = "SELECT * FROM annuaire WHERE id =".$idEntreprise."";
+            $requete = $this -> bd -> query ($sql);
+            $donnees = $requete ->fetchall(PDO::FETCH_ASSOC);
+            return $donnees;
+        }
+    }
+
     public function SearchClientByName($nom){
         $bd = $this->bd;
         $sql = "SELECT * FROM entreprise WHERE nom LIKE :nom";
@@ -176,6 +180,7 @@ class ManagerEntreprise{
         $donnees2 = $requete2 -> fetch(PDO::FETCH_ASSOC);
         return $Entreprise->setId($donnees2['id']);
     }
+    
     public function getHistoriqueEntreprise($nbr){
         $bd = $this->bd;
         $sql = "SELECT * FROM entreprise GROUP BY date DESC LIMIT $nbr";
@@ -188,6 +193,6 @@ class ManagerEntreprise{
             $entreprises[] = $entreprise;
         }
         return $entreprises;
-    }
+    }   
 }
 ?>

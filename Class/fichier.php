@@ -76,7 +76,7 @@ class ManagerFichier {
     $requete2 = $this-> bd -> query ($sql2);
    } 
     public function GetFichierByClient($id_entreprise){
-        $sql = ($id_entreprise == 0) ? "SELECT * FROM fichier ORDER BY type" : "SELECT * FROM fichier WHERE idutilisateur = :identreprise ORDER BY type";
+        $sql = ($id_entreprise == 0) ? "SELECT * FROM fichier ORDER BY type" : "SELECT * FROM fichier WHERE id_utilisateur = :identreprise ORDER BY type";
         $req = $this->bd->prepare($sql);
         if ($id_entreprise != 0) {
             $req->bindValue(':identreprise', $id_entreprise, PDO::PARAM_INT);
@@ -93,10 +93,9 @@ class ManagerFichier {
                 $resultat['type']
                 
             );
-            $fichiers[] = $fichier;
+            return $fichiers = [$fichier];
         }
         return $fichiers;
-    
-}
+    }
 }
 ?>    
