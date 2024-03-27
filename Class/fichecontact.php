@@ -12,6 +12,7 @@ Class FicheContact{
 
     
     public function __construct($id,$idCompte, $idEntreprise, $date, $demande, $reponse, $moyenDeContact){
+        $this -> id = $id;
         $this -> idCompte = $idCompte;
         $this -> idEntreprise = $idEntreprise;
         $this -> moyenDeContact = $moyenDeContact;
@@ -22,12 +23,6 @@ Class FicheContact{
 
 //  id
 public function getId() {
-    $sql = "SELECT id FROM contact WHERE id_utilisateur = '".$this->idCompte."' && id_entreprise = '".$this->idEntreprise."' &&  moyen_contact = '".$this->moyenDeContact."' && date = '".$this->date."' && demande = '".$this->demande."' && reponse = '".$this->reponse."'";
-    $bd = new PDO('mysql:host=localhost;dbname=crm', 'root', '');
-    $requete = $bd->prepare($sql);
-    $requete->execute();
-    $donnees = $requete->fetch();
-    $this->id = $donnees;
     return $this->id;
 }
 
@@ -122,7 +117,29 @@ Class Contact{
     }
 
 
+    public function returnAllUsers() {
+        $sql = "SELECT * FROM contact";
+        $requete = $this->bd->query($sql);
+        $donnees = $requete->fetchAll(PDO::FETCH_ASSOC);
+        $tableauContacts = array();      
+        if ($donnees != NULL) {
+            foreach ($donnees as $contactData) {
+                $contact = new FicheContact(
+                    null,
+                    $contactData['id_utilisateur'],
+                    $contactData['id_entreprise'],
+                    $contactData['date'],
+                    $contactData['moyen_contact'],
+                    $contactData['demande'],
+                    $contactData['reponse']
+                );
+                $tableauContacts[] = $contact;
 
+            }
+        }         
+        return $tableauContacts;
+    }
+    
 
     public function getContact() {
         $sql = "SELECT * FROM `contact` ORDER BY date DESC";
@@ -133,7 +150,7 @@ Class Contact{
         if ($donnees != NULL) {
             foreach ($donnees as $contactData) {
                 $contact = new FicheContact(
-                    null,
+                    $contactData['id'],
                     $contactData['id_utilisateur'],
                     $contactData['id_entreprise'],
                     $contactData['date'],
@@ -159,13 +176,13 @@ Class Contact{
         
         foreach ($donnees as $contactData) {
             $contact = new FicheContact(
-                null,
+                $contactData['id'],
                 $contactData['id_utilisateur'],
                 $contactData['id_entreprise'],
-                $contactData['moyen_contact'],
+                $contactData['date'],
                 $contactData['demande'],
                 $contactData['reponse'],
-                $contactData['date']
+                $contactData['moyen_contact']
             );
             $tableauContacts[] = $contact;
         }
@@ -203,6 +220,7 @@ Class Contact{
 }
 
     public function modifContact($ficheContact){
+        var_dump($ficheContact);
         $sql = "UPDATE contact SET id_utilisateur=:idCompte, id_entreprise=:idEntreprise, date=:date_contact, moyen_contact=:moyenDeContact, demande=:demande, reponse=:reponse WHERE id=:id";
         $req = $this->bd->prepare($sql);
         $params = ['idCompte' => $ficheContact->getIdCompte(),'idEntreprise' => $ficheContact->getIdEntreprise(),'date_contact' => $ficheContact->getDate(),'moyenDeContact' => $ficheContact->getMoyenDeContact(),'demande' => $ficheContact->getDemande(),'reponse' => $ficheContact->getReponse(),'id' => $ficheContact->getId()];
