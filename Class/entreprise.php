@@ -98,7 +98,11 @@ class ManagerEntreprise{
         $req = $bd->prepare($sql);
         $req->execute(array());
         $resultats = $req->fetchAll(PDO::FETCH_ASSOC);
-        return $resultats;
+        foreach ($resultats as $resultat) {
+            $entreprise = new Entreprise($resultat['nom'], $resultat['prenom'], $resultat['societe'], $resultat['poste'], $resultat['id_commercial'], $resultat['date']);
+            $entreprises[] = $entreprise;
+        }
+        return $entreprises;
     }
 
     public function getAnnuaireEntreprise($idEntreprise){
