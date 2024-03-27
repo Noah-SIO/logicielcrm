@@ -1,7 +1,8 @@
 <?php
+$idFicheContact = 5; // a modifier 
 include '../Class/fichecontact.php';
 $contactManager = new Contact();
-$listeContacts = $contactManager->getContact(0);
+$listeContacts = $contactManager->getContact($idFicheContact);
 foreach ($listeContacts as $contact) {
     echo "<tr>";
     echo "<td>" . $contact->getId() . "</td>";
