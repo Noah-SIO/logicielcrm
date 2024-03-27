@@ -9,8 +9,7 @@ Class Annuaire{
 
 
 
-    public function __construct($id, $idEntreprise, $type, $ValeurDeContact,$date){
-        $this->id = $id;
+    public function __construct($idEntreprise, $type, $ValeurDeContact, $date){
         $this->idEntreprise = $idEntreprise;
         $this->type = $type;
         $this->ValeurDeContact = $ValeurDeContact;
@@ -24,9 +23,7 @@ Class Annuaire{
     }
 
     public function setId($Id) {
-        //$this->id = $Id;
-        $ValeurDeContact = $this->ValeurDeContact;
-        $sqlrecherche = "SELECT id FROM annuaire WHERE valeur_contact = $ValeurDeContact";
+        $this->id = $id;
     }
 
 
@@ -44,11 +41,11 @@ Class Annuaire{
 
 
 //  type
-    public function settype($type) {
+    public function setType($type) {
         $this->type = $type;
     }
 
-    public function gettype() {
+    public function getType() {
         return $this->type;
     }
 
@@ -74,10 +71,13 @@ Class Annuaire{
 
 class ManagerAnnuaire{
     private $bd;
+    private $type;
+
     public function __construct() {
         $this -> bd = new PDO("mysql:host=localhost;dbname=crm", 'root', '');
+        $this -> type = [1 => "téléphone fixe", 2 => "téléphone portable", 3 => "e-mail"];
     }
-    public function SearchAnnuaireByType($recherche,$type){
+    public function searchAnnuaireByType($recherche,$type){
         $type = strtoupper($type);
         if($type == "TYPE"){
         $sqlrecherche = "SELECT * FROM annuaire WHERE type LIKE '%$recherche%'";
@@ -99,30 +99,14 @@ class ManagerAnnuaire{
     }
 
     // ajoute un numero de téléphone ou un mail dans la base de donnees a partir de l'objet annuaire. || par Romain
-    public function addContactToAnnuaire($annuaire){
-        $stmt = $this->bd->prepare("INSERT INTO annuaire (id_entreprise, valeur_contact, type, date) VALUES (?, ?, ?, ?)");
+    public function addContactToAnnuaire(Annuaire $objet){
+        $stmt = $this->bd->prepare("INSERT INTO annuaire (id_entreprise, valeur_contact, `type`, `date`) VALUES (?, ?, ?, ?)");
         $stmt->execute([
-            $annuaire->getIdEntreprise(),
-            $annuaire->getValeurDeContact(),
-            $annuaire->gettype(),
-            $annuaire->getDate()
+            $objet->getIdEntreprise(),
+            $objet->getValeurDeContact(),
+            $objet->getType(),
+            $objet->getDate()
         ]);
-    }
-
-    //Modifie les données presante dans l'annuaire a partire d'un objet annuaire|| par Romain
-    public function Modifierannuaire($annuaire){
-        $valeur = $annuaire->getValeurDeContact();
-        $type = $annuaire->gettype();
-        $date = $annuaire->getDate();
-        $id = $annuaire->getId();
-        $stmt = $this->bd->prepare("UPDATE annuaire SET valeur_contact = $valeur, type = $type, date = $date WHERE id = $id");
-        $stmt->execute();
-    }
-
-    //suprime les donnée qui ont pour id $id || par Romain
-    public function Supprimerannuaire($id){
-        $stmt = $this->bd->prepare("DELETE FROM annuaire WHERE id = $id");
-        $stmt->execute();
     }
 
 

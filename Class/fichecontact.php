@@ -4,25 +4,35 @@ Class FicheContact{
     private $id;
     private $idCompte;
     private $idEntreprise;
-    private $date;
     private $moyenDeContact;
     private $demande;
     private $reponse;
+    private $date;
 
 
     
-    public function __construct($idCompte, $idEntreprise, $date, $moyenDeContact, $demande, $reponse){
+    public function __construct($id,$idCompte, $idEntreprise, $moyenDeContact, $demande, $reponse, $date){
         $this -> idCompte = $idCompte;
         $this -> idEntreprise = $idEntreprise;
-        $this -> date = $date;
         $this -> moyenDeContact = $moyenDeContact;
         $this -> demande = $demande;
         $this -> reponse = $reponse;
+        $this -> date = $date;
     }
 
 //  id
     public function getId() {
-        return $this->id['id'];
+        $sql = "SELECT * FROM contact WHERE id_entreprise=:idEntreprise AND moyen_contact=:moyenDeContact AND demande=:demande AND reponse=:reponse AND date=:date";
+        $req = $this->bd->prepare($sql);
+        $params = ['idEntreprise' => $this->idEntreprise, 'moyenDeContact' => $this->moyenDeContact, 'demande' => $this->demande, 'reponse' => $this->reponse, 'date' => $this->date];
+        $req->execute($params);
+        $donnee = $req->fetch();
+        if ($donnee) {
+            $this->id = $donnee['id'];
+        } else {
+            $this->id = null;
+        }
+        return $this->id;
     }
 
     public function setId($id) {
@@ -103,16 +113,16 @@ Class Contact{
 
     public function createFicheContact($ficheContact)
     {
-        $sql = "INSERT INTO contact (id_utilisateur, id_entreprise, date, moyen_contact, demande, reponse) VALUES (:idCompte, :idEntreprise, :date_contact, :moyenDeContact, :demande, :reponse)";
+        $sql = "INSERT INTO contact (id_utilisateur, id_entreprise,moyen_contact, demande, reponse,date) VALUES (:idCompte, :idEntreprise, :moyenDeContact, :demande, :reponse,:date_contact)";
         $req = $this->bd->prepare($sql);
 
         $params = [
             'idCompte' => $ficheContact->getIdCompte(),
             'idEntreprise' => $ficheContact->getIdEntreprise(),
-            'date_contact' => $ficheContact->getDate(),
             'moyenDeContact' => $ficheContact->getMoyenDeContact(),
             'demande' => $ficheContact->getDemande(),
-            'reponse' => $ficheContact->getReponse()
+            'reponse' => $ficheContact->getReponse(),
+            'date_contact' => $ficheContact->getDate()
         ];
 
         $req->execute($params);
@@ -135,6 +145,7 @@ Class Contact{
         if ($donnees != NULL) {
             foreach ($donnees as $contactData) {
                 $contact = new FicheContact(
+                    null,
                     $contactData['id_utilisateur'],
                     $contactData['id_entreprise'],
                     $contactData['date'],
@@ -150,6 +161,29 @@ Class Contact{
     }
     
 
+    public function getContactByID($id) {
+        $sql = "SELECT * FROM `contact` WHERE id = $id";
+        $requete = $this->bd->query($sql);
+        $donnees = $requete->fetchAll(PDO::FETCH_ASSOC);
+        $tableauContacts = array();      
+        
+        if ($donnees != NULL) {
+            foreach ($donnees as $contactData) {
+                $contact = new FicheContact(
+                    null,
+                    $contactData['id_utilisateur'],
+                    $contactData['id_entreprise'],
+                    $contactData['moyen_contact'],
+                    $contactData['demande'],
+                    $contactData['reponse'],
+                    $contactData['date']
+                );
+                $tableauContacts[] = $contact;
+            }
+        } 
+        return $tableauContacts;
+    }
+    
 
 
 
@@ -164,7 +198,7 @@ Class Contact{
         $tableauHistorique= array();      
             if($donneeshistorique != NULL){
                 for ($i=0 ; $i<count($donneeshistorique) ;$i++){
-            $tableauHistorique[]= new FicheContact($donneeshistorique[$i]['id_utilisateur'],$donneeshistorique[$i]['id_entreprise'],$donneeshistorique[$i]['date'],$donneeshistorique[$i]['moyen_contact'],
+            $tableauHistorique[]= new FicheContact(null,$donneeshistorique[$i]['id_utilisateur'],$donneeshistorique[$i]['id_entreprise'],$donneeshistorique[$i]['date'],$donneeshistorique[$i]['moyen_contact'],
             $donneeshistorique[$i]['demande'],$donneeshistorique[$i]['reponse']);                
         }
         var_dump($tableauHistorique);
