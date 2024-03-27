@@ -1,29 +1,4 @@
 <?php
-$idFicheContact = 2;//a modifier plus tard
-require_once('../Class/fichecontact.php');
-require_once('../Class/utilisateur.php');
-require_once('../Class/entreprise.php');
-
-//contact manager
-$contactManager = new Contact();
-$ficheContact = $contactManager->getContactByID($idFicheContact);
-var_dump($ficheContact);
-$id = $ficheContact->getId();
-$idCompte = $ficheContact->getIdCompte();
-$idEntreprise = $ficheContact->getIdEntreprise();
-$moyenDeContact = $ficheContact->getMoyenDeContact();
-$demande = $ficheContact->getDemande();
-$reponse = $ficheContact->getReponse();
-$date = $ficheContact->getDate();
-
-//utilisateurmanager
-$utilisateurManager = new ManagerUtilisateur();
-$commercial = $utilisateurManager->returnAllUsers();
-
-//entreprise manager
-
-$entrepriseManager = new ManagerEntreprise();
-$infosEntreprise = $entrepriseManager->returnClientById($idEntreprise);
 
 ?>
 <form method="post" action="">

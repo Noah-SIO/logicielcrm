@@ -11,7 +11,7 @@ Class FicheContact{
 
 
     
-    public function __construct($id,$idCompte, $idEntreprise, $moyenDeContact, $demande, $reponse, $date){
+    public function __construct($id,$idCompte, $idEntreprise, $date, $demande, $reponse, $moyenDeContact){
         $this -> idCompte = $idCompte;
         $this -> idEntreprise = $idEntreprise;
         $this -> moyenDeContact = $moyenDeContact;
@@ -21,19 +21,15 @@ Class FicheContact{
     }
 
 //  id
-    public function getId() {
-        $sql = "SELECT * FROM contact WHERE id_entreprise=:idEntreprise AND moyen_contact=:moyenDeContact AND demande=:demande AND reponse=:reponse AND date=:date";
-        $req = $this->bd->prepare($sql);
-        $params = ['idEntreprise' => $this->idEntreprise, 'moyenDeContact' => $this->moyenDeContact, 'demande' => $this->demande, 'reponse' => $this->reponse, 'date' => $this->date];
-        $req->execute($params);
-        $donnee = $req->fetch();
-        if ($donnee) {
-            $this->id = $donnee['id'];
-        } else {
-            $this->id = null;
-        }
-        return $this->id;
-    }
+public function getId() {
+    $sql = "SELECT id FROM contact WHERE id_utilisateur = '".$this->idCompte."' && id_entreprise = '".$this->idEntreprise."' &&  moyen_contact = '".$this->moyenDeContact."' && date = '".$this->date."' && demande = '".$this->demande."' && reponse = '".$this->reponse."'";
+    $bd = new PDO('mysql:host=localhost;dbname=crm', 'root', '');
+    $requete = $bd->prepare($sql);
+    $requete->execute();
+    $donnees = $requete->fetch();
+    $this->id = $donnees;
+    return $this->id;
+}
 
     public function setId($id) {
         $this->id = $id;
@@ -57,14 +53,6 @@ Class FicheContact{
         $this->idEntreprise = $idEntreprise;
     }
 
-// Identifiants
-    public function getIdentifiants() {
-        return $this->identifiants;
-    }
-
-    public function setIdentifiants($identifiants) {
-        $this->identifiants = $identifiants;
-    }
 
 //  Date
     public function getDate() {
@@ -154,6 +142,7 @@ Class Contact{
                     $contactData['reponse']
                 );
                 $tableauContacts[] = $contact;
+
             }
         } 
         
@@ -162,25 +151,25 @@ Class Contact{
     
 
     public function getContactByID($id) {
-        $sql = "SELECT * FROM `contact` WHERE id = $id";
-        $requete = $this->bd->query($sql);
+        $sql = "SELECT * FROM `contact` WHERE id = ?";
+        $requete = $this->bd->prepare($sql);
+        $requete->execute([$id]);
         $donnees = $requete->fetchAll(PDO::FETCH_ASSOC);
-        $tableauContacts = array();      
+        $tableauContacts = [];
         
-        if ($donnees != NULL) {
-            foreach ($donnees as $contactData) {
-                $contact = new FicheContact(
-                    null,
-                    $contactData['id_utilisateur'],
-                    $contactData['id_entreprise'],
-                    $contactData['moyen_contact'],
-                    $contactData['demande'],
-                    $contactData['reponse'],
-                    $contactData['date']
-                );
-                $tableauContacts[] = $contact;
-            }
-        } 
+        foreach ($donnees as $contactData) {
+            $contact = new FicheContact(
+                null,
+                $contactData['id_utilisateur'],
+                $contactData['id_entreprise'],
+                $contactData['moyen_contact'],
+                $contactData['demande'],
+                $contactData['reponse'],
+                $contactData['date']
+            );
+            $tableauContacts[] = $contact;
+        }
+        
         return $tableauContacts;
     }
     
