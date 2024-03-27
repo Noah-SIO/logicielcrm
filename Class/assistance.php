@@ -91,12 +91,12 @@ class ManagerAssistance{
     // renvoie les derniers problèmes envoyés, le nombre varie en fonction de $nbr
     public function getLastIssues($nbr){
         if ($nbr != NULL) {
-            $sql = 'SELECT id, `date`, statut, sujet, contenu FROM assistance ORDER BY `date` LIMIT '.$nbr.'';
+            $sql = 'SELECT * FROM assistance ORDER BY `date` LIMIT '.$nbr.'';
             $requete = $this -> bd -> query($sql);
             $donnees = $requete -> fetchAll(PDO::FETCH_ASSOC);
             for ($i = 0; $i < count($donnees); $i++) {
                 echo "<ul>";
-                echo "<li>id : ".$donnees[$i]['id']." | date : ".$donnees[$i]['date']." | statut : ".$this->statut[$donnees[$i]['statut']]." | sujet : ".$donnees[$i]['sujet']." | contenu : ".$donnees[$i]['contenu']." </li>";
+                echo "<li>id : ".$donnees[$i]['id']." | date : ".$donnees[$i]['date']." | statut : ".$this->statut[$donnees[$i]['statut']]." | sujet : ".$donnees[$i]['sujet']." | contenu : ".$donnees[$i]['contenu']." | date résolution : ".$donnees[$i]['date_resolution']."</li>";
                 echo "</ul>";
             }
         }
