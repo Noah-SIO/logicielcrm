@@ -170,12 +170,15 @@ class ManagerUtilisateur {
             return $requete->execute();
         }
     
-        public function GetUser($identifiant) {
-            $sql = 'SELECT * FROM utilisateur WHERE identifiant = "'.$identifiant.'"';
-            $requete = $this -> bd -> query($sql);
-            $donnees = $requete -> fetchAll(PDO::FETCH_ASSOC);
-            return $donnees;
+        public function GetUser($id) {
+            $sql = "SELECT * FROM utilisateur WHERE id = :id";
+            $requete = $this->bd->prepare($sql);
+            $requete->bindParam(':id', $id, PDO::PARAM_INT);
+            $requete->execute();
+            $utilisateur = $requete->fetch(PDO::FETCH_ASSOC);
+            return $utilisateur;
         }
+        
         
         public function returnAllUsers() {
             $sql = 'SELECT * FROM utilisateur ';

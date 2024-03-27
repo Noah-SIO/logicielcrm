@@ -1,21 +1,19 @@
 <?php
 include '../Class/utilisateur.php';
-$managerUtilisateur = new ManagerUtilisateur();
-$utilisateur = null;
-if (isset($_SESSION['login']) && isset($_SESSION['mdp'])) {
-    $login = $_SESSION['login'];
-    $mdp = $_SESSION['mdp'];
-    if ($managerUtilisateur->checkLoginInfos($login, $mdp)) {
-        $utilisateur = $managerUtilisateur->GetUser($login);
+if(isset($_GET['id'])) {
+    $idFicheProfilAChercher = $_GET['id'];
+    $managerUtilisateur = new ManagerUtilisateur();
+    $utilisateur = $managerUtilisateur->GetUser($idFicheProfilAChercher);
+    if ($utilisateur !== null) {
+        echo "ID : " . $utilisateur['id'] . "<br>";
+        echo "Nom : " . $utilisateur['nom'] . "<br>";
+        echo "Prénom : " . $utilisateur['prenom'] . "<br>";
+        echo "Identifiant : " . $utilisateur['identifiant'] . "<br>";
+        echo "Droits : " . $utilisateur['droit'] . "<br>";
+    } else {
+        echo "Cette id n'est assigné a aucune fiche.";
     }
+} else {
+    echo "Il faut spécifier un id de recherche dans l'url (pour lui afficher sa fiche).";
 }
-?>x 
-</head>
-    <h1>Profil de <?= $utilisateur['prenom'] . ' ' . $utilisateur['nom']; ?></h1>
-    <p><strong>Identifiant:</strong> <?= $utilisateur['identifiant']; ?></p>
-    <p><strong>Profil:</strong> <?= $managerUtilisateur->getProfilById($utilisateur['profil']); ?></p>
-</html>
-
-
-
-# A MODIFIER (EN COURS)
+?>

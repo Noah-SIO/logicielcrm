@@ -72,9 +72,10 @@ class ManagerFichier {
     $date = $Fichier->getDate();
     $lien = $Fichier->getLienDoc();
     $type= $Fichier->getType();
-    $sql2 = "INSERT INTO fichier (id_utilisateur,date,lien,type) VALUES ('$iduser','$nom','$date','$lien','$type')";
+    $sql2 = "INSERT INTO fichier (id_utilisateur,nom,date,lien,type) VALUES ('$iduser','$nom','$date','$lien','$type')";
     $requete2 = $this-> bd -> query ($sql2);
    } 
+
     public function GetFichierByClient($id_entreprise){
         $sql = ($id_entreprise == 0) ? "SELECT * FROM fichier ORDER BY type" : "SELECT * FROM fichier WHERE id_utilisateur = :identreprise ORDER BY type";
         $req = $this->bd->prepare($sql);
@@ -96,6 +97,12 @@ class ManagerFichier {
             return $fichiers = [$fichier];
         }
         return $fichiers;
+    }
+    public function DeleteDoc($id) {
+        $sql = 'DELETE FROM fichier WHERE id_utilisateur = :id';
+        $requete = $this->bd->prepare($sql);
+        $requete->bindParam(':id', $id, PDO::PARAM_INT);
+        return $requete->execute();
     }
 }
 ?>    

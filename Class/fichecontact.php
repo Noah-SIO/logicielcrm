@@ -117,7 +117,29 @@ Class Contact{
     }
 
 
+    public function returnAllUsers() {
+        $sql = "SELECT * FROM contact";
+        $requete = $this->bd->query($sql);
+        $donnees = $requete->fetchAll(PDO::FETCH_ASSOC);
+        $tableauContacts = array();      
+        if ($donnees != NULL) {
+            foreach ($donnees as $contactData) {
+                $contact = new FicheContact(
+                    null,
+                    $contactData['id_utilisateur'],
+                    $contactData['id_entreprise'],
+                    $contactData['date'],
+                    $contactData['moyen_contact'],
+                    $contactData['demande'],
+                    $contactData['reponse']
+                );
+                $tableauContacts[] = $contact;
 
+            }
+        }         
+        return $tableauContacts;
+    }
+    
 
     public function getContact() {
         $sql = "SELECT * FROM `contact` ORDER BY date DESC";
