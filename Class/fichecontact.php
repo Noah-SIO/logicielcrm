@@ -150,6 +150,28 @@ Class Contact{
     }
     
 
+    public function getContactByID($id) {
+        $sql = "SELECT * FROM `contact` WHERE id = $id";
+        $requete = $this->bd->query($sql);
+        $donnees = $requete->fetchAll(PDO::FETCH_ASSOC);
+        $tableauContacts = array();      
+        
+        if ($donnees != NULL) {
+            foreach ($donnees as $contactData) {
+                $contact = new FicheContact(
+                    $contactData['id_utilisateur'],
+                    $contactData['id_entreprise'],
+                    $contactData['date'],
+                    $contactData['moyen_contact'],
+                    $contactData['demande'],
+                    $contactData['reponse']
+                );
+                $tableauContacts[] = $contact;
+            }
+        } 
+        return $tableauContacts;
+    }
+    
 
 
 
