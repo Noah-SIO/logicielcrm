@@ -32,7 +32,7 @@ $listeEntreprise = $entreprisemanager->getAllEntreprise();
             </option>
         <?php endforeach; ?>
     </select><br><br>
-    <label for="idEntreprise">Entreprise:</label>
+    <label for="idEntreprise">ID entreprise:</label>
     <select name="idEntreprise" id="idEntreprise">
         <?php foreach ($listeEntreprise as $entreprise) : ?>
             <option value="<?php echo $entreprise->getId();?>" <?php if ($entreprise->getId() == $idEntreprise) echo 'selected'; ?>>
