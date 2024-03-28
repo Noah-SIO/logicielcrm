@@ -1,6 +1,7 @@
 <?php
-$id_entreprise=5;//0 pour toute les entreprise
+$id_entreprise=0;//0 pour toute les entreprise
 $Code_element=2;// 1pour contrat 2 pour facture 3 pour avoirs
+
 $files = new ManagerFichier();
 $result = $files->GetFichierByClient($id_entreprise);
 echo '<table border="">';

@@ -1,6 +1,6 @@
 <?php
-$bdsqll = new PDO("mysql:host=localhost;dbname=crm", 'root', '');//même chose
-$rappel = new ManagerRappelAlerte($bdsqll);//même chose
+
+$rappel = new ManagerRappelAlerte();//même chose
 $donneestableau = $rappel->getAlerteRappel($_SESSION['id']);
     echo "<h2>Vos Rappel</h2></br>";
     if($donneestableau != NULL){

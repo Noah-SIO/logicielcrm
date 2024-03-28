@@ -1,4 +1,5 @@
 <?php
+$managerUtilisateur = new ManagerUtilisateur();
 $derniersProfils = $managerUtilisateur->returnAllUsers();
 $derniersTroisProfils = array_slice($derniersProfils, -3, 3);
 foreach ($derniersTroisProfils as $utilisateur) {
@@ -11,4 +12,3 @@ foreach ($derniersTroisProfils as $utilisateur) {
     echo "<hr>";
 }
 ?>
-# EN COURS A MODIF (rapide)
