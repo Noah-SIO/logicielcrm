@@ -1,4 +1,5 @@
 <?php
+require_once("../class/entreprise.php");
 $entreprise = new ManagerEntreprise();
 $entreprise -> getAllEntreprise();
 $entreprise -> getAnnuaireEntreprise($entreprise -> getAllEntreprise()[0]['id']);
@@ -26,3 +27,4 @@ $fichier = $fichier -> GetFichierByClient($idEnt);
             </ul>
     </fieldset>
 </form>
+
