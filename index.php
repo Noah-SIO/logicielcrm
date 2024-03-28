@@ -15,6 +15,11 @@ $poste = [1 => "Conseiller client", 2 => "Manager", 3 => "Commercial", 4 => "Com
 
 
 if(isset($_GET['action'])){
+    if ($_GET["action"] == "resultatRecherche"){
+        $title = "Page de recherche";
+        require_once("View/headerNavigation.php");
+        require_once("View/resultatDeRecherche.php");
+    }
     if ($_GET["action"] == "formulaireAssistance"){
         $title = "Formulaire d'assistance";
         require_once("View/header.php");
