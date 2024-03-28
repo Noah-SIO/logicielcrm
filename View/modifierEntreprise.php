@@ -1,7 +1,4 @@
 <?php
-require_once('../Class/rappelAlerte.php');
-require_once('../Class/entreprise.php');
-require_once('../Class/utilisateur.php');
 $idEntreprise = 5;///modifier après
 $utilisateurManager = new ManagerUtilisateur();
 $commercial = $utilisateurManager->returnAllUsers();

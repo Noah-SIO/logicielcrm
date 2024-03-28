@@ -3,26 +3,21 @@ $statutUtilisateur = 2;//a modifier
 $recherche = "1";// a modifier un poste
 
 //entreprise
-require_once("../class/entreprise.php");
 $managerEntreprise = new ManagerEntreprise();
 $listeEntreprise = $managerEntreprise->SearchClientByName($recherche);
 
 
 //utilisateur
-require_once("../class/utilisateur.php");
 $managerUtilisateur = new ManagerUtilisateur();
 $listeUtilisateur = $managerUtilisateur->SearchUserByType($recherche,'ALL');
 
 
 //fichiers
-//require_once("../class/fichiers.php");
-require_once("../class/fichier.php");
 $managerFichier = new ManagerFichier();
 $fichiers = $managerFichier->GetFichierByName($recherche);
 
 
 //contacts 
-require_once("../class/fichecontact.php");
 $managerContact = new Contact();
 $contact = $managerContact->getContactByID((int)$recherche);
 

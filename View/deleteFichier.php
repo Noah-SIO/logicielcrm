@@ -1,5 +1,4 @@
 <?php 
-require_once('../Class/fichier.php');
 $bdsqll = new PDO("mysql:host=localhost;dbname=crm", 'root', '');
 $test = new ManagerFichier($bdsqll);
 echo"<form method='post'>";

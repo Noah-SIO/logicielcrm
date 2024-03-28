@@ -1,5 +1,4 @@
 <?php
-require_once("../Class/fichier.php");///////A supprimer quand constructeur en place 
 $bdsqll = new PDO("mysql:host=localhost;dbname=crm", 'root', '');//même chose
 $rappel = new ManagerFichier($bdsqll);//même chose
 $donneestableau = $rappel->GetFichierByClient($_GET['id']);//$_SESSION['id']);

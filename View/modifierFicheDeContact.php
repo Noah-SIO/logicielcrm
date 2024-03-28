@@ -1,7 +1,6 @@
 <?php
 // contact
 $idFicheContact= 8 ;// a modifier 
-require_once('../class/fichecontact.php');
 $contactManager = new Contact();
 $listeContacts = $contactManager->getContactByID($idFicheContact);
 foreach ($listeContacts as $contact) {
@@ -12,13 +11,11 @@ $demande = $contact->getDemande();
 $reponse =$contact->getReponse();
 
 // utilisateur
-require_once('../class/utilisateur.php');
 $utilisateurManager = new ManagerUtilisateur();
 $commercial = $utilisateurManager->returnAllUsers();
 $id_commercial = $contact->getIdCompte();
 
 //entreprise 
-require_once('../class/entreprise.php');
 $entreprisemanager = new ManagerEntreprise();
 $listeEntreprise = $entreprisemanager->getAllEntreprise();
 }

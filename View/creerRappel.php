@@ -1,6 +1,4 @@
-<?php
-require_once("../Class/utilisateur.php");///////A supprimer quand constructeur en place
-require_once("../Class/rappelAlerte.php");///////A supprimer quand constructeur en place 
+<?php   
 $bdsqll = new PDO("mysql:host=localhost;dbname=crm", 'root', '');//même chose
 $rappel = new ManagerRappelAlerte($bdsqll);//même chose
 $user = new ManagerUtilisateur($bdsqll);//même chose
