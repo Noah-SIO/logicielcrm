@@ -1,6 +1,6 @@
 <?php 
-$bdsqll = new PDO("mysql:host=localhost;dbname=crm", 'root', '');
-$test = new ManagerFichier($bdsqll);
+
+$test = new ManagerFichier();
 ?>
 <form method="post">
 <h1>Ajouter Document À un Client</h1></br>

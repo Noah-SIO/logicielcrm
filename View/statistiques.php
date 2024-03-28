@@ -1,4 +1,5 @@
 <?php
+
 $managerAssistance = new ManagerAssistance();
 $contact = new Contact();
 $StatOnContact = $contact->StatOnContact();
