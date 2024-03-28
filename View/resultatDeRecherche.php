@@ -1,5 +1,4 @@
 <?php
-var_dump($_SESSION);
 $statutUtilisateur = $_SESSION['droit'];//a modifier
 $recherche = $_GET['recherche'];// a modifier 
 

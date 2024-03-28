@@ -80,6 +80,11 @@ if(isset($_GET['action'])){
         require_once("View/headerNavigation.php");
         require('View/modifProfil.php');
     }   
+    if ($_GET["action"] == "rechercher"){
+        $title = "resultat de recherche pour : " . $_GET["recherche"];
+        require_once("View/header.php");
+        require_once("View/resultatDeRecherche.php");
+    }
 }
 else {
     $title = "Page de connexion";
