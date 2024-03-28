@@ -106,6 +106,14 @@ class ManagerEntreprise{
         return $entreprises;
     }
 
+    public function getEntreprise($id){
+        $bd = $this->bd;
+        $sql = "SELECT * FROM entreprise WHERE id=$id";
+        $requete = $this -> bd -> query ($sql);
+        $donnees = $requete->fetchall(PDO::FETCH_ASSOC);
+        return $donnees;
+    }
+
     public function getAnnuaireEntreprise($idEntreprise){
         if ($idEntreprise != NULL){
             $sql = "SELECT * FROM annuaire WHERE id =".$idEntreprise."";
@@ -115,27 +123,20 @@ class ManagerEntreprise{
         }
     }
 
-    public function searchClientByName($nom)
-    {
+    public function SearchClientByName($nom){
         $bd = $this->bd;
-        $sql = "SELECT * FROM entreprise WHERE nom LIKE :nom OR societe LIKE :nom";
+        $sql = "SELECT * FROM entreprise WHERE nom LIKE :nom";
         $req = $bd->prepare($sql);
-        $req->execute(['nom' => '%' . $nom . '%']);
+        $req->execute(array('nom' => '%' . $nom . '%'));
         $resultats = $req->fetchAll(PDO::FETCH_ASSOC);
-        $entreprises = [];
-        foreach ($resultats as $entrepriseInfo) {
-            $entreprises[] = new Entreprise(
-                $entrepriseInfo['id'], 
-                $entrepriseInfo['nom'], 
-                $entrepriseInfo['prenom'], 
-                $entrepriseInfo['societe'], 
-                $entrepriseInfo['poste'], 
-                $entrepriseInfo['id_commercial'], 
-                $entrepriseInfo['date']
-            );
+        $entreprises = array();
+        foreach ($resultats as $resultat) {
+            $entreprise = new Entreprise($resultat['id'], $resultat['nom'], $resultat['prenom'], $resultat['societe'], $resultat['poste'], $resultat['idCommercial'], $resultat['date']);
+            $entreprises[] = $entreprise;
         }
         return $entreprises;
     }
+
     // Fonction pour rechercher un client par son ID || Romain
     public function returnClientById($id){
         $sqlId = "SELECT * FROM entreprise WHERE id= :id";
@@ -201,7 +202,7 @@ class ManagerEntreprise{
         $resultats = $req->fetchAll(PDO::FETCH_ASSOC);
         $entreprises = array();
         foreach ($resultats as $resultat) {
-            $entreprise = new Entreprise($resultat['id'],$resultat['nom'], $resultat['prenom'], $resultat['societe'], $resultat['poste'], $resultat['id_commercial'], $resultat['date']);
+            $entreprise = new Entreprise($resultat['id'], $resultat['nom'], $resultat['prenom'], $resultat['societe'], $resultat['poste'], $resultat['id_commercial'], $resultat['date']);
             $entreprises[] = $entreprise;
         }
         return $entreprises;
