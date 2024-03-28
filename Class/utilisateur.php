@@ -121,15 +121,17 @@ class ManagerUtilisateur {
     
     //ajoute un utilisateur dans la base de donnees a partir de l'objet utilisateur. || par Romain
     public function addUser($utilisateur){
-        $bd = $this->bd;
-        $creercompte = $bd->prepare("INSERT INTO utilisateur (nom, prenom, identifiant, mdp, droit) VALUES (:nom, :prenom, :identifiant, :mdp, :droit)");
-        $creercompte->execute([
-            ':nom' => $utilisateur->getNom(),
-            ':prenom' => $utilisateur->getPrenom(),
-            ':identifiant' => $utilisateur->getIdentifiants(),
-            ':mdp' => $utilisateur->getMdp(),
-            ':droit' => $utilisateur->getProfil()
-        ]);   
+        if ($utilisateur != NULL) {
+            $bd = $this->bd;
+            $creercompte = $bd->prepare("INSERT INTO utilisateur (nom, prenom, identifiant, mdp, droit) VALUES (:nom, :prenom, :identifiant, :mdp, :droit)");
+            $creercompte->execute([
+                ':nom' => $utilisateur->getNom(),
+                ':prenom' => $utilisateur->getPrenom(),
+                ':identifiant' => $utilisateur->getIdentifiants(),
+                ':mdp' => $utilisateur->getMdp(),
+                ':droit' => $utilisateur->getProfil()
+            ]);  
+        }
     }
     
     // Modifie les informations de l'utilisateur dans la base de données a partir de l'objet utilisateur.|| par Romain
@@ -169,16 +171,13 @@ class ManagerUtilisateur {
             $requete->bindParam(':id', $id, PDO::PARAM_INT);
             return $requete->execute();
         }
-    
-        public function GetUser($id) {
-            $sql = "SELECT * FROM utilisateur WHERE id = :id";
-            $requete = $this->bd->prepare($sql);
-            $requete->bindParam(':id', $id, PDO::PARAM_INT);
-            $requete->execute();
-            $utilisateur = $requete->fetch(PDO::FETCH_ASSOC);
-            return $utilisateur;
-        }
         
+        public function GetUser($identifiant) {
+            $sql = 'SELECT * FROM utilisateur WHERE identifiant = "'.$identifiant.'"';
+            $requete = $this -> bd -> query($sql);
+            $donnees = $requete -> fetchAll(PDO::FETCH_ASSOC);
+            return $donnees;
+        }
         
         public function returnAllUsers() {
             $sql = 'SELECT * FROM utilisateur ';
@@ -203,7 +202,6 @@ class ManagerUtilisateur {
             $requete->bindParam(':id', $id, PDO::PARAM_INT);
             return $requete->execute();
         }
-
-    }
+}
 
 ?>
