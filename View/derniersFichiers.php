@@ -1,5 +1,5 @@
 <?php
-$id_entreprise=0;//0 pour toute les entreprise
+$id_entreprise= 2;//0 pour toute les entreprise
 $Code_element=2;// 1pour contrat 2 pour facture 3 pour avoirs
 
 $files = new ManagerFichier();
