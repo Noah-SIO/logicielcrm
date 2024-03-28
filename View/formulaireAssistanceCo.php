@@ -1,5 +1,5 @@
 <?php
-
+$assistance = new ManagerAssistance();
 echo"<h1>Formulaire De Contact Services Informatique</h1>";
 echo"<p>Pour les problème de mot de passe tapper 1, pour la création de compte tapper 2.</p></br></br></br>";
 echo"<form method='post'>";
