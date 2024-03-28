@@ -1,6 +1,6 @@
 <?php
-$statutUtilisateur = 2;//a modifier
-$recherche = "1";// a modifier un poste
+$statutUtilisateur = $_SESSION['droit'];//a modifier
+$recherche = $_GET['recherche'];// a modifier un poste
 
 //entreprise
 $managerEntreprise = new ManagerEntreprise();
