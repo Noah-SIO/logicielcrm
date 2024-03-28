@@ -12,6 +12,7 @@ Class FicheContact{
 
     
     public function __construct($id,$idCompte, $idEntreprise, $date, $demande, $reponse, $moyenDeContact){
+        $this -> id = $id;
         $this -> idCompte = $idCompte;
         $this -> idEntreprise = $idEntreprise;
         $this -> moyenDeContact = $moyenDeContact;
@@ -22,12 +23,6 @@ Class FicheContact{
 
 //  id
 public function getId() {
-    $sql = "SELECT id FROM contact WHERE id_utilisateur = '".$this->idCompte."' && id_entreprise = '".$this->idEntreprise."' &&  moyen_contact = '".$this->moyenDeContact."' && date = '".$this->date."' && demande = '".$this->demande."' && reponse = '".$this->reponse."'";
-    $bd = new PDO('mysql:host=localhost;dbname=crm', 'root', '');
-    $requete = $bd->prepare($sql);
-    $requete->execute();
-    $donnees = $requete->fetch();
-    $this->id = $donnees;
     return $this->id;
 }
 
@@ -99,11 +94,9 @@ Class Contact{
         $this -> bd = new PDO("mysql:host=localhost;dbname=crm", 'root', '');
     }
 
-    public function createFicheContact($ficheContact)
-    {
-        $sql = "INSERT INTO contact (id_utilisateur, id_entreprise,moyen_contact, demande, reponse,date) VALUES (:idCompte, :idEntreprise, :moyenDeContact, :demande, :reponse,:date_contact)";
+    public function createFicheContact(FicheContact $ficheContact) {
+        $sql = "INSERT INTO contact (id_utilisateur, id_entreprise, moyen_contact, demande, reponse, date) VALUES (:idCompte, :idEntreprise, :moyenDeContact, :demande, :reponse,:date_contact)";
         $req = $this->bd->prepare($sql);
-
         $params = [
             'idCompte' => $ficheContact->getIdCompte(),
             'idEntreprise' => $ficheContact->getIdEntreprise(),
@@ -112,24 +105,61 @@ Class Contact{
             'reponse' => $ficheContact->getReponse(),
             'date_contact' => $ficheContact->getDate()
         ];
-
         $req->execute($params);
-        $sql = "SELECT id FROM contact ORDER BY id DESC LIMIT 1;";
-        $req = $this->bd->prepare($sql);
-        $req->execute();
-        $id = $req->fetch();
-        $ficheContact->setId($id);
+        $ficheContact->setId($this->bd->lastInsertId());
     }
 
-    public function getContact($nbr, $filtre, $ordre) {
-        if ($nbr != NULL){
-            $sql = "SELECT * FROM `contact` ORDER BY $filtre $ordre LIMIT $nbr";
-            $requete = $this->bd->query($sql);
-            $donnees = $requete->fetchAll(PDO::FETCH_ASSOC);
-            return $donnees;
-        }
+
+    public function returnAllUsers() {
+        $sql = "SELECT * FROM contact";
+        $requete = $this->bd->query($sql);
+        $donnees = $requete->fetchAll(PDO::FETCH_ASSOC);
+        $tableauContacts = array();      
+        if ($donnees != NULL) {
+            foreach ($donnees as $contactData) {
+                $contact = new FicheContact(
+                    null,
+                    $contactData['id_utilisateur'],
+                    $contactData['id_entreprise'],
+                    $contactData['date'],
+                    $contactData['moyen_contact'],
+                    $contactData['demande'],
+                    $contactData['reponse']
+                );
+                $tableauContacts[] = $contact;
+
+            }
+        }         
+        return $tableauContacts;
     }
     
+
+    public function getContact() {
+        $sql = "SELECT * FROM `contact` ORDER BY date DESC";
+        $requete = $this->bd->query($sql);
+        $donnees = $requete->fetchAll(PDO::FETCH_ASSOC);
+        $tableauContacts = array();      
+        
+        if ($donnees != NULL) {
+            foreach ($donnees as $contactData) {
+                $contact = new FicheContact(
+                    $contactData['id'],
+                    $contactData['id_utilisateur'],
+                    $contactData['id_entreprise'],
+                    $contactData['date'],
+                    $contactData['moyen_contact'],
+                    $contactData['demande'],
+                    $contactData['reponse']
+                );
+                $tableauContacts[] = $contact;
+
+            }
+        } 
+        
+        return $tableauContacts;
+    }
+    
+
     public function getContactByID($id) {
         $sql = "SELECT * FROM `contact` WHERE id = ?";
         $requete = $this->bd->prepare($sql);
@@ -152,12 +182,16 @@ Class Contact{
         
         return $tableauContacts;
     }
+    
+
+
+
 
     public function getContactHistorique($id_entreprise,$nbr){
         $sqlHistorique = "SELECT * FROM contact WHERE id_entreprise = ? ORDER BY date DESC";
         if($nbr != 0){
             $sqlHistorique = "SELECT * FROM contact WHERE id_entreprise = ? ORDER BY date DESC LIMIT ?";
-        }
+            }
         $reqHistorique = $this->bd->prepare($sqlHistorique);
         $reqHistorique->execute([$id_entreprise, $nbr]);
         $historiqueData = $reqHistorique->fetchAll(PDO::FETCH_ASSOC);
