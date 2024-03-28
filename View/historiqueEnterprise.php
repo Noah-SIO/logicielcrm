@@ -1,5 +1,4 @@
 <?php
-require_once("../Class/entreprise.php");///////A supprimer quand constructeur en place 
 $bdsqll = new PDO("mysql:host=localhost;dbname=crm", 'root', '');//même chose
 $enterprise = new ManagerEntreprise($bdsqll);//même chose
 $donneestableau = $enterprise->getHistoriqueEntreprise(3);//getHistoriqueEntreprise(nombre de client retourner)
