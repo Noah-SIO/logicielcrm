@@ -74,8 +74,8 @@ if ($_SESSION['droit'] == 6){
     echo "<div class='dernierProfil'>";
     require('View/dernierProfil.php');
     echo "</div>";
-    echo "<div class='dernierFicher'>";
-    require('View/dernierFichers.php');
+    echo "<div class='derniersFichier'>";
+    require('View/derniersFichiers.php');
     echo "</div>";
     echo "<div class='listeFicheContact'>";
     require('View/listeFicheContact.php');

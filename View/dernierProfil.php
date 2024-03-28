@@ -1,5 +1,4 @@
 <?php
-include '../Class/utilisateur.php';
 $managerUtilisateur = new ManagerUtilisateur();
 $derniersProfils = $managerUtilisateur->returnAllUsers();
 $derniersTroisProfils = array_slice($derniersProfils, -3, 3);

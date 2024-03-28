@@ -1,7 +1,6 @@
 <?php
 $id_entreprise=0;//0 pour toute les entreprise
 $Code_element=2;// 1pour contrat 2 pour facture 3 pour avoirs
-require_once("../class/fichier.php");
 $files = new ManagerFichier();
 $result = $files->GetFichierByClient($id_entreprise);
 echo '<table border="">';

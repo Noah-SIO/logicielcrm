@@ -69,7 +69,7 @@ Class Utilisateur{
     }
 
 //  Mot de pass
-    public function getMpd() {
+    public function getMdp() {
         return $this->mdp;
     }
 
@@ -123,11 +123,11 @@ class ManagerUtilisateur {
     public function addUser($utilisateur){
         if ($utilisateur != NULL) {
             $bd = $this->bd;
-            $creercompte = $bd->prepare("INSERT INTO utilisateur (nom, prenom, identifiant, mdp, droit) VALUES (:nom, :prenom, :identifiant, :mdp, :droit)");
+            $creercompte = $bd->prepare("INSERT INTO utilisateur (nom, prenom, identifiant, mdp, droit) VALUES (:nom, :prenom, :identifiant,:droit,:mdp)");
             $creercompte->execute([
                 ':nom' => $utilisateur->getNom(),
                 ':prenom' => $utilisateur->getPrenom(),
-                ':identifiant' => $utilisateur->getIdentifiants(),
+                ':identifiant' => $utilisateur->getIdentifiant(),
                 ':mdp' => $utilisateur->getMdp(),
                 ':droit' => $utilisateur->getProfil()
             ]);  
