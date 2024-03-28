@@ -1,3 +1,4 @@
+<h1>Formulaire Création Entreprise</h1>
 <form method="post" action="">
     <label for="nom">Nom:</label>
     <input type="text" name="nom" required><br>
@@ -15,7 +16,7 @@
 </form>
 <?php
 if(isset($_POST['creer'])){
-    $newEntreprise = new Entreprise($_POST['nom'], $_POST['prenom'], $_POST['societe'], $_POST['poste'], $_POST['id_commercial'], $_POST['date']);
+    $newEntreprise = new Entreprise(NULL,$_POST['nom'], $_POST['prenom'], $_POST['societe'], $_POST['poste'], $_POST['id_commercial'], $_POST['date']);
     $entrepriseManager = new ManagerEntreprise();
     $entrepriseManager->createClientFiche($newEntreprise);
 }
