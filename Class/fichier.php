@@ -89,6 +89,22 @@ class ManagerFichier {
             return $tableauRecherche;
             }
     }
+
+
+    public function GetFichierByName($name) {
+        $sqlrecherche = "SELECT * FROM `fichier` WHERE nom LIKE '%$name%'";
+        $requeterecherche = $this -> bd -> query ($sqlrecherche);
+        $donneesrecherche= $requeterecherche->fetchall(PDO::FETCH_ASSOC); 
+        $tableauRecherche= array();      
+        if($donneesrecherche != NULL){
+            for ($i=0 ; $i<count($donneesrecherche) ;$i++){
+                $tableauRecherche[]= new Fichier($donneesrecherche[$i]['id'],$donneesrecherche[$i]['id_utilisateur'],$donneesrecherche[$i]['nom'],$donneesrecherche[$i]['date'],
+                $donneesrecherche[$i]['lien'],$donneesrecherche[$i]['type']);                
+            }
+            return $tableauRecherche;
+        }
+    }
+
     public function DeleteDoc($id) {
         $sql = 'DELETE FROM fichier WHERE id_utilisateur = :id';
         $requete = $this->bd->prepare($sql);

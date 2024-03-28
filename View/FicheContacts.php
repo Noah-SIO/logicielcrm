@@ -1,5 +1,5 @@
 <?php
-$idFicheContact = 1; // a modifier 
+$idFicheContact = $_GET['id']; // a modifier 
 include '../Class/fichecontact.php';
 $contactManager = new Contact();
 $listeContacts = $contactManager->getContactByID($idFicheContact);
