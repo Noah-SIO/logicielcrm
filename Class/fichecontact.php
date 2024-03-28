@@ -154,22 +154,30 @@ Class Contact{
     }
 
     public function getContactHistorique($id_entreprise,$nbr){
-        $sqlhistorique  = "SELECT * FROM `contact` WHERE id_entreprise=$id_entreprise GROUP BY date DESC";
-        if($nbr!=0){
-        $sqlhistorique  = "SELECT * FROM `contact` WHERE id_entreprise=$id_entreprise GROUP BY date DESC LIMIT $nbr";
+        $sqlHistorique = "SELECT * FROM contact WHERE id_entreprise = ? ORDER BY date DESC";
+        if($nbr != 0){
+            $sqlHistorique = "SELECT * FROM contact WHERE id_entreprise = ? ORDER BY date DESC LIMIT ?";
         }
-        $requetehistorique = $this -> bd -> query ($sqlhistorique);
-        $donneeshistorique= $requetehistorique->fetchall(PDO::FETCH_ASSOC);
-        $tableauHistorique= array();      
-            if($donneeshistorique != NULL){
-                for ($i=0 ; $i<count($donneeshistorique) ;$i++){
-            $tableauHistorique[]= new FicheContact(null,$donneeshistorique[$i]['id_utilisateur'],$donneeshistorique[$i]['id_entreprise'],$donneeshistorique[$i]['date'],$donneeshistorique[$i]['moyen_contact'],
-            $donneeshistorique[$i]['demande'],$donneeshistorique[$i]['reponse']);                
+        $reqHistorique = $this->bd->prepare($sqlHistorique);
+        $reqHistorique->execute([$id_entreprise, $nbr]);
+        $historiqueData = $reqHistorique->fetchAll(PDO::FETCH_ASSOC);
+        $historiqueContacts = [];
+
+        foreach ($historiqueData as $contactData) {
+            $historiqueContacts[] = new FicheContact(
+                null,
+                $contactData['id_utilisateur'],
+                $contactData['id_entreprise'],
+                $contactData['date'],
+                $contactData['moyen_contact'],
+                $contactData['demande'],
+                $contactData['reponse']
+            );
         }
         //var_dump($tableauHistorique);
         return $tableauHistorique;
     } 
-}
+
     
     public function deleteContact($idContact){
     $sql = "DELETE FROM contact WHERE id = :idContact";
