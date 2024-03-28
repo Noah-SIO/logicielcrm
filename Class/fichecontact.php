@@ -166,6 +166,7 @@ Class Contact{
             $tableauHistorique[]= new FicheContact(null,$donneeshistorique[$i]['id_utilisateur'],$donneeshistorique[$i]['id_entreprise'],$donneeshistorique[$i]['date'],$donneeshistorique[$i]['moyen_contact'],
             $donneeshistorique[$i]['demande'],$donneeshistorique[$i]['reponse']);                
         }
+        //var_dump($tableauHistorique);
         return $tableauHistorique;
     } 
 }
