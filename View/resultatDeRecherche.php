@@ -28,6 +28,9 @@ $contact = $managerContact->getContactByID((int)$recherche);
 
 // affichage des resultats de recherche
 
+//recherche entreprise
+
+if(statutUtilisateur == 1){
 if(!empty($listeEntreprise)){
     echo "<p>Resultat de recherche Entreprise</p>";
     foreach($listeEntreprise as $entreprise){
@@ -39,6 +42,12 @@ if(!empty($listeEntreprise)){
 else{
     echo "<p>Aucun entreprise trouve</p>";
 }
+}
+
+
+//recherche Utilisateur
+
+if(statutUtilisateur == 1){
 if(!empty($listeUtilisateur)){
     echo "<p>Resultat de recherche Utilisateur</p>";
     foreach($listeUtilisateur as $utilisateur){
@@ -49,6 +58,11 @@ if(!empty($listeUtilisateur)){
 else{
     echo "<p>Aucun utilisateur trouve</p>";
 }
+}
+
+
+//recherche de fichier
+if(statutUtilisateur == 1){
 if(!empty($fichiers)){
     echo "<p>Resultat de recherche Fichier</p>";
     foreach($fichiers as $fichier){
@@ -59,20 +73,21 @@ if(!empty($fichiers)){
 else{
     echo "<p>Aucun fichier trouve</p>";
 }
+}
 
 //fiche de contact
-
+if(statutUtilisateur == 1){
 if(!empty($contact)){
     echo "<p>Resultat de recherche Contact</p>";
     foreach($contact as $contact){
-        echo "Date: " . htmlspecialchars($contact->getDate(), ENT_QUOTES, 'UTF-8') . " - Demande: " . htmlspecialchars($contact->getDemande(), ENT_QUOTES, 'UTF-8') . " - Reponse: " . htmlspecialchars($contact->getReponse(), ENT_QUOTES, 'UTF-8') . ".</p>";
-        echo '<a href="FicheContact.php?id=' . htmlspecialchars($contact->getId(), ENT_QUOTES, 'UTF-8') . '"><button>Voir fiche</button></a>';
+        echo "Date: " . $contact->getDate() . " - Demande: " ,$contact->getDemande() . " - Reponse: " . htmlspecialchars($contact->getReponse(), ENT_QUOTES, 'UTF-8') . ".</p>";
+        echo '<a href="FicheContact.php?id='.$contact->getId(). '"><button>Voir fiche</button></a>';
     }
 }//$id,$idCompte, $idEntreprise, $date, $demande, $reponse, $moyenDeContact
 else{
     echo "<p>Aucun contact trouve</p>";
 }
-
+}
 
 
 ?>

@@ -12,6 +12,7 @@ Class FicheContact{
 
     
     public function __construct($id,$idCompte, $idEntreprise, $date, $demande, $reponse, $moyenDeContact){
+        $this -> id = $id;
         $this -> idCompte = $idCompte;
         $this -> idEntreprise = $idEntreprise;
         $this -> moyenDeContact = $moyenDeContact;
@@ -22,12 +23,6 @@ Class FicheContact{
 
 //  id
 public function getId() {
-    $sql = "SELECT id FROM contact WHERE id_utilisateur = '".$this->idCompte."' && id_entreprise = '".$this->idEntreprise."' &&  moyen_contact = '".$this->moyenDeContact."' && date = '".$this->date."' && demande = '".$this->demande."' && reponse = '".$this->reponse."'";
-    $bd = new PDO('mysql:host=localhost;dbname=crm', 'root', '');
-    $requete = $bd->prepare($sql);
-    $requete->execute();
-    $donnees = $requete->fetch();
-    $this->id = $donnees;
     return $this->id;
 }
 
