@@ -24,7 +24,7 @@ if ($_SESSION['droit'] == 1){
 
 if ($_SESSION['droit'] == 2){
     echo "<div class='statisiques'>";
-    require('View/statisiques.php');
+    require('View/statist3iques.php');
     echo "</div>";
     echo "<div class='listeFicheContact'>";
     require('View/listeFicheContact.php');
@@ -46,8 +46,8 @@ if ($_SESSION['droit'] == 3){
 }
 
 if ($_SESSION['droit'] == 4){
-    echo "<div class='historiqueEntreprise'>";
-    require('View/historiqueEntreprise.php');
+    echo "<div class='historiqueEnterprise'>";
+    require('View/historiqueEnterprise.php');
     echo "</div>";
     echo "<div class='attacheDocument'>";
     require('View/attacheDocument.php');
@@ -81,7 +81,7 @@ if ($_SESSION['droit'] == 6){
     require('View/listeFicheContact.php');
     echo "</div>";
     echo "<div class='statisiques'>";
-    require('View/statisiques.php');
+    require('View/statistiques.php');
     echo "</div>";
 }
 ?>

@@ -53,7 +53,7 @@ if(isset($_GET['action'])){
     if ($_GET["action"] == "creerFicheContact"){
         $title = "Page de création de fiche contact";
         require_once("View/headerNavigation.php");
-        require('View/creerFicheContact.php');
+        require('View/newFicheContact.php');
     } 
 }
 else {

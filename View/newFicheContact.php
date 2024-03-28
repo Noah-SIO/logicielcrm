@@ -1,9 +1,7 @@
 <?php
 $iduser=1;// a modifier 
-require_once("../Class/fichecontact.php");///////A supprimer quand constructeur en place 
 $bdsqll = new PDO("mysql:host=localhost;dbname=crm", 'root', '');//même chose
 $ContactFiche = new Contact($bdsqll);//même chose
-require_once('../class/entreprise.php');
 $entreprisemanager = new ManagerEntreprise();
 $listeEntreprise = $entreprisemanager->getAllEntreprise();?>
 <h1>Formulaire Création de Fiche Contact</h1>

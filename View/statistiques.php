@@ -1,6 +1,4 @@
 <?php
-require_once('../Class/assistance.php');
-require_once('../Class/fichecontact.php');
 $managerAssistance = new ManagerAssistance();
 $contact = new Contact();
 $StatOnContact = $contact->StatOnContact();

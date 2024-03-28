@@ -14,7 +14,6 @@
     <input type="submit" name="creer" value="Créer">
 </form>
 <?php
-require_once('../class/entreprise.php');
 if(isset($_POST['creer'])){
     $newEntreprise = new Entreprise($_POST['nom'], $_POST['prenom'], $_POST['societe'], $_POST['poste'], $_POST['id_commercial'], $_POST['date']);
     $entrepriseManager = new ManagerEntreprise();
