@@ -1,8 +1,4 @@
 <?php
-require_once('../Class/rappelAlerte.php');
-require_once('../Class/entreprise.php');
-require_once('../Class/utilisateur.php');
-
 $utilisateurManager = new ManagerUtilisateur();
 $utilisateurs = $utilisateurManager->returnAllUsers();
 $rappeleAlerteManager = new ManagerRappelAlerte();
