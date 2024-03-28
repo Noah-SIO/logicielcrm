@@ -1,6 +1,7 @@
 <?php
+var_dump($_SESSION);
 $statutUtilisateur = $_SESSION['droit'];//a modifier
-$recherche = $_GET['recherche'];// a modifier un poste
+$recherche = $_GET['recherche'];// a modifier 
 
 //entreprise
 $managerEntreprise = new ManagerEntreprise();
