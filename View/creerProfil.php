@@ -22,6 +22,7 @@ if (isset($_POST['nom'], $_POST['prenom'], $_POST['login'], $_POST['mdp'], $_POS
     $utilisateur = new Utilisateur($_POST['nom'], $_POST['prenom'], $_POST['login'], $_POST['mdp'], $_POST['droit']);
     $utilisateurProfil = new ManagerUtilisateur();
     $utilisateurProfil -> addUser($utilisateur);
+    echo"Utilisateur Creer avec Succès !!!!";
 }
 
 ?>
