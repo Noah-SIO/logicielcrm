@@ -12,6 +12,4 @@ foreach ($derniersTroisProfils as $utilisateur) {
     echo "<hr>";
 }
 ?>
-
-
 # EN COURS A MODIF (rapide)

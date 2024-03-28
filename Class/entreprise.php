@@ -115,20 +115,27 @@ class ManagerEntreprise{
         }
     }
 
-    public function SearchClientByName($nom){
+    public function searchClientByName($nom)
+    {
         $bd = $this->bd;
-        $sql = "SELECT * FROM entreprise WHERE nom LIKE :nom";
+        $sql = "SELECT * FROM entreprise WHERE nom LIKE :nom OR societe LIKE :nom";
         $req = $bd->prepare($sql);
-        $req->execute(array('nom' => '%' . $nom . '%'));
+        $req->execute(['nom' => '%' . $nom . '%']);
         $resultats = $req->fetchAll(PDO::FETCH_ASSOC);
-        $entreprises = array();
-        foreach ($resultats as $resultat) {
-            $entreprise = new Entreprise($resultat['id'], $resultat['nom'], $resultat['prenom'], $resultat['societe'], $resultat['poste'], $resultat['idCommercial'], $resultat['date']);
-            $entreprises[] = $entreprise;
+        $entreprises = [];
+        foreach ($resultats as $entrepriseInfo) {
+            $entreprises[] = new Entreprise(
+                $entrepriseInfo['id'], 
+                $entrepriseInfo['nom'], 
+                $entrepriseInfo['prenom'], 
+                $entrepriseInfo['societe'], 
+                $entrepriseInfo['poste'], 
+                $entrepriseInfo['id_commercial'], 
+                $entrepriseInfo['date']
+            );
         }
         return $entreprises;
     }
-
     // Fonction pour rechercher un client par son ID || Romain
     public function returnClientById($id){
         $sqlId = "SELECT * FROM entreprise WHERE id= :id";

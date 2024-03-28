@@ -10,7 +10,8 @@ Class Utilisateur{
     private $email;
     private $numTel;
     
-    public function __construct($nom, $prenom, $identifiant, $profil, $mdp) {
+    public function __construct($id,$nom, $prenom, $identifiant, $profil, $mdp) {
+        $this->id=$id;
         $this -> nom = $nom;
         $this -> prenom = $prenom;
         $this -> identifiant = $identifiant;
@@ -19,12 +20,6 @@ Class Utilisateur{
     }
 //  Id
     public function getId() {
-        $sql = "SELECT id FROM utilisateur WHERE identifiant = '".$this->identifiant."'";
-        $bd = new PDO('mysql:host=localhost;dbname=crm', 'root', '');
-        $requete = $bd->prepare($sql);
-        $requete->execute();
-        $donnees = $requete->fetch();
-        $this->id = $donnees['id'];
         return $this->id;
     }
 
@@ -153,13 +148,16 @@ class ManagerUtilisateur {
             if($type == "IDENTIFIANT"){
                 $sqlrecherche = "SELECT * FROM utilisateur WHERE identifiant LIKE '%$recherche%'";
             }
+            if($type == "ALL"){
+                $sqlrecherche = "SELECT * FROM utilisateur WHERE nom LIKE '%$recherche%' OR prenom LIKE '%$recherche%' OR identifiant LIKE '%$recherche%'";
+            }
             $requeterecherche = $this -> bd -> query ($sqlrecherche);
             $donneesrecherche= $requeterecherche->fetchall(PDO::FETCH_ASSOC); 
             $tableauRecherche= array();      
                 if($donneesrecherche != NULL){
                     for ($i=0 ; $i<count($donneesrecherche) ;$i++){
                 $tableauRecherche[]= new Utilisateur($donneesrecherche[$i]['id'],$donneesrecherche[$i]['nom'],$donneesrecherche[$i]['prenom'],$donneesrecherche[$i]['identifiant'],
-                $donneesrecherche[$i]['mdp'],$donneesrecherche[$i]['droit']);                
+                $donneesrecherche[$i]['droit'],$donneesrecherche[$i]['mdp']);                
             }
             //var_dump($tableauRecherche);
             return $tableauRecherche;
@@ -174,6 +172,13 @@ class ManagerUtilisateur {
         
         public function GetUser($identifiant) {
             $sql = 'SELECT * FROM utilisateur WHERE identifiant = "'.$identifiant.'"';
+            $requete = $this -> bd -> query($sql);
+            $donnees = $requete -> fetchAll(PDO::FETCH_ASSOC);
+            return $donnees;
+        }
+
+        public function GetUserById($id) {
+            $sql = 'SELECT * FROM utilisateur WHERE id = "'.$id.'"';
             $requete = $this -> bd -> query($sql);
             $donnees = $requete -> fetchAll(PDO::FETCH_ASSOC);
             return $donnees;
