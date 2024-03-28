@@ -24,6 +24,9 @@ if ($_SESSION['droit'] == 2){
     echo "<div class='statistiques'>";
     require('View/statistiques.php');
     echo "</div>";
+    echo "<div class='downloadFile'>";
+    require('View/downloadFile.php');
+    echo "</div>";
     echo "<div class='listeFicheContact'>";
     require('View/listeFicheContact.php');
     echo "</div>";
