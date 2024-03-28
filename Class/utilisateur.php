@@ -193,7 +193,7 @@ class ManagerUtilisateur {
 
             if ($donneesrecherche != null) {
                 foreach ($donneesrecherche as $ligne) {
-                    $utilisateur = new Utilisateur($ligne['nom'], $ligne['prenom'], $ligne['identifiant'],$ligne['droit'], $ligne['mdp']);
+                    $utilisateur = new Utilisateur($ligne['id'],$ligne['nom'], $ligne['prenom'], $ligne['identifiant'],$ligne['droit'], $ligne['mdp']);
                     $tableauRecherche[] = $utilisateur;
                 }
                 

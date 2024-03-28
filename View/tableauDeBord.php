@@ -24,7 +24,7 @@ if ($_SESSION['droit'] == 1){
 
 if ($_SESSION['droit'] == 2){
     echo "<div class='statisiques'>";
-    require('View/statist3iques.php');
+    require('View/statistiques.php');
     echo "</div>";
     echo "<div class='listeFicheContact'>";
     require('View/listeFicheContact.php');
