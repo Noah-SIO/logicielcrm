@@ -15,11 +15,6 @@ $poste = [1 => "Conseiller client", 2 => "Manager", 3 => "Commercial", 4 => "Com
 
 
 if(isset($_GET['action'])){
-    if ($_GET["action"] == "resultatRecherche"){
-        $title = "Page de recherche";
-        require_once("View/headerNavigation.php");
-        require_once("View/resultatDeRecherche.php");
-    }
     if ($_GET["action"] == "formulaireAssistance"){
         $title = "Formulaire d'assistance";
         require_once("View/header.php");
@@ -79,10 +74,30 @@ if(isset($_GET['action'])){
         $title = "Page de modification de profil'";
         require_once("View/headerNavigation.php");
         require('View/modifProfil.php');
-    }   
-    if ($_GET["action"] == "rechercher"){
-        $title = "resultat de recherche pour : " . $_GET["recherche"];
-        require_once("View/header.php");
+    }
+    if ($_GET["action"] == "ficheEntreprise"){
+        $title = "Page de fiche entreprise'";
+        require_once("View/headerNavigation.php");
+        require('View/infoEntreprise.php');
+    }
+    if ($_GET["action"] == "ficheProfil"){
+        $title = "Page de fiche profil'";
+        require_once("View/headerNavigation.php");
+        require('View/ficheProfil.php');
+    }
+    if ($_GET["action"] == "ficheContact"){
+        $title = "Page de fiche contact'";
+        require_once("View/headerNavigation.php");
+        require('View/FicheContacts.php');
+    }
+    if ($_GET["action"] == "download"){
+        $title = "Page de fiche téléchargement'";
+        require_once("View/headerNavigation.php");
+        require('View/downloadFile.php');
+    }
+    if ($_GET["action"] == "resultatDeRecherche"){
+        $title = "Résultat de recherche pour : " . $_SESSION["recherche"];
+        require_once("View/headerNavigation.php");
         require_once("View/resultatDeRecherche.php");
     }
 }
