@@ -1,6 +1,6 @@
 <?php
 $statutUtilisateur = $_SESSION['droit'];//a modifier
-$recherche = $_GET['recherche'];// a modifier un poste
+$recherche = $_SESSION['recherche'];// a modifier un poste
 
 //entreprise
 $managerEntreprise = new ManagerEntreprise();
@@ -42,12 +42,12 @@ else{
 
 //recherche Utilisateur
 
-if($statutUtilisateur == 5 or $statutUtilisateur == 6){
+if($statutUtilisateur == 1 or $statutUtilisateur == 5 or $statutUtilisateur == 6){
 if(!empty($listeUtilisateur)){
     echo "<p>Resultat de recherche Utilisateur</p>";
     foreach($listeUtilisateur as $utilisateur){
         echo "<p>ID: ".$utilisateur->getId()." - Nom: ".$utilisateur->getNom()." - Prenom: ".$utilisateur->getPrenom()." - Identifiant: ".$utilisateur->getIdentifiant()." - Profil: ".$utilisateur->getProfil()."</p>";
-        echo "<a href='logicielcrm/view/ficheProfil.php?id=".$utilisateur->getId()."'><button>Voir fiche</button></a>";
+        echo "<a href='index.php?action=ficheProfil&id=".$utilisateur->getId()."'><button>Voir fiche</button></a>";
     }
 }
 else{
@@ -71,7 +71,7 @@ else{
 }
 
 //fiche de contact
-if($statutUtilisateur == 1 or $statutUtilisateur == 2 or $statutUtilisateur == 3 or $statutUtilisateur == 5 or $statutUtilisateur == 6){
+if($statutUtilisateur == 2 or $statutUtilisateur == 3 or $statutUtilisateur == 5 or $statutUtilisateur == 6){
 if(!empty($contact)){
     echo "<p>Resultat de recherche Contact</p>";
     foreach($contact as $contact){
