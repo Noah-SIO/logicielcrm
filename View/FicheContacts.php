@@ -1,8 +1,8 @@
 <?php
 $idFicheContact = $_GET['id']; // a modifier 
-include '../Class/fichecontact.php';
 $contactManager = new Contact();
 $listeContacts = $contactManager->getContactByID($idFicheContact);
+echo"<h1>Fiche Contact</h1>";
 foreach ($listeContacts as $contact) {
     echo "<ul>";
     echo "<li><strong>Identifiant Compte:</strong> " . $contact->getIdCompte() . "</li>";

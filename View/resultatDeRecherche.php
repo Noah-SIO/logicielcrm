@@ -47,7 +47,7 @@ if(!empty($listeUtilisateur)){
     echo "<p>Resultat de recherche Utilisateur</p>";
     foreach($listeUtilisateur as $utilisateur){
         echo "Nom: ".$utilisateur->getNom()." - Prenom: ".$utilisateur->getPrenom()." - Identifiant: ".$utilisateur->getIdentifiant()." - Profil: ".$utilisateur->getProfil()."</p>";
-        echo "<a href='index.php?action=ficheProfil&id=".$utilisateur->getId()."'><button>Voir fiche</button></a>";
+        echo "<a href='index.php?action=ficheProfil&id=".$utilisateur->getId()."'><button>Voir fiche</button></a></br></br>";
     }
 }
 else{
@@ -71,12 +71,12 @@ else{
 }
 
 //fiche de contact
-if($statutUtilisateur == 2 or $statutUtilisateur == 3 or $statutUtilisateur == 5 or $statutUtilisateur == 6){
+if($statutUtilisateur == 1 or $statutUtilisateur == 2 or $statutUtilisateur == 3 or $statutUtilisateur == 5 or $statutUtilisateur == 6){
 if(!empty($contact)){
     echo "<p>Resultat de recherche Contact</p>";
     foreach($contact as $contact){
-        echo "Date: " . $contact->getDate() . " - Demande: " ,$contact->getDemande() . " - Reponse: " . htmlspecialchars($contact->getReponse(), ENT_QUOTES, 'UTF-8') . ".</p>";
-        echo '<a href="logicielcrm/view/FicheContact.php?id='.$contact->getId(). '"><button>Voir fiche</button></a>';
+        echo "Date: " . $contact->getDate() . " - Demande: " ,$contact->getDemande() . " - Reponse: " .$contact->getReponse(). ".</p>";
+        echo '<a href="index.php?action=ficheContact&id='.$contact->getId(). '"><button>Voir fiche</button></a>';
     }
 }//$id,$idCompte, $idEntreprise, $date, $demande, $reponse, $moyenDeContact
 else{
