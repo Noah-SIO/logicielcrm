@@ -28,4 +28,5 @@ if (isset($_GET['id'])){
                 </ul>
         </fieldset>
     </form>
-
+<?php
+echo "<a href='?action=modifFicheEntreprise&id=".$idEnt."'><button>Modifier la fiche</button></a>";
