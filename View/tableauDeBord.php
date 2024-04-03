@@ -83,6 +83,8 @@ if ($_SESSION['droit'] == 6){
     echo "<div class='listeFicheContact'>";
     require('View/dernierContact.php');
     echo "</div>";
+    require('View/historiqueEntreprise.php');
+    echo "</div>";
     echo "<div class='statistiques'>";
     require('View/statistiques.php');
     echo "</div>";

@@ -1,8 +1,9 @@
 <?php
 $managerContact = new Contact();
 $managerUtilisateur = new ManagerUtilisateur();
-$derniersContacts = $managerContact->getContact(3, 'date', 'DESC');
-echo "<h3>Les derniers contacts</h3>";
+$derniersContacts = $managerContact->getContact(3   , 'date', 'DESC');
+echo "<h2>Les derniers contacts</h2>";
+echo "<hr>";
 if ($derniersContacts) {
     foreach ($derniersContacts as $dernierContact) {
         $profil = $managerUtilisateur->GetUserById($dernierContact->getIdCompte());
@@ -14,6 +15,7 @@ if ($derniersContacts) {
         echo "Réponse : " . $dernierContact->getReponse() . "<br>";
         echo "<hr>";
     }
+    echo "</br></br>";
 } else {
     echo "Aucun contact n'a été  .";
 }
