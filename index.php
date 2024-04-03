@@ -79,6 +79,7 @@ if(isset($_GET['action'])){
         $title = "Page de fiche entreprise'";
         require_once("View/headerNavigation.php");
         require('View/infoEntreprise.php');
+        require('View/attacheDocument.php');
     }
     if ($_GET["action"] == "ficheProfil"){
         $title = "Page de fiche profil'";

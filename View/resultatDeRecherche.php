@@ -62,7 +62,7 @@ if(!empty($fichiers)){
     echo "<p>Resultat de recherche Fichier</p>";
     foreach($fichiers as $fichier){
         echo"Nom: ".$fichier->getNom()." - Type: ".$fichier->getType()." - Date: ".$fichier->getDate()."</p>";
-        echo "<a href='view/download.php?file=".$fichier->getLienDoc()."'><button>télécharger le fichier</button></a></br></br>";
+        echo "<a href='view/download.php?file=../".$fichier->getLienDoc()."'><button>télécharger le fichier</button></a></br></br>";
     }
 }
 else{
