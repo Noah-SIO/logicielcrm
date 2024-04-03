@@ -4,7 +4,7 @@
         <title><?php echo $title ?></title>   
     </header>
 <body>
-    <h3><?php echo "Connecté en tant que : ".$poste[$_SESSION['droit']]." | ID utilisateur : ".$_SESSION['id'].""?></h3>
+    <h3>Bienvenue <?php echo $_SESSION['nom'] . ", " . $_SESSION['prenom'] . " </br>Connecté en tant que: " . $poste[$_SESSION['droit']] ?></h3>
     <nav>
         <ul>
             <li><a href="?action=tableauDeBord">Accueil</a></li>

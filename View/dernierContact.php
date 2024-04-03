@@ -10,6 +10,7 @@ foreach ($derniersTroisProfils as $utilisateur) {
     echo "Identifiant : " . $utilisateur->getIdentifiant() . "<br>";
     echo "Profil : " . $utilisateur->getProfil() . "<br>";
     echo "Droits : " . $utilisateur->getProfil() . "<br>";
+    echo '<a href="?/viewUtilisateur.php?action=ficheProfil&id=' . $utilisateur->getID() . '"><button>Voir la fiche d\'utilisateur</button></a>';
     echo "<hr>";
 }
 ?>
