@@ -9,7 +9,7 @@ if(isset($_GET['id'])) {
         echo "Nom : " . $utilisateur[0]['nom'] . "<br>";
         echo "Prénom : " . $utilisateur[0]['prenom'] . "<br>";
         echo "Identifiant : " . $utilisateur[0]['identifiant'] . "<br>";
-        echo "Droit : " . $utilisateur[0]['droit'] . "<br>";
+        echo "Droit : " . $poste[$utilisateur[0]['droit']] . "<br>";
     } else {
         echo "Cette id n'est assigné a aucune fiche.";
     }
