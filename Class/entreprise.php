@@ -110,7 +110,7 @@ class ManagerEntreprise{
         $bd = $this->bd;
         $sql = "SELECT * FROM entreprise WHERE id=$id";
         $requete = $this -> bd -> query ($sql);
-        $donnees = $requete->fetchall(PDO::FETCH_ASSOC);
+        $donnees = $requete->fetch(PDO::FETCH_ASSOC);
         return $donnees;
     }
 
@@ -143,7 +143,7 @@ class ManagerEntreprise{
         $reqId = $this -> bd -> prepare ($sqlId);
         $reqId -> execute(array('id' => $id));
         $donneesId = $reqId -> fetch(PDO::FETCH_ASSOC);
-        $entreprise = new Entreprise($donneesId['nom'], $donneesId['prenom'], $donneesId['societe'], $donneesId['poste'], $donneesId['id_commercial'], $donneesId['date']);
+        $entreprise = new Entreprise($donneesId['id'],$donneesId['nom'], $donneesId['prenom'], $donneesId['societe'], $donneesId['poste'], $donneesId['id_commercial'], $donneesId['date']);
         return $entreprise;
     }
 

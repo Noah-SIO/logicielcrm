@@ -3,7 +3,6 @@ $idFicheContact = $_GET['id']; // a modifier
 $contactManager = new Contact();
 $utilisateur = new ManagerUtilisateur();
 $listeContacts = $contactManager->getContactByID($idFicheContact);
-echo"<h1>Fiche Contact</h1>";
 foreach ($listeContacts as $contact) {
     echo "<ul>";
     echo "<li><strong>Conseiller :</strong> " . $utilisateur->GetUserById($contact->getIdCompte())[0]['nom'].", ". $utilisateur->GetUserById($contact->getIdCompte())[0]['prenom'] . "</li>";
@@ -13,5 +12,9 @@ foreach ($listeContacts as $contact) {
     echo "<li><strong>Demande:</strong> " . $contact->getDemande() . "</li>";
     echo "<li><strong>Réponse:</strong> " . $contact->getReponse() . "</li>";
     echo "</ul>";
+    if ($_SESSION['droit'] == 2){
+        echo "<a href='?action=modifFicheContact&id=".$idFicheContact."'><button>Modifier la fiche</button></a>";
+    }
+    
 }
 ?>
