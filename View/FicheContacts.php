@@ -11,6 +11,9 @@ foreach ($listeContacts as $contact) {
     echo "<li><strong>Demande:</strong> " . $contact->getDemande() . "</li>";
     echo "<li><strong>Réponse:</strong> " . $contact->getReponse() . "</li>";
     echo "</ul>";
-    echo "<a href='?action=modifFicheContact&id=".$idFicheContact."'><button>Modifier la fiche</button></a>";
+    if ($_SESSION['droit'] == 2){
+        echo "<a href='?action=modifFicheContact&id=".$idFicheContact."'><button>Modifier la fiche</button></a>";
+    }
+    
 }
 ?>
