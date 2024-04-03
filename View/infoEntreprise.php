@@ -1,10 +1,10 @@
 <?php
 $entreprise = new ManagerEntreprise();
-$idEnt = $_GET('id');
+$idEnt = $_GET['id'];
 $entreprise -> getEntreprise($idEnt);
-$entreprise -> getAnnuaireEntreprise($entreprise -> $idEnt);
+$entreprise -> getAnnuaireEntreprise($idEnt);
 
-$typeEntreprise = $entreprise -> getAnnuaireEntreprise($idEnt)[0]['type'];
+$typeEntreprise = $entreprise -> getAnnuaireEntreprise($idEnt)['type'];
 
 $fichier = new ManagerFichier();
 $fichier = $fichier -> GetFichierByClient($idEnt);
@@ -20,7 +20,7 @@ $fichier = $fichier -> GetFichierByClient($idEnt);
                 <li><b>ID commercial :</b> <?php echo $entreprise -> getEntreprise($idEnt)[0]['id_commercial'] ?></li>
                 <li><b>Date d'ajout :</b> <?php echo $entreprise -> getEntreprise($idEnt)[0]['date'] ?></li>
                 <li><b><?php if ($typeEntreprise == 1 || $typeEntreprise == 2) echo $type[$typeEntreprise]." :</b> ".$entreprise -> getAnnuaireEntreprise($entreprise -> getEntreprise($idEnt))[0]['valeur_contact'] ?></li>
-                <li><b><?php if ($typeEntreprise == 3){ echo $type[$typeEntreprise]." :</b> ".$entreprise -> getAnnuaireEntreprise($entreprise -> getEntreprise(1$idEnt))[0]['valeur_contact']; } else { echo "Pas d'email enregistré </b>"; } ?></li>
+                <li><b><?php if ($typeEntreprise == 3){ echo $type[$typeEntreprise]." :</b> ".$entreprise -> getAnnuaireEntreprise($entreprise -> getEntreprise($idEnt))[0]['valeur_contact']; } else { echo "Pas d'email enregistré </b>"; } ?></li>
                 <li><b>Fichier(s) lié(s) :</b> <?php foreach ($fichier as $values) { echo $values -> getNom()." | ".$values -> getDate()." | ".$values -> getLienDoc(); } ?></li>
             </ul>
     </fieldset>

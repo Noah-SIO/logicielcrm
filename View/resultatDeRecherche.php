@@ -25,12 +25,12 @@ $contact = $managerContact->getContactByID((int)$recherche);
 
 //recherche entreprise
 
-if($statutUtilisateur == 4 or $statutUtilisateur == 5){
+if($statutUtilisateur == 1 or $statutUtilisateur == 4 or $statutUtilisateur == 5){
 if(!empty($listeEntreprise)){
     echo "<p>Resultat de recherche Entreprise</p>";
     foreach($listeEntreprise as $entreprise){
         echo "Nom: ".$entreprise->getNom()." - Prenom: ".$entreprise->getPrenom()." - Societe: ".$entreprise->getSociete()." - Poste: ".$entreprise->getPoste()."</p>";
-        echo "<a href='logicielcrm/view/infoEntreprise.php?id=".$entreprise->getId()."'><button>Voir fiche</button></a>";
+        echo "<a href='index.php?action=ficheEntreprise&id=".$entreprise->getId()."'><button>Voir fiche</button></a>";
 
     }
 }
@@ -42,7 +42,7 @@ else{
 
 //recherche Utilisateur
 
-if($statutUtilisateur == 1 or $statutUtilisateur == 5 or $statutUtilisateur == 6){
+if($statutUtilisateur == 5 or $statutUtilisateur == 6){
 if(!empty($listeUtilisateur)){
     echo "<p>Resultat de recherche Utilisateur</p>";
     foreach($listeUtilisateur as $utilisateur){
