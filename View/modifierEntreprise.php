@@ -43,7 +43,8 @@ if (isset($_POST['modifier'])) {
     $poste = $_POST['poste'];
     $id_commercial = $_POST['commercial'];
     $date = $_POST['date'];
-    $modifEntreprie = new Entreprise($nom, $prenom, $societe,$poste, $id_commercial, $date);
+    $modifEntreprie = new Entreprise(NULL,$nom, $prenom, $societe,$poste, $id_commercial, $date);
     $modifEntreprie->setId($idEntreprise);
     $entrepriseManager->ModifClient($modifEntreprie);
+    echo"Client/Entreprise Modifier avec Succès !!!";
 }
