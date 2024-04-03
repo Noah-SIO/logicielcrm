@@ -14,6 +14,6 @@ if ($derniersContacts) {
         echo "<hr>";
     }
 } else {
-    echo "Aucun contact trouvé.";
+    echo "Aucun contact n'a été  .";
 }
 ?>
