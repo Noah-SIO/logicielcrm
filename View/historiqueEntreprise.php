@@ -1,7 +1,7 @@
 <?php
 
-$entreprise = new ManagerEntreprise();//même chose
-$donneestableau = $entreprise->getHistoriqueEntreprise();//getHistoriqueEntreprise(nombre de client retourner)
+$entreprise = new ManagerEntreprise();
+$donneestableau = $entreprise->getHistoriqueEntreprise();
 echo "<h2>Derniers Clients</h2></br>";
 echo "<hr>";
 
