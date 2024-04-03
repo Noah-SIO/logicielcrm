@@ -3,7 +3,7 @@ if(isset($_GET['id'])) {
     $idFicheProfilAChercher = $_GET['id'];
     $managerUtilisateur = new ManagerUtilisateur();
     $utilisateur = $managerUtilisateur->GetUser($idFicheProfilAChercher);
-    if ($utilisateur !== null) {
+    if ($utilisateur != NULL) {
         echo "ID : " . $utilisateur['id'] . "<br>";
         echo "Nom : " . $utilisateur['nom'] . "<br>";
         echo "Prénom : " . $utilisateur['prenom'] . "<br>";
