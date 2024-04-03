@@ -2,13 +2,13 @@
 if(isset($_GET['id'])) {
     $idFicheProfilAChercher = $_GET['id'];
     $managerUtilisateur = new ManagerUtilisateur();
-    $utilisateur = $managerUtilisateur->GetUser($idFicheProfilAChercher);
+    $utilisateur = $managerUtilisateur->GetUserById($idFicheProfilAChercher);
     if ($utilisateur != NULL) {
-        echo "ID : " . $utilisateur['id'] . "<br>";
-        echo "Nom : " . $utilisateur['nom'] . "<br>";
-        echo "Prénom : " . $utilisateur['prenom'] . "<br>";
-        echo "Identifiant : " . $utilisateur['identifiant'] . "<br>";
-        echo "Droit : " . $utilisateur['droit'] . "<br>";
+        echo "ID : " . $utilisateur[0]['id'] . "<br>";
+        echo "Nom : " . $utilisateur[0]['nom'] . "<br>";
+        echo "Prénom : " . $utilisateur[0]['prenom'] . "<br>";
+        echo "Identifiant : " . $utilisateur[0]['identifiant'] . "<br>";
+        echo "Droit : " . $utilisateur[0]['droit'] . "<br>";
     } else {
         echo "Cette id n'est assigné a aucune fiche.";
     }

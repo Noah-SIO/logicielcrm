@@ -42,7 +42,7 @@ else{
 
 //recherche Utilisateur
 
-if($statutUtilisateur == 5 or $statutUtilisateur == 6){
+if($statutUtilisateur == 1 or $statutUtilisateur == 5 or $statutUtilisateur == 6){
 if(!empty($listeUtilisateur)){
     echo "<p>Resultat de recherche Utilisateur</p>";
     foreach($listeUtilisateur as $utilisateur){
