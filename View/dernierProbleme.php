@@ -1,15 +1,14 @@
+<!-- 
 <html>
     <form method="post">
-        <label for="nombre">Pour rechercher les derniers problèmes ajoutés</label></br>
-        <input type="number" name="nombre" id="nombre" placeholder="entrer un chiffre"></br>
         <input type="submit" name="rechercher" id='rechercher' value='Rechercher'></br>           
     </form>
-</html>
+</html> -->
 <?php
-
+echo "<h3>Pour rechercher les derniers problèmes ajoutés</h3>";
 if (isset($_POST['nombre'])){
     $dernierProbleme = new ManagerAssistance();
-    $dernierProbleme -> getLastIssues($_POST['nombre']);
+    $dernierProbleme -> getLastIssues(5);
 }
 
 ?>
