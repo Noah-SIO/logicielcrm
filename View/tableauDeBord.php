@@ -72,17 +72,16 @@ if ($_SESSION['droit'] == 5){
 }
 
 if ($_SESSION['droit'] == 6){
-    echo "<div class='dernierProbleme'>";
-    require('View/dernierProbleme.php');
     echo "</div>";
     echo "<div class='dernierProfil'>";
     require('View/dernierProfil.php');
     echo "</div>";
-    echo "<div class='dernierFichier'>";
-    require('View/derniersFichiers.php');
+    //echo "<div class='dernierFichier'>";
+    //require('View/derniersFichiers.php');
     echo "</div>";
-    echo "<div class='listeFicheContact'>";
-    require('View/listeFicheContact.php');
+    // a verifier pour être sur qu'il y ait les derniers contacts
+    //echo "<div class='listeFicheContact'>";
+    //require('View/derniersContacts.php');
     echo "</div>";
     echo "<div class='statistiques'>";
     require('View/statistiques.php');

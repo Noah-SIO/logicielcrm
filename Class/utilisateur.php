@@ -177,6 +177,15 @@ class ManagerUtilisateur {
             return $donnees;
         }
         
+        
+        public function GetUserById($id) {
+            $sql = 'SELECT * FROM utilisateur WHERE id = "'.$id.'"';
+            $requete = $this -> bd -> query($sql);
+            $donnees = $requete -> fetchAll(PDO::FETCH_ASSOC);
+            return $donnees;
+        }
+
+        
         public function returnAllUsers() {
             $sql = 'SELECT * FROM utilisateur ';
             $requete = $this->bd->prepare($sql);

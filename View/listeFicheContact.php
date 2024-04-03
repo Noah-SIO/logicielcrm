@@ -1,3 +1,4 @@
+<!--
 <html>
     <form method="post">
             <label for="nombreContact">Pour afficher les contacts</label></br>
@@ -14,12 +15,12 @@
             </select>
             <input type="submit" name="connection" id='connection' value='Rechercher'></br>
     </form>
-</html>
+-->
 <?php
 
 if (isset($_POST['nombreContact'])){
     $listeContact = new Contact();
-    $listeContact -> getContact($_POST['nombreContact'], $_POST['filtre'], $_POST['ordre']);
+    $listeContact -> getContact(5, $_POST['filtre'], $_POST['ordre']);
     $lC = $listeContact -> getContact($_POST['nombreContact'], $_POST['filtre'], $_POST['ordre']);
     if ($lC != NULL){
         echo "<table>
