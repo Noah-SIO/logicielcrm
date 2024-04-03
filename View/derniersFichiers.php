@@ -1,6 +1,4 @@
 <?php
-// il faut entrer dans le indexd -> $id_entreprise= 0;//0 pour toute les entreprise
-// il faut entrer dans le indexd -> $Code_element=3;// 1pour contrat 2 pour facture 3 pour avoirs
 echo "<h2>Derniers fichiers</h2>";
 $files = new ManagerFichier();
 $result = $files->GetFichierByClient($id_entreprise);
