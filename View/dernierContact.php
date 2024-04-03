@@ -1,16 +1,19 @@
 <?php
-$managerUtilisateur = new ManagerUtilisateur();
-$derniersProfils = $managerUtilisateur->returnAllUsers();
-$derniersTroisProfils = array_slice($derniersProfils, -3, 3);
-echo "<h3>Les derniers Contacts</h3>";
-foreach ($derniersTroisProfils as $utilisateur) {
-    echo "ID : " . $utilisateur->getID() . "<br>";
-    echo "Nom : " . $utilisateur->getNom() . "<br>";
-    echo "Prénom : " . $utilisateur->getPrenom() . "<br>";
-    echo "Identifiant : " . $utilisateur->getIdentifiant() . "<br>";
-    echo "Profil : " . $utilisateur->getProfil() . "<br>";
-    echo "Droits : " . $utilisateur->getProfil() . "<br>";
-    echo '<a href="?/viewUtilisateur.php?action=ficheProfil&id=' . $utilisateur->getID() . '"><button>Voir la fiche d\'utilisateur</button></a>';
-    echo "<hr>";
+require_once '../Class/fichecontact.php';
+$managerContact = new Contact();
+$derniersContacts = $managerContact->getContact(3, 'date', 'DESC');
+if ($derniersContacts) {
+    foreach ($derniersContacts as $dernierContact) {
+        echo "ID : " . $dernierContact->getId() . "<br>";
+        echo "ID Compte : " . $dernierContact->getIdCompte() . "<br>";
+        echo "ID Entreprise : " . $dernierContact->getIdEntreprise() . "<br>";
+        echo "Date : " . $dernierContact->getDate() . "<br>";
+        echo "Moyen de contact : " . $dernierContact->getMoyenDeContact() . "<br>";
+        echo "Demande : " . $dernierContact->getDemande() . "<br>";
+        echo "Réponse : " . $dernierContact->getReponse() . "<br>";
+        echo "<hr>";
+    }
+} else {
+    echo "Aucun contact trouvé.";
 }
 ?>
