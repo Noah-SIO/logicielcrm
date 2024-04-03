@@ -4,6 +4,7 @@ if(isset($_GET['id'])) {
     $managerUtilisateur = new ManagerUtilisateur();
     $utilisateur = $managerUtilisateur->GetUserById($idFicheProfilAChercher);
     if ($utilisateur != NULL) {
+        echo"<h1>Fiche Profil</h1>";
         echo "ID : " . $utilisateur[0]['id'] . "<br>";
         echo "Nom : " . $utilisateur[0]['nom'] . "<br>";
         echo "Prénom : " . $utilisateur[0]['prenom'] . "<br>";
