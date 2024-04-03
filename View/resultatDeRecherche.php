@@ -57,12 +57,12 @@ else{
 
 
 //recherche de fichier
-if($statutUtilisateur == 4 or $statutUtilisateur == 5 or $statutUtilisateur == 6){
+if($statutUtilisateur == 1 or $statutUtilisateur == 4 or $statutUtilisateur == 5 or $statutUtilisateur == 6){
 if(!empty($fichiers)){
     echo "<p>Resultat de recherche Fichier</p>";
     foreach($fichiers as $fichier){
         echo"Nom: ".$fichier->getNom()." - Type: ".$fichier->getType()." - Date: ".$fichier->getDate()."</p>";
-        echo "<a href='logicielcrm/view/download.php?file=".$fichier->getLienDoc()."'><button>télécharger le fichier</button></a>";
+        echo "<a href='view/download.php?file=".$fichier->getLienDoc()."'><button>télécharger le fichier</button></a></br></br>";
     }
 }
 else{
