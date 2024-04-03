@@ -6,7 +6,6 @@ $poste = [1 => "Conseiller client", 2 => "Manager", 3 => "Commercial", 4 => "Com
 echo "<h2>Les derniers Profils</h2>";
 echo "<hr>";
 foreach ($derniersTroisProfils as $utilisateur) {
-    //echo "ID : " . $utilisateur->getID() . "<br>";
     echo "Nom : " . $utilisateur->getNom() . "<br>";
     echo "Prénom : " . $utilisateur->getPrenom() . "<br>";
     echo "Identifiant : " . $utilisateur->getIdentifiant() . "<br>";
