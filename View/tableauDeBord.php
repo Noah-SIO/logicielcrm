@@ -6,9 +6,6 @@ if ($_SESSION['droit'] == 1){
     echo "<div class='listeFicheContact'>";
     require('View/listeFicheContact.php');
     echo "</div>";
-    echo "<div class='resumeAlertes'>";
-    require('View/ResumeAlertes.php');
-    echo "</div>";
     echo "<div class='listeRappels'>";
     require('View/listeRappels.php');
     echo "</div>";
@@ -39,8 +36,8 @@ if ($_SESSION['droit'] == 3){
     echo "<div class='listeFicheContact'>";
     require('View/listeFicheContact.php');
     echo "</div>";
-    echo "<div class='resumeAlertes'>";
-    require('View/ResumeAlertes.php');
+    echo "<div class='listeRappels'>";
+    require('View/listeRappels.php');
     echo "</div>";
     echo "<a href='?action=creerFicheEntreprise'>Créer une fiche entreprise</a></br>";
     echo "<a href='?action=modifFicheEntreprise'>Modifier une fiche entreprise</a></br>";
