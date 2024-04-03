@@ -62,7 +62,7 @@ if(!empty($fichiers)){
     echo "<p>Resultat de recherche Fichier</p>";
     foreach($fichiers as $fichier){
         echo "Nom: ".$fichier->getNom()." - Type: ".$fichier->getType()." - Date: ".$fichier->getDate()."<br>";
-        echo "<a href='view/download.php?file=../".$fichier->getLienDoc()."'><button>télécharger ". $fichier->getNom()." </button></a>"."<br><br>";
+        echo "<a href='view/download.php?file=".$fichier->getLienDoc()."'><button>télécharger ". $fichier->getNom()." </button></a>"."<br><br>";
     }
 }
 else{
@@ -77,7 +77,7 @@ if(!empty($contact)){
     foreach($contact as $contact){
         echo "Date: " . $contact->getDate() . " - Demande: " ,$contact->getDemande() . " - Reponse: " .$contact->getReponse(). ".</p>";
         echo '<a href="index.php?action=ficheContact&id='.$contact->getId(). '"><button>Voir fiche</button></a>';
-    }
+        }
 }//$id,$idCompte, $idEntreprise, $date, $demande, $reponse, $moyenDeContact
 else{
     echo "<p>Aucun contact trouve</p>";
