@@ -80,8 +80,8 @@ if ($_SESSION['droit'] == 6){
     //require('View/derniersFichiers.php');
     echo "</div>";
     // a verifier pour être sur qu'il y ait les derniers contacts
-    //echo "<div class='listeFicheContact'>";
-    //require('View/derniersContacts.php');
+    echo "<div class='listeFicheContact'>";
+    require('View/dernierContact.php');
     echo "</div>";
     echo "<div class='statistiques'>";
     require('View/statistiques.php');

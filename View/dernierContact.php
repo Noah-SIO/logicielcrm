@@ -1,11 +1,12 @@
 <?php
-require_once '../Class/fichecontact.php';
 $managerContact = new Contact();
+$managerUtilisateur = new ManagerUtilisateur();
 $derniersContacts = $managerContact->getContact(3, 'date', 'DESC');
+echo "<h3>Les derniers contacts</h3>";
 if ($derniersContacts) {
     foreach ($derniersContacts as $dernierContact) {
-        echo "ID : " . $dernierContact->getId() . "<br>";
-        echo "ID Compte : " . $dernierContact->getIdCompte() . "<br>";
+        $profil = $managerUtilisateur->GetUserById($dernierContact->getIdCompte());
+        echo "Conseiller : " . $profil[0]['nom'] . "<br>";
         echo "ID Entreprise : " . $dernierContact->getIdEntreprise() . "<br>";
         echo "Date : " . $dernierContact->getDate() . "<br>";
         echo "Moyen de contact : " . $dernierContact->getMoyenDeContact() . "<br>";
