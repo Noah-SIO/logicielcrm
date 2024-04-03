@@ -116,7 +116,7 @@ class ManagerEntreprise{
 
     public function getAnnuaireEntreprise($idEntreprise){
         if ($idEntreprise != NULL){
-            $sql = "SELECT * FROM annuaire WHERE id =".$idEntreprise."";
+            $sql = "SELECT * FROM annuaire WHERE id_entreprise =".$idEntreprise."";
             $requete = $this -> bd -> query ($sql);
             $donnees = $requete ->fetchall(PDO::FETCH_ASSOC);
             return $donnees;

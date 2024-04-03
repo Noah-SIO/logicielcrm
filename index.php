@@ -9,7 +9,7 @@ require_once("Class/utilisateur.php");
 require_once("Class/fichecontact.php");
 require_once("Class/rappelAlerte.php");
 
-$type = [1 => "Téléphone fixe", 2 => "Téléphone portable", 3 => "E-mail"];
+$type = [2 => "Téléphone fixe", 1 => "Téléphone portable", 3 => "E-mail"];
 $statut= [1 => "à faire", 2 => "en cours", 3 => "terminé"];
 $poste = [1 => "Conseiller client", 2 => "Manager", 3 => "Commercial", 4 => "Comptable", 5 => "Responsable informatique", 6 => "Directeur général"];
 
