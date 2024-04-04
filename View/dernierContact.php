@@ -14,7 +14,7 @@ if ($derniersContacts) {
         echo "Demande : " . $dernierContact->getDemande() . "<br>";
         echo "Réponse : " . $dernierContact->getReponse() . "<br>";
         echo "<hr>";
-        echo "<script>setTimeout(function(){location.reload(); },3000);</script>";
+        //echo "<script>setTimeout(function(){location.reload(); },3000);</script>";
     }
     echo "</br></br>";
 } else {
