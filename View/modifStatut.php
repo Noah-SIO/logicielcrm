@@ -1,16 +1,4 @@
 <html>
-<?php
-
-if (isset($_POST['statut']) && isset($_POST['idStatut'])){
-    $assistanceSatut = new ManagerAssistance();
-    $assistanceSatut -> updateStatut($_POST['idStatut'], $_POST['statut']);
-    if ($assistanceSatut -> updateStatut($_POST['idStatut'], $_POST['statut']) ==  true){
-        echo "-- Statut changé --";
-        //echo "<script>setTimeout(function(){location.reload(); },3000);</script>";
-    }
-}
-
-?>
     <form method="post">
         <label for="statut">Pour modifier le statut</label></br>
         <input type="number" name="idStatut" id="idStatut" placeholder="id du problème"></br>
@@ -23,3 +11,14 @@ if (isset($_POST['statut']) && isset($_POST['idStatut'])){
         <input type="submit" name="rechercher" id='rechercher' value='Modifier'></br>
     </form>
 </html>
+<?php
+
+if (isset($_POST['statut'])){
+    $assistanceSatut = new ManagerAssistance();
+    $assistanceSatut -> updateStatut($_GET['idstatut'], $_POST['statut']);
+    if ($assistanceSatut -> updateStatut($_GET['idstatut'], $_POST['statut']) ==  true){
+        echo "-- Statut changé --";
+    }
+}
+
+?>
