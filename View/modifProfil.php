@@ -6,7 +6,7 @@ if (isset($_GET['id'], $_POST['nom'], $_POST['prenom'], $_POST['login'], $_POST[
     $utilisateurProfil = new ManagerUtilisateur();
     $utilisateurProfil -> ModifyUser($utilisateur);
     echo "<h3>Utilisateur modifié avec succes</h3>";
-    echo "<script>setTimeout(function(){location.reload(); },3000);</script>";
+    //echo "<script>setTimeout(function(){location.reload(); },3000);</script>";
 }
 
 ?>
