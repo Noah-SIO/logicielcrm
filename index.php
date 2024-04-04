@@ -12,7 +12,7 @@ require_once("Class/rappelAlerte.php");
 $type = [2 => "Téléphone fixe", 1 => "Téléphone portable", 3 => "E-mail"];
 $statut= [1 => "à faire", 2 => "en cours", 3 => "terminé"];
 $poste = [1 => "Conseiller client", 2 => "Manager", 3 => "Commercial", 4 => "Comptable", 5 => "Responsable informatique", 6 => "Directeur général"];
-
+$document = [1 => "Facture", 2 => "Avoir", 3 => "Contrat"];
 
 if(isset($_GET['action'])){
     if ($_GET["action"] == "formulaireAssistance"){
@@ -43,7 +43,7 @@ if(isset($_GET['action'])){
     if ($_GET["action"] == "creerRappel"){
         $title = "Page de création de rappel";
         require_once("View/headerNavigation.php");
-        require('View/creerRappel.php');
+        require_once('View/creerRappel.php');
     } 
     if ($_GET["action"] == "creerFicheEntreprise"){
         $title = "Page de création de fiche entreprise";
@@ -68,7 +68,7 @@ if(isset($_GET['action'])){
     if ($_GET["action"] == "modifFicheContact"){
         $title = "Page de modification de fiche contact'";
         require_once("View/headerNavigation.php");
-        require('View/modifierFicheContact.php');
+        require('View/modifierFicheDeContact.php');
     }  
     if ($_GET["action"] == "modifProfil"){
         $title = "Page de modification de profil'";
@@ -79,9 +79,6 @@ if(isset($_GET['action'])){
         $title = "Page de fiche entreprise'";
         require_once("View/headerNavigation.php");
         require('View/infoEntreprise.php');
-        if ($_SESSION['droit'] == 3 || $_SESSION['droit'] == 4){
-        require('View/attacheDocument.php');
-        }
     }
     if ($_GET["action"] == "ficheProfil"){
         $title = "Page de fiche profil'";
@@ -102,6 +99,11 @@ if(isset($_GET['action'])){
         $title = "Résultat de recherche pour : " . $_SESSION["recherche"];
         require_once("View/headerNavigation.php");
         require_once("View/resultatDeRecherche.php");
+    }
+    if ($_GET["action"] == "attacheDocument"){
+        $title = "Page pour joindre un document";
+        require_once("View/headerNavigation.php");
+        require_once("View/attacheDocument.php");
     }
 }
 else {
