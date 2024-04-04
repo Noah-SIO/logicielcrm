@@ -5,7 +5,7 @@ if (isset($_POST['nom'], $_POST['prenom'], $_POST['login'], $_POST['mdp'], $_POS
     $utilisateurProfil = new ManagerUtilisateur();
     $utilisateurProfil -> addUser($utilisateur);
     echo "<h3>Utilisateur créé</h3>";
-    echo "<script>setTimeout(function(){location.reload(); },3000);</script>";
+    //echo "<script>setTimeout(function(){location.reload(); },3000);</script>";
 }
 ?>
     <form method="post">

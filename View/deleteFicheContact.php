@@ -2,7 +2,7 @@
 if(isset($_POST['id'])){
     $contact->deleteContact($_POST['id']);
     echo"<h3>Contact Supprime</h3>";
-    echo "<script>setTimeout(function(){location.reload(); },3000);</script>";}
+    //echo "<script>setTimeout(function(){location.reload(); },3000);</script>";}
     
 require_once("../Class/fichecontact.php");///////A supprimer quand constructeur en place 
 $bdsqll = new PDO("mysql:host=localhost;dbname=crm", 'root', '');//même chose

@@ -5,7 +5,7 @@ if(isset($_POST['creer'])){
     $entrepriseManager = new ManagerEntreprise();
     $entrepriseManager->createClientFiche($newEntreprise);
     echo"<h3>Entreprise Crée</h3>";
-    echo "<script>setTimeout(function(){location.reload(); },3000);</script>";
+    //echo "<script>setTimeout(function(){location.reload(); },3000);</script>";
 }
 ?>
 <form method="post" action="">
