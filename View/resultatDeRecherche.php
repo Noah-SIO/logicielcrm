@@ -25,7 +25,7 @@ $contact = $managerContact->getContactByID((int)$recherche);
 
 //recherche entreprise
 
-if($statutUtilisateur == 0 or $statutUtilisateur == 4 or $statutUtilisateur == 6){
+if($statutUtilisateur == 0 or $statutUtilisateur == 4 or $statutUtilisateur == 6 or $statutUtilisateur == 5){
 if(!empty($listeEntreprise)){
     echo "<strong><p>Resultat de recherche Entreprise</p></strong>";
     foreach($listeEntreprise as $entreprise){
@@ -57,7 +57,7 @@ else{
 
 
 //recherche de fichier
-if($statutUtilisateur == 3 or $statutUtilisateur == 6 or $statutUtilisateur == 4 or $statutUtilisateur == 0){
+if($statutUtilisateur == 3 or $statutUtilisateur == 6 or $statutUtilisateur == 4 or $statutUtilisateur == 0 or $statutUtilisateur == 5){
 if(!empty($fichiers)){
     echo "<strong><p>Resultat de recherche Fichier</p></strong>";
     foreach($fichiers as $fichier){
@@ -71,7 +71,7 @@ else{
 }
 
 //fiche de contact
-if($statutUtilisateur == 0 or $statutUtilisateur == 6 or $statutUtilisateur == 2 or $statutUtilisateur == 1){
+if($statutUtilisateur == 0 or $statutUtilisateur == 6 or $statutUtilisateur == 2 or $statutUtilisateur == 1 or $statutUtilisateur == 5){
 if(!empty($contact)){
     echo "<strong><p>Resultat de recherche Contact</p></strong>";
     foreach($contact as $contact){
