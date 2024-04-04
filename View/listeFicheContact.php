@@ -1,8 +1,7 @@
-<!--
 <html>
     <form method="post">
             <label for="nombreContact">Pour afficher les contacts</label></br>
-            <input type="number" name="nombreContact" id="nombreContact" placeholder="entrer un chiffre">
+            <!-- <input type="number" name="nombreContact" id="nombreContact" placeholder="entrer un chiffre"> -->
             <label for="filtre">trié par</label>
             <select name="filtre" id="filtre">
                 <option value=date>date</option>
@@ -13,15 +12,15 @@
                 <option value=ASC>croissant</option>
                 <option value=DESC>décroissant</option>
             </select>
-            <input type="submit" name="connection" id='connection' value='Rechercher'></br>
+            <input type="submit" name="rechercher" id='rechercher' value='Rechercher'></br>
     </form>
--->
+</html>
 <?php
 
-if (isset($_POST['nombreContact'])){
+if (isset($_POST['filtre'])){
     $listeContact = new Contact();
-    $listeContact -> getContact(5, $_POST['filtre'], $_POST['ordre']);
-    $lC = $listeContact -> getContact($_POST['nombreContact'], $_POST['filtre'], $_POST['ordre']);
+    $listeContact -> getContact(10, $_POST['filtre'], $_POST['ordre']);
+    $lC = $listeContact -> getContact(10, $_POST['filtre'], $_POST['ordre']);
     if ($lC != NULL){
         echo "<table>
         <tr>
@@ -40,7 +39,7 @@ if (isset($_POST['nombreContact'])){
                     <td>".$lC[$i]['demande']."</td>
                     <td>".$lC[$i]['reponse']."</td>
                     <td>".$lC[$i]['date']."</td>
-                    </tr>";           
+                    </tr>";         
         }
         echo "</table>";
     }
