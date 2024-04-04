@@ -11,6 +11,22 @@ $id_commercial = $infosEntreprise->getIdCommercial();
 $date = $infosEntreprise->getDateCreationCompte();
 
 
+if (isset($_POST['modifier'])) {
+    $nom = $_POST['nom'];
+    $prenom = $_POST['prenom'];
+    $societe = $_POST['societe'];
+    $poste = $_POST['poste'];
+    $id_commercial = $_POST['commercial'];
+    $date = $_POST['date'];
+    $modifEntreprie = new Entreprise(NULL,$nom, $prenom, $societe,$poste, $id_commercial, $date);
+    $modifEntreprie->setId($idEntreprise);
+    $entrepriseManager->ModifClient($modifEntreprie);
+    echo"<h3>Client/Entreprise Modifier avec Succès !!!</h3>";
+    echo "<script>setTimeout(function(){location.reload(); },3000);</script>";
+    
+}
+
+
 
 
 ?>
@@ -36,15 +52,3 @@ $date = $infosEntreprise->getDateCreationCompte();
     <input type="submit" name="modifier" value="Modifier">
 </form>
 <?php
-if (isset($_POST['modifier'])) {
-    $nom = $_POST['nom'];
-    $prenom = $_POST['prenom'];
-    $societe = $_POST['societe'];
-    $poste = $_POST['poste'];
-    $id_commercial = $_POST['commercial'];
-    $date = $_POST['date'];
-    $modifEntreprie = new Entreprise(NULL,$nom, $prenom, $societe,$poste, $id_commercial, $date);
-    $modifEntreprie->setId($idEntreprise);
-    $entrepriseManager->ModifClient($modifEntreprie);
-    echo"Client/Entreprise Modifier avec Succès !!!";
-}

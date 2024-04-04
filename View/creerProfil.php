@@ -1,4 +1,13 @@
 <html>
+    <?php
+if (isset($_POST['nom'], $_POST['prenom'], $_POST['login'], $_POST['mdp'], $_POST['droit'])){
+    $utilisateur = new Utilisateur($_POST['nom'], $_POST['prenom'], $_POST['login'], $_POST['mdp'], $_POST['droit']);
+    $utilisateurProfil = new ManagerUtilisateur();
+    $utilisateurProfil -> addUser($utilisateur);
+    echo "<h3>Utilisateur créé</h3>";
+    echo "<script>setTimeout(function(){location.reload(); },3000);</script>";
+}
+?>
     <form method="post">
         <fieldset>
             <legend>Formulaire de création de profil</legend>
@@ -26,10 +35,6 @@
 </html>
 <?php
 
-if (isset($_POST['nom'], $_POST['prenom'], $_POST['login'], $_POST['mdp'], $_POST['droit'])){
-    $utilisateur = new Utilisateur($_POST['nom'], $_POST['prenom'], $_POST['login'], $_POST['mdp'], $_POST['droit']);
-    $utilisateurProfil = new ManagerUtilisateur();
-    $utilisateurProfil -> addUser($utilisateur);
-}
+
 
 ?>

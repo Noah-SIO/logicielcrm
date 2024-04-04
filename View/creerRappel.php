@@ -1,4 +1,12 @@
 <?php   
+if (isset($_POST['valider'])) {
+    $iduser = $_SESSION['id'];
+    //echo $iduser."test";
+    $rappelAlerte = new RappelAlerte( NULL,NULL,$_POST['date'],1,$iduser,$iduser,$_POST['suj'],$_POST['mess'],1);
+    $rappel->sendAlerteRappel($rappelAlerte);
+    echo"<p>Rappel Creer avec Succès !!!</p>";
+    echo "<script>setTimeout(function(){location.reload(); },3000);</script>";
+}
 $bdsqll = new PDO("mysql:host=localhost;dbname=crm", 'root', '');//même chose
 $rappel = new ManagerRappelAlerte($bdsqll);//même chose
 echo"<h1>Formulaire Création de Rappel</h1>";
@@ -13,11 +21,5 @@ echo"<form method='post'>";
     echo"<input type='submit' name='valider'class='button' value='Creer le Rappel'/>";
 echo"</form>";
 
-if (isset($_POST['valider'])) {
-    $iduser = $_SESSION['id'];
-    //echo $iduser."test";
-    $rappelAlerte = new RappelAlerte( NULL,NULL,$_POST['date'],1,$iduser,$iduser,$_POST['suj'],$_POST['mess'],1);
-    $rappel->sendAlerteRappel($rappelAlerte);
-    echo"<p>Rappel Creer avec Succès !!!</p>";
-}
+
 ?>

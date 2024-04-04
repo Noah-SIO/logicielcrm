@@ -8,15 +8,15 @@ $test = new ManagerFichier();
         <input type="file" id="lien" name="lien" required></br>
         <br>
         <label for="">Type document :</label> </br></br>
-        <input type="radio" id="Facture" name='type' value=1/>
+        <input type="radio" id="Facture" name='type' value='1'/>
             <label for="Facture">Facture</label>
             </div>
             <div>
-            <input type="radio" id="Avoir" name='type' value=2/>
+            <input type="radio" id="Avoir" name='type' value='2'/>
             <label for="Avoir">Avoir</label>
             </div>
             <div>
-            <input type="radio" id="Contrat" name='type' value=3/>
+            <input type="radio" id="Contrat" name='type' value='3'/>
             <label for="Contrat">Contrat</label>
             </div> </br>
         <label for="type">Et Le nom du Fichier</label></br></br>

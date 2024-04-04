@@ -29,9 +29,6 @@ if ($_SESSION['droit'] == 2){
 }
 
 if ($_SESSION['droit'] == 3){
-    //echo "<div class='attacheDocument'>";
-    //require('View/attacheDocument.php');
-    echo "</div>";
     echo "<div class='listeFicheContact'>";
     require('View/listeFicheContact.php');
     echo "</div>";

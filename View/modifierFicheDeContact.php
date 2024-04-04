@@ -19,6 +19,21 @@ $id_commercial = $contact->getIdCompte();
 $entreprisemanager = new ManagerEntreprise();
 $listeEntreprise = $entreprisemanager->getAllEntreprise();
 }
+
+if (isset($_POST['modifier'])) {
+    $id_commercial = $_POST['commercial'];
+    $idEntreprise = $_POST['idEntreprise'];
+    $moyenDeContact = $_POST['moyenDeContact'];
+    $demande = $_POST['demande'];
+    $reponse = $_POST['reponse'];
+    $date = $_POST['date'];
+    $modifContact = new FicheContact($idFicheContact,$id_commercial, $idEntreprise, $date, $demande, $reponse, $moyenDeContact);
+    $contactManager->modifContact($modifContact);
+    echo '<h3>Contact modifié</h3>';
+    header('Location: modifierFicheDeContact.php');
+    echo "<script>setTimeout(function(){location.reload(); },3000);</script>";
+    
+}
 ?>
 <form method="post" action="">
 <label for="commercial">Commercial :</label><br>
@@ -47,16 +62,3 @@ $listeEntreprise = $entreprisemanager->getAllEntreprise();
     <input type="date" name="date" value="<?php echo $date ? $date : date('Y-m-d'); ?>"><br>
     <input type="submit" name="modifier" value="Modifier">
 </form>
-<?php
-if (isset($_POST['modifier'])) {
-    $id_commercial = $_POST['commercial'];
-    $idEntreprise = $_POST['idEntreprise'];
-    $moyenDeContact = $_POST['moyenDeContact'];
-    $demande = $_POST['demande'];
-    $reponse = $_POST['reponse'];
-    $date = $_POST['date'];
-    $modifContact = new FicheContact($idFicheContact,$id_commercial, $idEntreprise, $date, $demande, $reponse, $moyenDeContact);
-    $contactManager->modifContact($modifContact);
-    header('Location: modifierFicheDeContact.php');
-    
-}

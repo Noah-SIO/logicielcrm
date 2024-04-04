@@ -2,6 +2,12 @@
 $utilisateurManager = new ManagerUtilisateur();
 $utilisateurs = $utilisateurManager->returnAllUsers();
 $rappeleAlerteManager = new ManagerRappelAlerte();
+if (isset($_POST['submit'])) {
+    $rappelAlerte = new RappelAlerte(null,null,$_POST['date'],1,$_GET['id'],$_POST['destinataire'],$_POST['titre'],$_POST['contenu'],1);
+    $rappeleAlerteManager->sendAlerteRappel($rappelAlerte);
+    echo"<h3>Alerte ajouté</h3>";
+    echo "<script>setTimeout(function(){location.reload(); },3000);</script>";
+}
 ?>
 
 <form method="POST">
@@ -25,9 +31,4 @@ $rappeleAlerteManager = new ManagerRappelAlerte();
     <input type="submit" name="submit" value="Envoyer">
 </form>
 
-<?php
-if (isset($_POST['submit'])) {
-    $rappelAlerte = new RappelAlerte(null,null,$_POST['date'],1,$_GET['id'],$_POST['destinataire'],$_POST['titre'],$_POST['contenu'],1);
-    $rappeleAlerteManager->sendAlerteRappel($rappelAlerte);
-}
 
