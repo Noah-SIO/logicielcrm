@@ -78,11 +78,13 @@ class ManagerAssistance{
                 $sql = 'UPDATE assistance SET statut='.$statut.', date_resolution="'.date("Y-m-d").'" WHERE id='.$id.'';
                 $requete = $this -> bd -> query($sql);
                 $requete -> fetch(PDO::FETCH_ASSOC);
+                var_dump($requete);
                 return true;
             } else {
                 $sql = 'UPDATE assistance SET statut='.$statut.' WHERE id='.$id.'';
                 $requete = $this -> bd -> query($sql);
                 $requete -> fetch(PDO::FETCH_ASSOC);
+                var_dump($requete);
                 return true;
             }
         }
@@ -143,7 +145,7 @@ class ManagerAssistance{
             $donnees = $requete -> fetch(PDO::FETCH_ASSOC);
         }
     }
-        
+}   
         public function statsNumberOfIssues(){
             $date = date('Y-m-d', strtotime('-10 days'));
             $sql = "SELECT COUNT(*) as nb FROM assistance WHERE `date` >= '{$date}'";
