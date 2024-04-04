@@ -1,7 +1,5 @@
 <html>
     <form method="post">
-        <label for="statut">Pour modifier le statut</label></br>
-        <input type="number" name="idStatut" id="idStatut" placeholder="id du problème"></br>
         <select name="statut" id="statut">
             <option value="">- Choix du statut -</option>
             <option value=1>A faire</option>
@@ -12,11 +10,10 @@
     </form>
 </html>
 <?php
-
 if (isset($_POST['statut'])){
     $assistanceSatut = new ManagerAssistance();
-    $assistanceSatut -> updateStatut($_GET['idstatut'], $_POST['statut']);
-    if ($assistanceSatut -> updateStatut($_GET['idstatut'], $_POST['statut']) ==  true){
+    $assistanceSatut -> updateStatut($_SESSION['idProbleme'], $_POST['statut']);
+    if ($assistanceSatut -> updateStatut($_SESSION['idProbleme'], $_POST['statut']) ==  true){
         echo "-- Statut changé --";
     }
 }
