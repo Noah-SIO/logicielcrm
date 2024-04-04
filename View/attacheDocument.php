@@ -7,13 +7,18 @@ $test = new ManagerFichier();
         <label for="lien">Lien Document</label></br></br>
         <input type="file" id="lien" name="lien" required></br>
         <br>
-        <label for="type">Le Type du Document</label></br></br>
-        <select name="type">
-            <option value="">--Choisissez un Type de Document--</option>
-            <option value="1">Facture</option>
-            <option value="2">Avoir</option>
-            <option value="3">Contrat</option>
-        </select></br></br>
+        <label for="">Type document :</label> </br></br>
+        <input type="radio" id="Facture" name='type' value=1/>
+            <label for="Facture">Facture</label>
+            </div>
+            <div>
+            <input type="radio" id="Avoir" name='type' value=2/>
+            <label for="Avoir">Avoir</label>
+            </div>
+            <div>
+            <input type="radio" id="Contrat" name='type' value=3/>
+            <label for="Contrat">Contrat</label>
+            </div> </br>
         <label for="type">Et Le nom du Fichier</label></br></br>
         <input type="text" id="nom" name="nom" placeholder='ex : FactureNoah'required></br>
         <br>
@@ -22,7 +27,7 @@ $test = new ManagerFichier();
 <?php
 //LinkDocumentToClient liens fichier.php || Noah
 if(isset($_POST['lien'])&&isset($_POST['type'])){
-    $iduser = $_GET['id'];//à modifier si besoin
+    $iduser = 1;//$_GET['iduser'];
     $nom= $_POST['nom'];
     $date = date("Y-m-d");
     $lien = "Document/".$_POST['lien'];
