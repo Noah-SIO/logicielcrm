@@ -11,7 +11,15 @@
             <label for="mdp">Mot de passe</label></br>
             <input type="text" name="mdp" id="mdp" placeholder="ex : davidDUPONT1234"></br>
             <label for="droit">Droit (poste)</label></br>
-            <input type="number" name="droit" id="droit" placeholder="ex : 1 (=  Conseiller client)"></br>
+            <select name="pets" id="pet-select">
+                <option value="">- Choisir un droit -</option>
+                <option value=1>Conseiller client</option>
+                <option value=2>Manager</option>
+                <option value=3>Commercial</option>
+                <option value=4>Comptable</option>
+                <option value=5>Responsable informatique</option>
+                <option value=6>Directeur général</option>
+            </select>
             <input type="submit" name="rechercher" id='rechercher' value='Créer'></br>
         </fieldset>           
     </form>
@@ -22,7 +30,6 @@ if (isset($_POST['nom'], $_POST['prenom'], $_POST['login'], $_POST['mdp'], $_POS
     $utilisateur = new Utilisateur($_POST['nom'], $_POST['prenom'], $_POST['login'], $_POST['mdp'], $_POST['droit']);
     $utilisateurProfil = new ManagerUtilisateur();
     $utilisateurProfil -> addUser($utilisateur);
-    echo"Utilisateur Creer avec Succès !!!!";
 }
 
 ?>

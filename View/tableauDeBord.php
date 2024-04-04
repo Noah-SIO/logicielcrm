@@ -11,8 +11,6 @@ if ($_SESSION['droit'] == 1){
     echo "<div class='dernierContact'>";
     require('View/dernierContact.php');
     echo "</div>";
-    echo "<a href='?action=creerAlerte'>Créer une alerte</a></br>";
-    echo "<a href='?action=creerRappel'>Créer un rappel</a></br>";
     echo "<a href='?action=modifierAlerteRappel'>Modifier une alerte ou un rappel</a></br>";
 }
 
@@ -39,9 +37,7 @@ if ($_SESSION['droit'] == 3){
     require('View/listeRappels.php');
     echo "</div>";
     echo "<a href='?action=creerFicheEntreprise'>Créer une fiche entreprise</a></br>";
-    echo "<a href='?action=modifFicheEntreprise'>Modifier une fiche entreprise</a></br>";
     echo "<a href='?action=creerFicheContact'>Créer une fiche contact</a></br>";
-    echo "<a href='?action=modifFicheContact'>Modifier une fiche contact</a></br>";
 }
 
 if ($_SESSION['droit'] == 4){
