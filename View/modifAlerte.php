@@ -1,11 +1,4 @@
-<html>
-    <form method="post">
-        <label for="idAlerte">Pour terminer une alerte ou un rappel</label></br>
-        <input type="number" name="idAlerte" id="idAlerte" placeholder="id de l'alerte ou du rappel"></br>
-        <input type="submit" name="terminer" id='terminer' value='Terminer'></br>
-    </form>
-</html>
-<?php
+<html><?php
 
 if (isset($_POST['idAlerte'])){
     $alerteRappelStatut = new ManagerRappelAlerte();
@@ -17,3 +10,9 @@ if (isset($_POST['idAlerte'])){
 }
 
 ?>
+    <form method="post">
+        <label for="idAlerte">Pour terminer une alerte ou un rappel</label></br>
+        <input type="number" name="idAlerte" id="idAlerte" placeholder="id de l'alerte ou du rappel"></br>
+        <input type="submit" name="terminer" id='terminer' value='Terminer'></br>
+    </form>
+</html>
