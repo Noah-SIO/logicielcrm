@@ -25,7 +25,7 @@ $contact = $managerContact->getContactByID((int)$recherche);
 
 //recherche entreprise
 
-if($statutUtilisateur == 1 or $statutUtilisateur == 4 or $statutUtilisateur == 5){
+if($statutUtilisateur == 1 or $statutUtilisateur == 4 or $statutUtilisateur == 5 or $statutUtilisateur == 3){
 if(!empty($listeEntreprise)){
     echo "<strong><p>Resultat de recherche Entreprise</p></strong>";
     foreach($listeEntreprise as $entreprise){
