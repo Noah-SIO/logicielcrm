@@ -8,6 +8,7 @@ $donneestableau = $rappel->getAlerteRappel($_SESSION['id']);
         echo $donneestableau[$i]->getDateDebut(). " -- ".$donneestableau[$i]->getDateFin()."</br>";
         echo "<p>".$donneestableau[$i]->getSujet()."</p>";
         echo "<p>".$donneestableau[$i]->getContenu()."</p></br>";
+        echo "<hr>";
         }
     }
 ?>
