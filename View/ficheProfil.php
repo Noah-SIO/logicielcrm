@@ -10,7 +10,7 @@ if(isset($_GET['id'])) {
         echo "<b>Identifiant : </b>" . $utilisateur[0]['identifiant'] . "<br>";
         echo "<b>Droit : </b>" . $poste[$utilisateur[0]['droit']] . "<br></fieldset>";
         if ($_SESSION['droit'] == 5){
-            echo "<a href='?action=modifProfil&id=".$idFicheProfilAChercher."'><button>Modifier la fiche</button></a>";
+            echo "<a href='?action=modifProfil&id=".$idFicheProfilAChercher."&nom=".$utilisateur[0]['nom']."&prenom=".$utilisateur[0]['prenom']."&login=".$utilisateur[0]['identifiant'] ."'><button>Modifier la fiche</button></a>";
         }
     } else {
         echo "Cette id n'est assigné a aucune fiche.";

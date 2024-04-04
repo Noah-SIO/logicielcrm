@@ -3,11 +3,11 @@
         <fieldset>
             <legend>Formulaire de modification de profil</legend>
             <label for="nom">Nom</label></br>
-            <input type="text" name="nom" id="nom" placeholder="ex : David"></br>
+            <input type="text" name="nom" id="nom" value="<?php echo $_GET['nom'] ?>"></br>
             <label for="prenom">Prénom</label></br>
-            <input type="text" name="prenom" id="prenom" placeholder="ex : Dupont"></br>
+            <input type="text" name="prenom" id="prenom" value="<?php echo $_GET['prenom'] ?>"></br>
             <label for="login">Identifiant</label></br>
-            <input type="text" name="login" id="login" placeholder="ex : daponT"></br>
+            <input type="text" name="login" id="login" value="<?php echo $_GET['login'] ?>"></br>
             <label for="mdp">Mot de passe</label></br>
             <input type="text" name="mdp" id="mdp" placeholder="ex : davidDUPONT1234"></br>
             <label for="droit">Droit (poste)</label></br>
