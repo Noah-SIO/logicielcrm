@@ -1,4 +1,9 @@
 <?php
+if(isset($_POST['idrespinfo'])){
+    $assistance->registerIssue($_POST['idrespinfo'], $_SESSION['id'], $_POST['suj'], $_POST['mess']);
+    echo"<h3>Votre problème à bien été transmis à nos Administrateur</h3>";
+
+}
 $assistance = new ManagerAssistance();
 echo"<h1>Formulaire De Contact Services Informatique</h1>";
 echo"<p>Pour les problème de mot de passe tapper 1, pour la création de compte tapper 2.</p></br></br></br>";
@@ -20,10 +25,6 @@ echo"<label for='idrespinfo'>Entrer un Responsable Informatique :</label></br></
     echo"<input type='submit' name='valider'class='button' value='Envoyer au Service Informatique'/></br>";
     echo"</form>";    
 
-if(isset($_POST['idrespinfo'])){
-    $assistance->registerIssue($_POST['idrespinfo'], $_SESSION['id'], $_POST['suj'], $_POST['mess']);
-    echo"<h3>Votre problème à bien été transmis à nos Administrateur</h3>";
 
-}
 
 ?>
