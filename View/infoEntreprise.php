@@ -24,9 +24,10 @@ if (isset($_GET['id'])){
                     <li><b>Date d'ajout :</b> <?php echo $entreprise -> getEntreprise($idEnt)['date'] ?></li>
                     <?php if ($annuaire != NULL){ foreach ($annuaire as $valeur){ echo "<li><b>". $type[$valeur['type']]." :</b> ".$valeur['valeur_contact']; }} else { echo "<li>Pas de moyen de contact</li>"; } ?>
                     <li><b>Fichier(s) lié(s) :</b> <?php if ($fichier != NULL){ foreach ($fichier as $values) { echo $values -> getNom()." | ".$values -> getDate()." | ".$values -> getLienDoc(); }} else { echo "Aucun fichier"; } ?></li>
-                   
                 </ul>
         </fieldset>
     </form>
 <?php
-echo "<a href='?action=modifFicheEntreprise&id=".$idEnt."'><button>Modifier la fiche</button></a>";
+if ($_SESSION['droit'] == 3){
+    echo "<a href='?action=modifFicheEntreprise&id=".$idEnt."'><button>Modifier la fiche</button></a>";
+}
