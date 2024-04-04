@@ -13,8 +13,6 @@ echo"<label for='idrespinfo'>Entrer un Responsable Informatique :</label></br></
             <label for='".$donnees[$i]['prenom']."'>".$donnees[$i]['nom']." ".$donnees[$i]['prenom']."</label>
             </div></br>";
     }
-    echo"<label for='nom'>Entrer votre Nom :</label></br></br>";
-    echo"<input type='text' name='nom' placeholder='ex : Latour' required></br></br>";
     echo"<label for='suj'>Entrer Le sujet de votre Problème :</label></br></br>";
     echo"<input type='text' name='suj' placeholder='Un problème de MDP' required></br></br>";
     echo"<label for='mess'>Et votre Message :</label></br></br>";
