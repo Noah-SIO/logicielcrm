@@ -22,7 +22,7 @@ if (isset($_POST['modifier'])) {
     $modifEntreprie->setId($idEntreprise);
     $entrepriseManager->ModifClient($modifEntreprie);
     echo"<h3>Client/Entreprise Modifier avec Succès !!!</h3>";
-    echo "<script>setTimeout(function(){location.reload(); },3000);</script>";
+    //echo "<script>setTimeout(function(){location.reload(); },3000);</script>";
     
 }
 
