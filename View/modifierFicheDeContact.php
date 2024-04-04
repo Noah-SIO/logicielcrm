@@ -57,6 +57,8 @@ if (isset($_POST['modifier'])) {
     $date = $_POST['date'];
     $modifContact = new FicheContact($idFicheContact,$id_commercial, $idEntreprise, $date, $demande, $reponse, $moyenDeContact);
     $contactManager->modifContact($modifContact);
+    echo '<h3>Contact modifié</h3>';
     header('Location: modifierFicheDeContact.php');
+    echo "<script>setTimeout(function(){location.reload(); },3000);</script>";
     
 }

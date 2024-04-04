@@ -9,8 +9,9 @@ echo"<input type='submit' name='valider' class='button' value='supprimer Contact
 echo"</form>";
 if(isset($_POST['id'])){
 $contact->deleteContact($_POST['id']);
+echo"<h3>Contact Supprime</h3>";
+echo "<script>setTimeout(function(){location.reload(); },3000);</script>";}
 
-}
 
 
 

@@ -10,5 +10,7 @@ echo"</form>";
 <?php
 if (isset($_POST['valider'])){
     header("Location: ?action=formulaireAssistance");
+    echo "<script>setTimeout(function(){location.reload(); },3000);</script>";
+    
 }
 ?>

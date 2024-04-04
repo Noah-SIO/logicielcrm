@@ -8,5 +8,6 @@ echo"</form>";
 if(isset($_POST['submit'])){
     $test->deleteDoc($_GET['iduser']);
     echo"Fichier Supprimé...";
+    echo "<script>setTimeout(function(){location.reload(); },3000);</script>";
 }
 ?>
