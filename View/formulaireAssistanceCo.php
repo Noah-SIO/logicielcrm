@@ -1,4 +1,9 @@
 <?php
+if(isset($_POST['idrespinfo'])){
+    $assistance->registerIssue($_POST['idrespinfo'], $_SESSION['id'], $_POST['suj'], $_POST['mess']);
+    echo"<h3>Votre problème à bien été transmis à nos Administrateur</h3>";
+
+}
 $assistance = new ManagerAssistance();
 echo"<h1>Formulaire De Contact Services Informatique</h1></br>";
 if(isset($_POST['idrespinfo'])){
