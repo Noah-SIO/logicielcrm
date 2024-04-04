@@ -19,7 +19,7 @@
 <?php
 
 if (isset($_POST['nom'], $_POST['prenom'], $_POST['login'], $_POST['mdp'], $_POST['droit'])){
-    $utilisateur = new Utilisateur($_POST['nom'], $_POST['prenom'], $_POST['login'], $_POST['mdp'], $_POST['droit']);
+    $utilisateur = new Utilisateur(NULL,$_POST['nom'], $_POST['prenom'], $_POST['login'], $_POST['mdp'], $_POST['droit']);
     $utilisateurProfil = new ManagerUtilisateur();
     $utilisateurProfil -> ModifyUser($utilisateur);
 }
