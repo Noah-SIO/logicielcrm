@@ -15,7 +15,7 @@ echo"<form method='post'>";
 echo"</form>";    
 if(isset($_POST['idrespinfo'])){
 $assistance->registerIssueNoConnect($_POST['idrespinfo'],$_POST['suj'],$_POST['suj'],$_POST['mess']);
-echo"Votre problème à bien été transmis à nos Administrateur";
+echo"<h3>Votre problème à bien été transmis à nos Administrateur</h3>";
 }
 echo"<form action=''>";
 echo"<input type='submit' name='valider' class='button' value='Retourner page connexion'/>";

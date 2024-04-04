@@ -12,6 +12,7 @@ if (isset($_POST['idAlerte'])){
     $alerteRappelStatut -> stopAlerte($_POST['idAlerte']);
     if ($alerteRappelStatut -> stopAlerte($_POST['idAlerte']) ==  true){
         echo "-- Alerte ou rappel terminé --";
+        echo "<script>setTimeout(function(){location.reload(); },3000);</script>";
     }
 }
 

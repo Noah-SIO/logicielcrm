@@ -22,7 +22,7 @@ echo"<label for='idrespinfo'>Entrer un Responsable Informatique :</label></br></
 
 if(isset($_POST['idrespinfo'])){
     $assistance->registerIssue($_POST['idrespinfo'], $_SESSION['id'], $_POST['suj'], $_POST['mess']);
-    echo"Votre problème à bien été transmis à nos Administrateur";
+    echo"<h3>Votre problème à bien été transmis à nos Administrateur</h3>";
 
 }
 

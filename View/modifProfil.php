@@ -22,6 +22,8 @@ if (isset($_GET['id'], $_POST['nom'], $_POST['prenom'], $_POST['login'], $_POST[
     $utilisateur = new Utilisateur($_GET['id'], $_POST['nom'], $_POST['prenom'], $_POST['login'], $_POST['mdp'], $_POST['droit']);
     $utilisateurProfil = new ManagerUtilisateur();
     $utilisateurProfil -> ModifyUser($utilisateur);
+    echo "<h3>Utilisateur modifié avec succes</h3>";
+    echo "<script>setTimeout(function(){location.reload(); },3000);</script>";
 }
 
 ?>

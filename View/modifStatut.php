@@ -18,6 +18,7 @@ if (isset($_POST['statut']) && isset($_POST['idStatut'])){
     $assistanceSatut -> updateStatut($_POST['idStatut'], $_POST['statut']);
     if ($assistanceSatut -> updateStatut($_POST['idStatut'], $_POST['statut']) ==  true){
         echo "-- Statut changé --";
+        echo "<script>setTimeout(function(){location.reload(); },3000);</script>";
     }
 }
 

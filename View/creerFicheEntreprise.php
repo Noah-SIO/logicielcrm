@@ -19,6 +19,8 @@ if(isset($_POST['creer'])){
     $newEntreprise = new Entreprise(NULL,$_POST['nom'], $_POST['prenom'], $_POST['societe'], $_POST['poste'], $_POST['id_commercial'], $_POST['date']);
     $entrepriseManager = new ManagerEntreprise();
     $entrepriseManager->createClientFiche($newEntreprise);
+    echo"<h3>Entreprise Crée</h3>";
+    echo "<script>setTimeout(function(){location.reload(); },3000);</script>";
 }
 ?>
 
