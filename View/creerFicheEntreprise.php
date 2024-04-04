@@ -1,4 +1,13 @@
 <h1>Formulaire Création Entreprise</h1>
+<?php
+if(isset($_POST['creer'])){
+    $newEntreprise = new Entreprise(NULL,$_POST['nom'], $_POST['prenom'], $_POST['societe'], $_POST['poste'], $_POST['id_commercial'], $_POST['date']);
+    $entrepriseManager = new ManagerEntreprise();
+    $entrepriseManager->createClientFiche($newEntreprise);
+    echo"<h3>Entreprise Crée</h3>";
+    echo "<script>setTimeout(function(){location.reload(); },3000);</script>";
+}
+?>
 <form method="post" action="">
     <label for="nom">Nom:</label>
     <input type="text" name="nom" required><br>
@@ -14,13 +23,5 @@
     <input type="date" name="date" required><br>
     <input type="submit" name="creer" value="Créer">
 </form>
-<?php
-if(isset($_POST['creer'])){
-    $newEntreprise = new Entreprise(NULL,$_POST['nom'], $_POST['prenom'], $_POST['societe'], $_POST['poste'], $_POST['id_commercial'], $_POST['date']);
-    $entrepriseManager = new ManagerEntreprise();
-    $entrepriseManager->createClientFiche($newEntreprise);
-    echo"<h3>Entreprise Crée</h3>";
-    echo "<script>setTimeout(function(){location.reload(); },3000);</script>";
-}
-?>
+
 
