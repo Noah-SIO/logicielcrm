@@ -23,7 +23,7 @@ if (isset($_GET['id'])){
                     <li><b>Prénom :</b> <?php echo $entreprise -> getEntreprise($idEnt)['prenom'] ?></li>
                     <li><b>Société :</b> <?php echo $entreprise -> getEntreprise($idEnt)['societe'] ?></li>
                     <li><b>Poste :</b> <?php echo $entreprise -> getEntreprise($idEnt)['poste'] ?></li>
-                    <li><b>ID commercial :</b> <?php echo $user[0]['nom'].", ". $user[0]['prenom'];?></li>
+                    <li><b>ID commercial :</b> <?php echo $user[0]['nom'].", ". $user[0]['prenom'];?></li><!--si pbm alors id_commerciale pas bon dans base données-->
                     <li><b>Date d'ajout :</b> <?php echo $entreprise -> getEntreprise($idEnt)['date'] ?></li>
                     <?php if ($annuaire != NULL){ foreach ($annuaire as $valeur){ echo "<li><b>". $type[$valeur['type']]." :</b> ".$valeur['valeur_contact']; }} else { echo "<li>Pas de moyen de contact</li>"; } ?>
                     <li><b>Fichier(s) lié(s) :</b> <?php if ($fichier != NULL){ foreach ($fichier as $values) { echo $values -> getNom()." | ".$values -> getDate()." | ".$values -> getLienDoc(); }} else { echo "Aucun fichier"; } ?></li>
