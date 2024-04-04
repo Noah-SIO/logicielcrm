@@ -27,5 +27,12 @@ echo"<label for='idrespinfo'>Entrer un Responsable Informatique :</label></br></
     echo"<label for='mess'>Et votre Message :</label></br></br>";
     echo"<textarea id='mess' name='mess' rows='7' cols='50' placeholder='salut c est jêrome du service comptable j ai un problème de mot de passe...' required></textarea></br></br>";
     echo"<input type='submit' name='valider'class='button' value='Envoyer au Service Informatique'/></br>";
-    echo"</form>";    
+    echo"</form>";
+
+if(isset($_POST['idrespinfo'])){
+    $assistance->registerIssue($_POST['idrespinfo'], $_SESSION['id'], $_POST['suj'], $_POST['mess']);
+    echo"Votre problème à bien été transmis à nos Administrateur, veuillez maintenant patienté.";
+
+}
+
 ?>

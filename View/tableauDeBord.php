@@ -8,8 +8,8 @@ if ($_SESSION['droit'] == 1){
     echo "<div class='listeRappels'>";
     require('View/listeRappels.php');
     echo "</div>";
-    echo "<div class='dernierContact'>";
-    require('View/dernierContact.php');
+    //echo "<div class='dernierContact'>";
+    //require('View/dernierContact.php');
     echo "</div>";
     echo "<a href='?action=modifierAlerteRappel'>Modifier une alerte ou un rappel</a></br>";
 }
@@ -20,6 +20,8 @@ if ($_SESSION['droit'] == 2){
     //echo "</div>";
     //echo "<div class='downloadFile'>";
     //require('View/downloadFile.php');
+    echo "<div class='dernierContact'>";
+    require('View/dernierContact.php');
     echo "</div>";
     echo "<div class='listeFicheContact'>";
     require('View/listeFicheContact.php');
@@ -70,7 +72,7 @@ if ($_SESSION['droit'] == 6){
     echo "</div>";
     // a verifier pour être sur qu'il y ait les derniers contacts
     echo "<div class='listeFicheContact'>";
-    require('View/dernierContact.php');
+    //require('View/dernierContact.php');
     echo "</div>";
     require('View/historiqueEntreprise.php');
     echo "</div>";
