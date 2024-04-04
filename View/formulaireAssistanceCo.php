@@ -1,7 +1,11 @@
 <?php
 $assistance = new ManagerAssistance();
-echo"<h1>Formulaire De Contact Services Informatique</h1>";
-echo"<p>Pour les problème de mot de passe tapper 1, pour la création de compte tapper 2.</p></br></br></br>";
+echo"<h1>Formulaire De Contact Services Informatique</h1></br>";
+if(isset($_POST['idrespinfo'])){
+    $assistance->registerIssue($_POST['idrespinfo'], $_SESSION['id'], $_POST['suj'], $_POST['mess']);
+    echo"<strong><p>----------------Votre problème à bien été transmis à nos Administrateur---------------</p></strong></br></br>";
+
+}
 echo"<form method='post'>";
 echo"<label for='idrespinfo'>Entrer un Responsable Informatique :</label></br></br>";
     $bd = new PDO("mysql:host=localhost;dbname=crm", 'root', '');
@@ -19,11 +23,4 @@ echo"<label for='idrespinfo'>Entrer un Responsable Informatique :</label></br></
     echo"<textarea id='mess' name='mess' rows='7' cols='50' placeholder='salut c est jêrome du service comptable j ai un problème de mot de passe...' required></textarea></br></br>";
     echo"<input type='submit' name='valider'class='button' value='Envoyer au Service Informatique'/></br>";
     echo"</form>";    
-
-if(isset($_POST['idrespinfo'])){
-    $assistance->registerIssue($_POST['idrespinfo'], $_SESSION['id'], $_POST['suj'], $_POST['mess']);
-    echo"Votre problème à bien été transmis à nos Administrateur";
-
-}
-
 ?>
