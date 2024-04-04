@@ -1,5 +1,4 @@
-<?php  // EN COURS, FINI LORSQUE LES VIEWS SERONT FINIES (utiliser CSS avec les div pour les organiser)
-
+<?php
 echo "<h2>Tableau de bord</h2></br> <h4>Bonjour ".$_SESSION['nom']." ".$_SESSION['prenom'].", nous sommes le ".date("d-m-Y")." | ".$poste[$_SESSION['droit']]."</h4></br>";
 
 if ($_SESSION['droit'] == 1){
@@ -20,9 +19,9 @@ if ($_SESSION['droit'] == 1){
 if ($_SESSION['droit'] == 2){
     echo "<div class='statistiques'>";
     require('View/statistiques.php');
-    echo "</div>";
-    echo "<div class='downloadFile'>";
-    require('View/downloadFile.php');
+    //echo "</div>";
+    //echo "<div class='downloadFile'>";
+    //require('View/downloadFile.php');
     echo "</div>";
     echo "<div class='listeFicheContact'>";
     require('View/listeFicheContact.php');
@@ -30,8 +29,8 @@ if ($_SESSION['droit'] == 2){
 }
 
 if ($_SESSION['droit'] == 3){
-    echo "<div class='attacheDocument'>";
-    require('View/attacheDocument.php');
+    //echo "<div class='attacheDocument'>";
+    //require('View/attacheDocument.php');
     echo "</div>";
     echo "<div class='listeFicheContact'>";
     require('View/listeFicheContact.php');
@@ -49,8 +48,8 @@ if ($_SESSION['droit'] == 4){
     echo "<div class='historiqueEntreprise'>";
     require('View/historiqueEntreprise.php');
     echo "</div>";
-    echo "<div class='attacheDocument'>";
-    require('View/attacheDocument.php');
+    //echo "<div class='attacheDocument'>";
+    //require('View/attacheDocument.php');
     echo "</div>";
 }
 
@@ -73,8 +72,8 @@ if ($_SESSION['droit'] == 6){
     echo "<div class='dernierProfil'>";
     require('View/dernierProfil.php');
     echo "</div>";
-    //echo "<div class='dernierFichier'>";
-    //require('View/derniersFichiers.php');
+    echo "<div class='dernierFichier'>";
+    require('View/derniersFichiers.php');
     echo "</div>";
     // a verifier pour être sur qu'il y ait les derniers contacts
     echo "<div class='listeFicheContact'>";
