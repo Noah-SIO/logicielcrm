@@ -121,7 +121,7 @@ class ManagerAssistance{
     // enregistre une fiche problème, selon l'id du responsable info, l'id de l'user qui a un problème, le sujet et le contenu
     public function registerIssue($idRespInfo, $idProbleme, $sujet, $contenu){
         if ($idProbleme != NULL && $sujet != NULL && $contenu != NULL){
-            $sql = 'INSERT INTO assistance (id_responsable, id_probleme, `date`, sujet, contenu, statut) VALUES ('.$idRespInfo.', '.$idProbleme.', "'.date("Y-m-d").'", "'.$sujet.'", "'.$contenu.'", 0)';
+            $sql = 'INSERT INTO assistance (id_responsable, id_probleme, `date`, sujet, contenu, statut) VALUES ('.$idRespInfo.', '.$idProbleme.', "'.date("Y-m-d").'", "'.$sujet.'", "'.$contenu.'", 1)';
             $requete = $this -> bd -> query($sql);
             $donnees = $requete -> fetch(PDO::FETCH_ASSOC);
         }
@@ -141,6 +141,7 @@ class ManagerAssistance{
             $sql = 'INSERT INTO assistance (id_responsable, id_probleme, `date`, sujet, contenu, statut) VALUES ('.$idRespInfo.', '.$idProbleme.', "'.date("Y-m-d").'", "'.$sujet.'", "'.$contenu.'", 0)';
             $requete = $this -> bd -> query($sql);
             $donnees = $requete -> fetch(PDO::FETCH_ASSOC);
+        }
     }
         
         public function statsNumberOfIssues(){
