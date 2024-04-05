@@ -129,11 +129,24 @@ class ManagerUtilisateur {
         }
     }
     
-    // Modifie les informations de l'utilisateur dans la base de données a partir de l'objet utilisateur.|| par Romain
+    // Modifie les informations de l'utilisateur dans la base de données à partir de l'objet utilisateur.|| par Romain
     public function ModifyUser($utilisateur) {
         $bd = $this->bd;
-        $creercompte = $bd->prepare("UPDATE utilisateur SET nom = '{$utilisateur->getNom()}', prenom = '{$utilisateur->getPrenom()}' , identifiant = '{$utilisateur->getIdentifiants()}', mdp = '{$utilisateur->getMdp()}', droit = '{$utilisateur->getProfil()}' WHERE id = {$utilisateur->getId()}");
-        $creercompte->execute();    
+        $sql = "UPDATE utilisateur SET nom = :nom, prenom = :prenom, identifiant = :identifiant, mdp = :mdp, droit = :droit WHERE id = :id";
+        $creerCompte = $bd->prepare($sql);  
+        $creerCompte->execute([
+            ':nom' => $utilisateur->getNom(),
+            ':prenom' => $utilisateur->getPrenom(),
+            ':identifiant' => $utilisateur->getIdentifiant(),
+            ':mdp' => $utilisateur->getProfil(),
+            ':droit' => $utilisateur->getMdp(),
+            ':id' => $utilisateur->getId()
+        ]);
+        if ($creerCompte->errorCode() != '00000') {
+            $erreur = $creerCompte->errorInfo();
+            echo " Erreur de la requête : <br>".$erreur[2];
+            exit;
+        }
     }
 
         //SearchUSER par Noah en cours de développement
