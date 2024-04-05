@@ -64,30 +64,33 @@ Class Assistance{
 
 class ManagerAssistance{
     private $bd;
-    private $statut;
 
     public function __construct() {
         $this -> bd = new PDO("mysql:host=localhost;dbname=crm", 'root', '');
-        $this ->statut= [1 => "à faire", 2 => "en cours", 3 => "terminé"];
     }
 
     // change le $statut 1,2 ou 3 en fonction de l'id du problème
     public function updateStatut($id, $statut){
-        if ($statut != NULL && $id != NULL){
+        // if ($statut != NULL){
             if ($statut == 3){
-                $sql = 'UPDATE assistance SET statut='.$statut.', date_resolution="'.date("Y-m-d").'" WHERE id='.$id.'';
+                $sql = 'UPDATE assistance SET statut='.$statut.', date_resolution="'.date('Y-m-d').'" WHERE id='.$id.'';
                 $requete = $this -> bd -> query($sql);
                 $requete -> fetch(PDO::FETCH_ASSOC);
-                var_dump($requete);
                 return true;
             } else {
-                $sql = 'UPDATE assistance SET statut='.$statut.' WHERE id='.$id.'';
+                $sql = 'UPDATE `assistance` SET `statut`= '.$statut.' WHERE id='.$id.'';
                 $requete = $this -> bd -> query($sql);
                 $requete -> fetch(PDO::FETCH_ASSOC);
-                var_dump($requete);
                 return true;
             }
-        }
+        // }
+    }
+
+    public function getIssueSelected($id, $statut){
+        $sql = "SELECT * FROM assistance WHERE id=$id && statut=$statut";
+        $requete = $this -> bd -> query($sql);
+        $donnees = $requete -> fetch(PDO::FETCH_ASSOC);
+        return $donnees;
     }
 
     // renvoie les derniers problèmes envoyés, le nombre varie en fonction de $nbr
@@ -96,28 +99,34 @@ class ManagerAssistance{
             $sql = 'SELECT * FROM assistance ORDER BY `date` LIMIT '.$nbr.'';
             $requete = $this -> bd -> query($sql);
             $donnees = $requete -> fetchAll(PDO::FETCH_ASSOC);
-            for ($i = 0; $i < count($donnees); $i++) {
-                echo "<ul>";
-                echo "<li>date : ".$donnees[$i]['date']." | statut : ".$this->statut[$donnees[$i]['statut']]." | sujet : ".$donnees[$i]['sujet']." | contenu : ".$donnees[$i]['contenu']." | date résolution : ".$donnees[$i]['date_resolution']."</li>";
-                echo "</ul>";
-            }
+            return $donnees;
         }
     }
 
-    public function getIssues($filtre, $nbr){
-        if ($nbr != NULL) {
+    public function getIssues($filtre = 1, $nbr = 10){
+        // if ($filtre != NULL) {
             if ($filtre == 3){
-                $sql = 'SELECT * FROM assistance WHERE statut ='.$filtre.' ORDER BY `date` DESC LIMIT '.$nbr.'';
+                $sql = 'SELECT * FROM assistance WHERE statut =3 ORDER BY `date` DESC LIMIT '.$nbr.'';
+                $requete = $this -> bd -> query($sql);
+                $donnees = $requete -> fetchAll(PDO::FETCH_ASSOC);
+                return $donnees;
+            } else if ($filtre == 2) {
+                $sql = 'SELECT id, `date`, statut, sujet, contenu FROM assistance WHERE statut =2 ORDER BY `date` DESC LIMIT '.$nbr.'';
                 $requete = $this -> bd -> query($sql);
                 $donnees = $requete -> fetchAll(PDO::FETCH_ASSOC);
                 return $donnees;
             } else {
-                $sql = 'SELECT id, `date`, statut, sujet, contenu FROM assistance WHERE statut ='.$filtre.' ORDER BY `date` DESC LIMIT '.$nbr.'';
+                $sql = 'SELECT id, `date`, statut, sujet, contenu FROM assistance WHERE statut =1 ORDER BY `date` DESC LIMIT '.$nbr.'';
                 $requete = $this -> bd -> query($sql);
                 $donnees = $requete -> fetchAll(PDO::FETCH_ASSOC);
                 return $donnees;
             }
-        }   
+        // } else {
+        //     $sql = 'SELECT id, `date`, statut, sujet, contenu FROM assistance WHERE statut =1 ORDER BY `date` DESC LIMIT '.$nbr.'';
+        //     $requete = $this -> bd -> query($sql);
+        //     $donnees = $requete -> fetchAll(PDO::FETCH_ASSOC);
+        //     return $donnees;
+        // }   
     }
 
     // enregistre une fiche problème, selon l'id du responsable info, l'id de l'user qui a un problème, le sujet et le contenu
@@ -145,7 +154,7 @@ class ManagerAssistance{
             $donnees = $requete -> fetch(PDO::FETCH_ASSOC);
         }
     }
-}   
+} 
         public function statsNumberOfIssues(){
             $date = date('Y-m-d', strtotime('-10 days'));
             $sql = "SELECT COUNT(*) as nb FROM assistance WHERE `date` >= '{$date}'";
