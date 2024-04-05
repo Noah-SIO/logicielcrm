@@ -142,6 +142,9 @@ class ManagerUtilisateur {
             if($type == "NOM"){
             $sqlrecherche = "SELECT * FROM utilisateur WHERE nom LIKE '%$recherche%'";
             }
+            if($type == "NOMTEST"){
+                $sqlrecherche = "SELECT * FROM utilisateur WHERE nom = '$recherche'";
+                }
             if($type == "PRENOM"){
                 $sqlrecherche = "SELECT * FROM utilisateur WHERE prenom LIKE '%$recherche%'";
             }
