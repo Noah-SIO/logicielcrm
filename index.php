@@ -14,6 +14,7 @@ $statut= [1 => "à faire", 2 => "en cours", 3 => "terminé"];
 $poste = [1 => "Conseiller client", 2 => "Manager", 3 => "Commercial", 4 => "Comptable", 5 => "Responsable informatique", 6 => "Directeur général"];
 $document = [1 => "Facture", 2 => "Avoir", 3 => "Contrat"];
 
+
 if(isset($_GET['action'])){
     if ($_GET["action"] == "formulaireAssistance"){
         $title = "Formulaire d'assistance";

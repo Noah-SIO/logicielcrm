@@ -11,8 +11,11 @@
     </form>
 </html>
 <?php
-
+    if(isset($_SESSION['id'])) {
+        header("Location: ?action=tableauDeBord");      
+    }    
 if (isset($_POST['login']) && isset($_POST['password'])){
+
     $utilisateur = new ManagerUtilisateur();
     $utilisateur -> GetUser($_POST['login']);
     $utilisateur -> checkLoginInfos($_POST['login'], $_POST['password']);
