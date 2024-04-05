@@ -2,10 +2,12 @@
 $idFicheContact = $_GET['id']; // a modifier 
 $contactManager = new Contact();
 $utilisateur = new ManagerUtilisateur();
+$entreprisemanager = new ManagerEntreprise();
+$entreprise = $entreprisemanager->getEntreprise($_GET['id']);
 $listeContacts = $contactManager->getContactByID($idFicheContact);
 foreach ($listeContacts as $contact) {
     echo "<ul>";
-    echo "<li><strong>Identifiant Entreprise:</strong> " . $contact->getIdEntreprise() . "</li>";
+    echo "<li><strong>Identifiant Entreprise:</strong> " . $entreprise['societe'] . "</li>";
     echo "<li><strong>Date:</strong> " . $contact->getDate() . "</li>";
     echo "<li><strong>Moyen de Contact:</strong> " . $contact->getMoyenDeContact() . "</li>";
     echo "<li><strong>Demande:</strong> " . $contact->getDemande() . "</li>";
