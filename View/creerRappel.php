@@ -40,6 +40,6 @@ if (isset($_POST['valider'])) {
         $rappelAlerte = new RappelAlerte( NULL,date("Y-m-d"),$_POST['date'],1,$_SESSION['id'],$idexpediteur,$_POST['suj'],$_POST['mess'],1);
         }
     $rappel->sendAlerteRappel($rappelAlerte);
-    echo"<p>Rappel créé avec Succès !!!</p>";
+    echo"<strong><p>----------------Rappel créé avec Succès !!!---------------</p></strong></br></br>";
 }
 ?>
