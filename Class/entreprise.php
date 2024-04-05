@@ -137,6 +137,8 @@ class ManagerEntreprise{
         return $entreprises;
     }
 
+
+
     // Fonction pour rechercher un client par son ID || Romain
     public function returnClientById($id){
         $sqlId = "SELECT * FROM entreprise WHERE id= :id";
@@ -155,17 +157,23 @@ class ManagerEntreprise{
         return $requete->execute();
     }
     public function SearchClientBySociete($societe){
-        $sqlsociete = "SELECT * FROM entreprise WHERE societe Like '%$societe%'";
-        $requetesociete = $this -> bd -> query ($sqlsociete);
-        $donneessociete= $requetesociete->fetchall(PDO::FETCH_ASSOC);
-        $tableauSociete= array();
-        if($donneessociete != NULL){
-            for ($i=0 ; $i<count($donneessociete) ;$i++){
-            $tableauSociete[] = new Entreprise($donneessociete[$i]['id'], $donneessociete[$i]['nom'], $donneessociete[$i]['prenom'],
-            $donneessociete[$i]['societe'],$donneessociete[$i]['poste'],$donneessociete[$i]['id_commercial'], $donneessociete[$i]['date']);
+        $sql = "SELECT * FROM entreprise WHERE societe LIKE :societe";
+        $req = $this->bd->prepare($sql);
+        $req->execute(['societe' => '%'.$societe.'%']);
+        $donnees = $req->fetchAll(PDO::FETCH_ASSOC);
+        $entreprises = [];
+        foreach ($donnees as $entreprise) {
+            $entreprises[] = new Entreprise(
+                $entreprise['id'],
+                $entreprise['nom'],
+                $entreprise['prenom'],
+                $entreprise['societe'],
+                $entreprise['poste'],
+                $entreprise['id_commercial'],
+                $entreprise['date']
+            );
         }
-        return $tableauSociete;
-        }
+        return $entreprises;
     }
 
     public function ModifClient(Entreprise $entreprise) {

@@ -76,19 +76,22 @@ class ManagerFichier {
     $requete2 = $this-> bd -> query ($sql2);
    } 
 
-    public function GetFichierByClient($userid){
-            $sqlrecherche = "SELECT * FROM `fichier` WHERE id_utilisateur=$userid";
-            $requeterecherche = $this -> bd -> query ($sqlrecherche);
-            $donneesrecherche= $requeterecherche->fetchall(PDO::FETCH_ASSOC); 
+    public function GetFichierByClient($userid=NULL) {
+            $sqlrecherche = $userid ? "SELECT * FROM `fichier` WHERE id_utilisateur=?" : "SELECT * FROM `fichier`";
+            $requete = $this->bd->prepare($sqlrecherche);
+            $requete->execute($userid ? [$userid] : []);
+            $donneesrecherche= $requete->fetchall(PDO::FETCH_ASSOC); 
             $tableauRecherche= array();      
                 if($donneesrecherche != NULL){
-                    for ($i=0 ; $i<count($donneesrecherche) ;$i++){
-                $tableauRecherche[]= new Fichier($donneesrecherche[$i]['id'],$donneesrecherche[$i]['id_utilisateur'],$donneesrecherche[$i]['nom'],$donneesrecherche[$i]['date'],
-                $donneesrecherche[$i]['lien'],$donneesrecherche[$i]['type']);                
-            }
+                    foreach($donneesrecherche as $donnees){
+                        $tableauRecherche[]= new Fichier($donnees['id'],$donnees['id_utilisateur'],$donnees['nom'],$donnees['date'],
+                        $donnees['lien'],$donnees['type']);                
+                    }
+                }
             return $tableauRecherche;
             }
-    }
+
+
 
 
     public function GetFichierByName($name) {
