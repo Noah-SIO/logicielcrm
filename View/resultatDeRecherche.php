@@ -5,6 +5,8 @@ $recherche = $_SESSION['recherche'];// a modifier un poste
 //entreprise
 $managerEntreprise = new ManagerEntreprise();
 $listeEntreprise = $managerEntreprise->SearchClientByName($recherche);
+$tmp = $managerEntreprise->SearchClientBySociete($recherche);
+
 
 
 //utilisateur
@@ -26,7 +28,7 @@ $contact = $managerContact->getContactByID((int)$recherche);
 //recherche entreprise
 
 if($statutUtilisateur == 0 or $statutUtilisateur == 4 or $statutUtilisateur == 6 or $statutUtilisateur == 5){
-if(!empty($listeEntreprise)){
+if(empty($listeEntreprise)){
     echo "<strong><p>Resultat de recherche Entreprise</p></strong>";
     foreach($listeEntreprise as $entreprise){
         echo "Nom: ".$entreprise->getNom()." - Prenom: ".$entreprise->getPrenom()." - Societe: ".$entreprise->getSociete()." - Poste: ".$entreprise->getPoste()."</p>";
@@ -34,10 +36,19 @@ if(!empty($listeEntreprise)){
 
     }
 }
+
+if(!empty($tmp)){
+    foreach($tmp as $entreprise){
+        echo "Nom: ".$entreprise->getNom()." - Prenom: ".$entreprise->getPrenom()." - Societe: ".$entreprise->getSociete()." - Poste: ".$entreprise->getPoste()."</p>";
+        echo "<a href='index.php?action=ficheEntreprise&id=".$entreprise->getId()."'><button>Voir fiche</button></a></br></br>";
+
+    }
+}
+}
 else{
     echo "<strong><p>Aucun entreprise trouve</p></strong>";
 }
-}
+
 
 
 //recherche Utilisateur
