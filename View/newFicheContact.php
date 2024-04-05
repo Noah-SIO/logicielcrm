@@ -5,15 +5,18 @@ $ContactFiche = new Contact($bdsqll);//même chose
 $entreprisemanager = new ManagerEntreprise();
 $listeEntreprise = $entreprisemanager->getAllEntreprise();?>
 <h1>Formulaire Création de Fiche Contact</h1>
-<form method='post'>
-     <label for="idEntreprise">Entreprise:</label>
-    <select name="idEntreprise" id="idEntreprise">
-        <?php foreach ($listeEntreprise as $entreprise) : ?>
-            <option value="<?php echo $entreprise->getId();?>">
-                <?php echo $entreprise->getSociete(); ?> (<?php echo $entreprise->getNom(); ?>)
-            </option>
-        <?php endforeach; ?>
-        </select><br><br>
+
+<?php 
+$selectedId = isset($_GET['idEntreprise']) ? (int)$_GET['idEntreprise'] : 0;
+echo "<form method='post'>
+     <label for='idEntreprise'>Entreprise:</label>
+    <select name='idEntreprise' id='idEntreprise'>";
+foreach ($listeEntreprise as $entreprise) {
+    $selected = $selectedId === $entreprise->getId() ? ' selected' : '';
+    echo "<option value='{$entreprise->getId()}'{$selected}>{$entreprise->getSociete()} ({$entreprise->getNom()})</option>";
+}
+echo "</select><br><br>";
+?>
     <label for='moyen'>Le Moyen de Contact :</label><br>    
     <select name="moyen">
     <option value="">--Choisissez un Moyen de Contact--</option>
