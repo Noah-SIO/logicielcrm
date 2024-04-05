@@ -38,6 +38,7 @@ if (isset($_POST['rechercher'])) {
     $utilisateur = new Utilisateur($_GET['id'], $_POST['nom'], $_POST['prenom'], $_POST['login'], $mdp, $_POST['droit']);
     
     $utilisateurProfil -> ModifyUser($utilisateur);
+    echo"yes";
 }
 
 ?>
