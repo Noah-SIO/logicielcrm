@@ -15,7 +15,7 @@
 
 if (isset($_POST['filtre'])){
     $problemeEnCours = new ManagerAssistance();
-    $probleme = $problemeEnCours -> getIssues($_POST['filtre'], 10);
+    $probleme = $problemeEnCours -> getIssues($_POST['filtre']);
     if ($_POST['filtre'] ==  3){
         for ($i = 0; $i < count($probleme); $i++) {
             echo "<ul>";
@@ -26,15 +26,29 @@ if (isset($_POST['filtre'])){
         for ($i = 0; $i < count($probleme); $i++) {
             echo "<ul>";
             echo "<li>date : ".$probleme[$i]['date']." | statut : ".$statut[$probleme[$i]['statut']]." | sujet : ".$probleme[$i]['sujet']." | contenu : ".$probleme[$i]['contenu']."";
-            if ($_SESSION['droit'] == 5){
-                $_SESSION['idProbleme'] = $probleme[$i]['id'];
-                require("modifStatut.php");
-            }
+            
+            $_SESSION['idProbleme'] = $probleme[$i]['id'];
+
+            echo " <a href='?action=modifStatut&id=".$_SESSION['idProbleme']."&statut=".$probleme[$i]['statut']."'><button>Modifier statut</button></a>";
+            
             echo "</li>
                 </ul>";
         }
     }
-    
+} else {
+    $problemeEnCours = new ManagerAssistance();
+    $probleme = $problemeEnCours -> getIssues();
+    for ($i = 0; $i < count($probleme); $i++) {
+        echo "<ul>";
+        echo "<li>date : ".$probleme[$i]['date']." | statut : ".$statut[$probleme[$i]['statut']]." | sujet : ".$probleme[$i]['sujet']." | contenu : ".$probleme[$i]['contenu']."";
+        
+        $_SESSION['idProbleme'] = $probleme[$i]['id'];
+        
+        echo " <a href='?action=modifStatut&id=".$_SESSION['idProbleme']."&statut=".$probleme[$i]['statut']."'><button>Modifier statut</button></a>";
+
+        echo "</li>
+            </ul>";
+    }
 }
 
 ?>
