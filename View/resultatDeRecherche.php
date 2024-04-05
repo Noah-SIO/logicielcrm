@@ -57,7 +57,7 @@ if($statutUtilisateur == 5 or $statutUtilisateur == 6 or $statutUtilisateur == 4
 if(!empty($listeUtilisateur)){
     echo "<strong><p>Resultat de recherche Utilisateur</p></strong>";
     foreach($listeUtilisateur as $utilisateur){
-        echo "Nom: ".$utilisateur->getNom()." - Prenom: ".$utilisateur->getPrenom()." - Identifiant: ".$utilisateur->getIdentifiant()." - Profil: ".$utilisateur->getProfil()."</p>";
+        echo "Nom: ".$utilisateur->getNom()." - Prenom: ".$utilisateur->getPrenom()." - Identifiant: ".$utilisateur->getIdentifiant()." - Profil: ".$poste[$utilisateur->getProfil()]."</p>";
         echo "<a href='index.php?action=ficheProfil&id=".$utilisateur->getId()."'><button>Voir fiche</button></a></br></br>";
     }
 }

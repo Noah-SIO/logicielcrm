@@ -157,7 +157,7 @@ class ManagerUtilisateur {
                 if($donneesrecherche != NULL){
                     for ($i=0 ; $i<count($donneesrecherche) ;$i++){
                 $tableauRecherche[]= new Utilisateur($donneesrecherche[$i]['id'],$donneesrecherche[$i]['nom'],$donneesrecherche[$i]['prenom'],$donneesrecherche[$i]['identifiant'],
-                $donneesrecherche[$i]['mdp'],$donneesrecherche[$i]['droit']);                
+                $donneesrecherche[$i]['droit'],$donneesrecherche[$i]['mdp']);                
             }
             //var_dump($tableauRecherche);
             return $tableauRecherche;
