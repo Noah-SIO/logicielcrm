@@ -132,7 +132,7 @@ class ManagerUtilisateur {
     // Modifie les informations de l'utilisateur dans la base de données a partir de l'objet utilisateur.|| par Romain
     public function ModifyUser($utilisateur) {
         $bd = $this->bd;
-        $creercompte = $bd->prepare("UPDATE utilisateur SET nom = '{$utilisateur->getNom()}', prenom = '{$utilisateur->getPrenom()}' , identifiant = '{$utilisateur->getIdentifiants()}', mdp = '{$utilisateur->getMdp()}', droit = '{$utilisateur->getProfil()}' WHERE id = {$utilisateur->getId()}");
+        $creercompte = $bd->prepare("UPDATE utilisateur SET nom = '{$utilisateur->getNom()}', prenom = '{$utilisateur->getPrenom()}' , identifiant = '{$utilisateur->getIdentifiant()}', droit = '{$utilisateur->getProfil()},mdp = '{$utilisateur->getMdp()}'' WHERE id = {$utilisateur->getId()}");
         $creercompte->execute();    
     }
 
