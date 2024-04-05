@@ -41,4 +41,7 @@ if ($_SESSION['droit'] == 3 || $_SESSION['droit'] == 4){
 if ($_SESSION['droit'] == 1 || $_SESSION['droit'] == 3){
     echo "<a href='?action=creerRappel&iddest=".$entreprise -> getEntreprise($idEnt)['id_commercial']."'><button>Créer un rappel</button></a>";
 }
+if ($_SESSION['droit'] == 1){
+    echo "<a href='?action=creerFicheContact'><button>Ajouter un Contact</button></a>";
+}
 

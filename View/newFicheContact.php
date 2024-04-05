@@ -14,8 +14,13 @@ $listeEntreprise = $entreprisemanager->getAllEntreprise();?>
             </option>
         <?php endforeach; ?>
         </select><br><br>
-<label for='moyen'>Le moyen de contact (Telephone Fixe 1, Smartphone 2, Email 3) :</label><br>
-<input type='number' name='moyen' placeholder='ex : 0606060606 (2)' min='1' max='3' required width='100'><br><br>
+    <label for='moyen'>Le Moyen de Contact :</label><br>    
+    <select name="moyen">
+    <option value="">--Choisissez un Moyen de Contact--</option>
+    <option value=1>Fixe</option>
+    <option value=2>Portable</option>
+    <option value=3>Mail</option>
+    </select></br></br>
 <label for='dem'>La demande :</label><br>
 <input type='text' name='dem' placeholder='ex : problème d’impression' required><br><br>
 <label for='rep'>Et la réponse :</label><br>
