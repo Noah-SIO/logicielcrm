@@ -7,7 +7,7 @@ $listeEntreprise = $entreprisemanager->getAllEntreprise();?>
 <h1>Formulaire Création de Fiche Contact</h1>
 
 <?php 
-$selectedId = isset($_GET['idEntreprise']) ? (int)$_GET['idEntreprise'] : 0;
+$selectedId = isset($_GET['idEntreprise']) ? (int)$_GET['identreprise'] : 0;
 echo "<form method='post'>
      <label for='idEntreprise'>Entreprise:</label>
     <select name='idEntreprise' id='idEntreprise'>";
