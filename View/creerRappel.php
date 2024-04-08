@@ -4,7 +4,7 @@ $user = new ManagerUtilisateur();//même chose
 $donneestableau = $user->SearchUserByType('%','ALL');
 echo"<h1>Formulaire Création de Rappel</h1>";
 echo"<p>Ce service sert aux employés de l'entreprise à ne pas oublié les taches qu'il auront à effectuer en créant un rappel qu'il recevront d'ici quelques jour.</p></br>";
-echo"<form method='post'>";
+echo"<form method='post' action=''>";
     echo"<label for=''>Choix desinataire :</label></br></br>";
     echo"<input type='checkbox' id='sois' name='destinataire' value=".$_SESSION['id']."/>";
     echo"<label for='sois'>Sois-même</label>";

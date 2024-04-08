@@ -152,8 +152,8 @@ class ManagerAssistance{
             $date= date("Y-m-d");
         if($donneesid != NULL && $contenu != NULL){    
             $idProbleme=$donneesid['id'];
-            $sql = 'INSERT INTO assistance (id_responsable, id_probleme, `date`, sujet, contenu, statut) VALUES ('.$idRespInfo.', '.$idProbleme.', "'.$date.'", "'.$sujet.'", "'.$contenu.'", 0)';
-            $sql = 'INSERT INTO assistance (id_responsable, id_probleme, `date`, sujet, contenu, statut) VALUES ('.$idRespInfo.', '.$idProbleme.', "'.date("Y-m-d").'", "'.$sujet.'", "'.$contenu.'", 0)';
+            $sql = 'INSERT INTO assistance (id_responsable, id_probleme, `date`, sujet, contenu, statut) VALUES ('.$idRespInfo.', '.$idProbleme.', "'.$date.'", "'.$sujet.'", "'.$contenu.'", 1)';
+            $sql = 'INSERT INTO assistance (id_responsable, id_probleme, `date`, sujet, contenu, statut) VALUES ('.$idRespInfo.', '.$idProbleme.', "'.date("Y-m-d").'", "'.$sujet.'", "'.$contenu.'", 1)';
             $requete = $this -> bd -> query($sql);
             $donnees = $requete -> fetch(PDO::FETCH_ASSOC);
         }
