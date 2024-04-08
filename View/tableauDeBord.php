@@ -11,7 +11,6 @@ if ($_SESSION['droit'] == 1){
     //echo "<div class='dernierContact'>";
     //require('View/dernierContact.php');
     echo "</div>";
-    echo "<a href='?action=modifierAlerteRappel'>Modifier une alerte ou un rappel</a></br>";
 }
 
 if ($_SESSION['droit'] == 2){
