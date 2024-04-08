@@ -128,5 +128,12 @@ class ManagerRappelAlerte{
         return $tableauRecherche;
         }
     }
+
+    public function getAlerteSelected($id, $statut){
+        $sql = "SELECT * FROM rappel_alerte WHERE id=$id && statut=$statut";
+        $requete = $this -> bd -> query($sql);
+        $donnees = $requete -> fetch(PDO::FETCH_ASSOC);
+        return $donnees;
+    }
 }
 ?>    

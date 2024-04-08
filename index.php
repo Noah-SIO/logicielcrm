@@ -124,5 +124,4 @@ else {
     require_once("View/connexion.php");
     require_once("View/appelAdmin.php");   
 }
-
 ?>
