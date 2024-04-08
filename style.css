@@ -1,0 +1,56 @@
+/* Style de base pour la page */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+}
+
+/* Style pour la zone de contenu */
+.container {
+    width: 80%;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Style pour les titres */
+h1, h2, h3 {
+    color: #333;
+}
+
+/* Style pour les liens */
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Style pour les paragraphes */
+p {
+    line-height: 1.6;
+}
+
+/* Style pour les listes */
+ul, ol {
+    margin-left: 20px;
+    list-style-type: none; /* Remove bullet points */
+}
+
+/* Style pour les éléments de liste */
+li {
+    margin-bottom: 5px;
+}
+
+/* Style pour les images */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 10px auto;
+}
