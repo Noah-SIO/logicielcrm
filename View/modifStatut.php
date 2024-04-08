@@ -1,9 +1,9 @@
 <?php
-if(isset($_GET['id']) && ($_GET['statut'])){
-    $assistanceStatut = new ManagerAssistance();
-    $assistanceStatut -> getIssueSelected($_GET['id'], $_GET['statut']);
-    $issueSelected = $assistanceStatut -> getIssueSelected($_GET['id'], $_GET['statut']);
-    echo "<li>date : ".$issueSelected['date']." | statut : ".$statut[$issueSelected['statut']]." | sujet : ".$issueSelected['sujet']." | contenu : ".$issueSelected['contenu']."";
+if(isset($_GET['id'])){
+$assistanceStatut = new ManagerAssistance();
+$assistanceStatut -> getIssueSelected($_GET['id'], $_GET['statut']);
+$issueSelected = $assistanceStatut -> getIssueSelected($_GET['id'], $_GET['statut']);
+echo "<li>date : ".$issueSelected['date']." | statut : ".$statut[$issueSelected['statut']]." | sujet : ".$issueSelected['sujet']." | contenu : ".$issueSelected['contenu']."";
 }
 ?>
 <html>
