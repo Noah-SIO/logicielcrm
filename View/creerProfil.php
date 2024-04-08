@@ -1,7 +1,7 @@
 <html>
     <?php
 if (isset($_POST['nom'], $_POST['prenom'], $_POST['login'], $_POST['mdp'], $_POST['droit'])){
-    $utilisateur = new Utilisateur($_POST['nom'], $_POST['prenom'], $_POST['login'], $_POST['mdp'], $_POST['droit']);
+    $utilisateur = new Utilisateur(NULL,$_POST['nom'], $_POST['prenom'], $_POST['login'], $_POST['mdp'], $_POST['droit']);
     $utilisateurProfil = new ManagerUtilisateur();
     $utilisateurProfil -> addUser($utilisateur);
     echo "<h3>Utilisateur créé</h3>";
@@ -20,7 +20,7 @@ if (isset($_POST['nom'], $_POST['prenom'], $_POST['login'], $_POST['mdp'], $_POS
             <label for="mdp">Mot de passe</label></br>
             <input type="text" name="mdp" id="mdp" placeholder="ex : davidDUPONT1234"></br>
             <label for="droit">Droit (poste)</label></br>
-            <select name="pets" id="pet-select">
+            <select name="droit" id="droit">
                 <option value="">- Choisir un droit -</option>
                 <option value=1>Conseiller client</option>
                 <option value=2>Manager</option>
