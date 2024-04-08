@@ -20,8 +20,8 @@ echo "<li>date : ".$issueSelected['date']." | statut : ".$statut[$issueSelected[
 <?php    
 
 if (isset($_POST['statut'])){
-    $assistanceStatut -> updateStatut($_SESSION['idProbleme'], $_POST['statut']);
-    if ($assistanceStatut -> updateStatut($_SESSION['idProbleme'], $_POST['statut']) ==  true){
+    $assistanceStatut -> updateStatut($_GET['id'], $_POST['statut']);
+    if ($assistanceStatut -> updateStatut($_GET['id'], $_POST['statut']) ==  true){
         echo "</br>-- Statut changé --";
         echo " <a href='?action=tableauDeBord><button>Retour tableau de bord</button></a>";
     }
