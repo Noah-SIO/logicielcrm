@@ -4,14 +4,22 @@
         <title><?php echo $title ?></title>   
     </header>
 <body>
-    <h3>Bienvenue <?php echo $_SESSION['nom'] . ", " . $_SESSION['prenom'] . " </br>Connecté en tant que: " . $poste[$_SESSION['droit']] ?></h3>
-    <nav>
-        <ul>
-            <li><a href="?action=tableauDeBord">Accueil</a></li>
-            <li><a href="?action=formulaireAssistanceCo">Assistance</a></li>
-            <li><form action="" method="post"><input type="submit" name="valider" class="button" value="Se déconnecter"></form></li>
-            <li><?php require_once('barreDeRecherche.php')?></li>
+    <h3>Bienvenue <?php echo $_SESSION['nom'] . " " . $_SESSION['prenom'] ?>, Connecté en tant que: <?php echo $poste[$_SESSION['droit']] ?></h3>
+    <form style="margin-left: auto;" action="" method="post"><input type="submit" name="valider" class="button" value="Se déconnecter"></form>
+    <nav style="display: flex; justify-content: space-between; align-items: center;">
+        <ul style="list-style: none; display: flex; padding: 0;">
+            <li style="margin-right:5px">
+                <button onclick="window.location.href='?action=tableauDeBord'">Accueil</button>
+            </li>
+            <li style="margin-right:5px">
+                <button onclick="window.location.href='?action=formulaireAssistanceCo'">Assistance</button>
+            </li>
+            <li style="margin-right:5px">   
+            <?php require_once('barreDeRecherche.php')?>             
+            </li>
+            
         </ul>
+    </nav>
             <?php
                 if(isset($_POST['valider'])){
                     session_destroy();
