@@ -112,6 +112,11 @@ if(isset($_GET['action'])){
         require_once("View/headerNavigation.php");
         require_once("View/attacheDocument.php");
     }
+    if ($_GET["action"] == "afficherContactsEntreprise"){
+        $title = "Voici tout les contacts lié a l'entreprise.";
+        require_once("View/headerNavigation.php");
+        require_once("View/afficherContactsEntreprise.php");
+    }
 }
 else {
     $title = "Page de connexion";
