@@ -11,7 +11,6 @@ if ($_SESSION['droit'] == 1){
     //echo "<div class='dernierContact'>";
     //require('View/dernierContact.php');
     echo "</div>";
-    echo "<a href='?action=modifierAlerteRappel'>Modifier une alerte ou un rappel</a></br>";
 }
 
 if ($_SESSION['droit'] == 2){
@@ -53,9 +52,6 @@ if ($_SESSION['droit'] == 5){
     echo "</div>";
     echo "<div class='probleme'>";
     require('View/probleme.php');
-    echo "</div>";
-    echo "<div class='modifStatut'>";
-    require('View/modifStatut.php');
     echo "</div>";
     echo "<a href='?action=creerProfil'>Créer un profil</a></br>";
 }

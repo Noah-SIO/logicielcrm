@@ -69,21 +69,25 @@ class ManagerAssistance{
         $this -> bd = new PDO("mysql:host=localhost;dbname=crm", 'root', '');
     }
 
-    // change le $statut 1,2 ou 3 en fonction de l'id du problème
-    public function updateStatut($id, $statut){
-        // if ($statut != NULL){
-            if ($statut == 3){
-                $sql = 'UPDATE assistance SET statut='.$statut.', date_resolution="'.date('Y-m-d').'" WHERE id='.$id.'';
-                $requete = $this -> bd -> query($sql);
-                $requete -> fetch(PDO::FETCH_ASSOC);
-                return true;
-            } else {
-                $sql = 'UPDATE `assistance` SET `statut`= '.$statut.' WHERE id='.$id.'';
-                $requete = $this -> bd -> query($sql);
-                $requete -> fetch(PDO::FETCH_ASSOC);
-                return true;
+    // change the status 1, 2 or 3 based on the id of the problem
+    public function updateStatut($id, $statut) {
+        if ($statut != null) {
+            $sql = "UPDATE assistance SET statut = :statut";
+            if ($statut == 3) {
+                $sql .= ", date_resolution = :date_resolution";
             }
-        // }
+            $sql .= " WHERE id = :id";
+            $requete = $this->bd->prepare($sql);
+            $params = array(
+                ':id' => $id,
+                ':statut' => $statut
+            );
+            if ($statut == 3) {
+                $params[':date_resolution'] = date('Y-m-d');
+            }
+            $requete->execute($params);
+            return true;
+        }
     }
 
     public function getIssueSelected($id, $statut){
