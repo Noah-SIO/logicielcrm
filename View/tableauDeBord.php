@@ -53,9 +53,6 @@ if ($_SESSION['droit'] == 5){
     echo "<div class='probleme'>";
     require('View/probleme.php');
     echo "</div>";
-    echo "<div class='modifStatut'>";
-    require('View/modifStatut.php');
-    echo "</div>";
     echo "<a href='?action=creerProfil'>Créer un profil</a></br>";
 }
 
