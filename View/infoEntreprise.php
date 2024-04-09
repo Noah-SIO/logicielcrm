@@ -29,7 +29,7 @@ if (isset($_GET['id'])){
                 </ul>
         </fieldset>
 <?php
-if ($_SESSION['droit'] == 3){
+if ($_SESSION['droit'] == 1 or $_SESSION['droit'] == 2 or $_SESSION['droit'] == 3 or $_SESSION['droit'] == 6){
     echo "<a href='?action=afficherContactsEntreprise&id=" . $idEnt . "'><button>Historique des contacts</button></a>";
     echo "<a href='?action=modifFicheEntreprise&id=".$idEnt."'><button>Modifier la fiche</button></a>";
 }
