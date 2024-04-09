@@ -37,11 +37,6 @@ if(isset($_GET['action'])){
         require_once("View/headerNavigation.php");
         require('View/creerProfil.php');
     }
-    if ($_GET["action"] == "creerAlerte"){
-        $title = "Page de création d'alerte'";
-        require_once("View/headerNavigation.php");
-        require('View/creerAlerte.php');
-    } 
     if ($_GET["action"] == "creerRappel"){
         $title = "Page de création de rappel";
         require_once("View/headerNavigation.php");
