@@ -9,9 +9,8 @@ if (isset($_POST['valider'])) {
     if(isset($_POST['destinataire'])){
     $rappelAlerte = new RappelAlerte( NULL,date("Y-m-d"),$_POST['date'],1,$_SESSION['id'],$_SESSION['id'],$_POST['suj'],$_POST['mess'],1);
     }
-    if(isset($_POST['commercial']) && !isset($_POST['destinataire'])){
-        $donneestableau2 = $user->SearchUserByType($_POST['commercial'],'NOMTEST');
-        $idexpediteur=$donneestableau2[0]->getId();
+    if(isset($_POST['commercial'])){
+        $idexpediteur=$_GET['iddest'];
         $rappelAlerte = new RappelAlerte( NULL,date("Y-m-d"),$_POST['date'],1,$_SESSION['id'],$idexpediteur,$_POST['suj'],$_POST['mess'],1);
         }
     $rappel->sendAlerteRappel($rappelAlerte);
@@ -23,7 +22,7 @@ echo"<form method='post'>";
     echo"<label for=''>Choix destinataire :</label></br></br>";
     echo "<input type='radio' id='sois' name='destinataire' value='".$_SESSION['id']."'/>
         <label for='".$_SESSION['id']."'>Sois-même</label> <br/>";
-    echo "<input type='radio' id='dest' name='destinataire' value='".$_GET['iddest']."'/>
+    echo "<input type='radio' id='dest' name='commercial' value='".$_GET['iddest']."'/>
         <label for='".$_GET['iddest']."'>Commercial</label> <br/>";
     // echo"<input type='checkbox' id='sois' name='destinataire' value=".$_SESSION['id']."/>";
     // echo"<label for='sois'>Sois-même</label>";
