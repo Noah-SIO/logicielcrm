@@ -38,11 +38,12 @@ if ($_SESSION['droit'] == 3){
 
 if ($_SESSION['droit'] == 3 || $_SESSION['droit'] == 4){
     echo "<a href='?action=attacheDocument&ident=".$idEnt."'><button>Attacher un document</button></a>";
-    echo "<a href='?action=afficherContactsEntreprise&id=" . $idEnt . "'><button>Afficher les contacts de l'entreprise</button></a>";
 
 }
 if ($_SESSION['droit'] == 1 || $_SESSION['droit'] == 3){
     echo "<a href='?action=creerRappel&iddest=".$entreprise -> getEntreprise($idEnt)['id_commercial']."'><button>Créer un rappel</button></a>";
+    echo "<a href='?action=afficherContactsEntreprise&id=" . $idEnt . "'><button>Afficher les contacts de l'entreprise</button></a>";
+
 }
 if ($_SESSION['droit'] == 1){
     echo "<a href='?action=creerFicheContact&identreprise=".$entreprise -> getEntreprise($idEnt)['id']."'><button>Ajouter un Contact</button></a>";
