@@ -6,7 +6,12 @@ $entreprisemanager = new ManagerEntreprise();
 $listeEntreprise = $entreprisemanager->getAllEntreprise();?>
 <h1>Formulaire Création de Fiche Contact</h1>
 
-<?php 
+<?php
+if (isset($_POST['valider'])) {
+    $newContact = new FicheContact(null,$iduser,$_POST['idEntreprise'],date('Y-m-d'),$_POST['dem'],$_POST['rep'],$_POST['moyen']);
+    $ContactFiche->createFicheContact($newContact);
+    echo"<strong><p>----------------Fiche Contact Creer avec Succès !!!-------------------------</p></strong>";
+} 
 $selectedId = isset($_GET['idEntreprise']) ? (int)$_GET['identreprise'] : 0;
 echo "<form method='post'>
      <label for='idEntreprise'>Entreprise:</label>
@@ -31,9 +36,4 @@ echo "</select><br><br>";
 <input type='submit' name='valider'class='button' value='Creer le Contact'>
 <?php
 echo"</form>";
-if (isset($_POST['valider'])) {
-    $newContact = new FicheContact(null,$iduser,$_POST['idEntreprise'],date('Y-m-d'),$_POST['dem'],$_POST['rep'],$_POST['moyen']);
-    $ContactFiche->createFicheContact($newContact);
-    echo"<p>Fiche Contact Creer avec Succès !!!</p>";
-}
 ?>
