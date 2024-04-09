@@ -2,6 +2,21 @@
 $rappel = new ManagerRappelAlerte();//même chose
 $user = new ManagerUtilisateur();//même chose
 $donneestableau = $user->SearchUserByType('%','ALL');
+if (isset($_POST['valider'])) {
+    //$tableaudonnees = $user->GetUser($_POST['identif']);
+    //$iduser = $tableaudonnees[0]['id'];
+    //echo $iduser."test";
+    if(isset($_POST['destinataire'])){
+    $rappelAlerte = new RappelAlerte( NULL,date("Y-m-d"),$_POST['date'],1,$_SESSION['id'],$_SESSION['id'],$_POST['suj'],$_POST['mess'],1);
+    }
+    if(isset($_POST['commercial']) && !isset($_POST['destinataire'])){
+        $donneestableau2 = $user->SearchUserByType($_POST['commercial'],'NOMTEST');
+        $idexpediteur=$donneestableau2[0]->getId();
+        $rappelAlerte = new RappelAlerte( NULL,date("Y-m-d"),$_POST['date'],1,$_SESSION['id'],$idexpediteur,$_POST['suj'],$_POST['mess'],1);
+        }
+    $rappel->sendAlerteRappel($rappelAlerte);
+    echo"<strong><p>----------------Rappel créé avec Succès !!!---------------</p></strong></br></br>";
+}
 echo"<h1>Formulaire Création de Rappel</h1>";
 echo"<p>Ce service sert aux employés de l'entreprise à ne pas oublié les taches qu'il auront à effectuer en créant un rappel qu'il recevront d'ici quelques jour.</p></br>";
 echo"<form method='post'>";
@@ -30,20 +45,4 @@ echo"<form method='post'>";
     echo"<textarea id='mess' name='mess' rows='7' cols='50' placeholder='Rappeler Mr Latour le 28/03/2024 a 9h pour son probleme de MDP' required></textarea></br></br>";
     echo"<input type='submit' name='valider' class='button' value='Créer'/>";
 echo"</form>";
-
-if (isset($_POST['valider'])) {
-    //$tableaudonnees = $user->GetUser($_POST['identif']);
-    //$iduser = $tableaudonnees[0]['id'];
-    //echo $iduser."test";
-    if(isset($_POST['destinataire'])){
-    $rappelAlerte = new RappelAlerte( NULL,date("Y-m-d"),$_POST['date'],1,$_SESSION['id'],$_SESSION['id'],$_POST['suj'],$_POST['mess'],1);
-    }
-    if(isset($_POST['commercial']) && !isset($_POST['destinataire'])){
-        $donneestableau2 = $user->SearchUserByType($_POST['commercial'],'NOMTEST');
-        $idexpediteur=$donneestableau2[0]->getId();
-        $rappelAlerte = new RappelAlerte( NULL,date("Y-m-d"),$_POST['date'],1,$_SESSION['id'],$idexpediteur,$_POST['suj'],$_POST['mess'],1);
-        }
-    $rappel->sendAlerteRappel($rappelAlerte);
-    echo"<strong><p>----------------Rappel créé avec Succès !!!---------------</p></strong></br></br>";
-}
 ?>
