@@ -12,11 +12,11 @@ if ($_GET['action'] == 'afficherContactsEntreprise' && isset($_GET['id'])) {
         echo "<ul>";
         foreach ($contactsEntreprise as $contact) {
             echo "<ul>";
-            echo "<li><strong>Identifiant Entreprise:</strong> " . $entreprise['societe'] . "</li>";
-            echo "<li><strong>Date:</strong> " . $contact->getDate() . "</li>";
-            echo "<li><strong>Moyen de Contact:</strong> " . $contact->getMoyenDeContact() . "</li>";
-            echo "<li><strong>Demande:</strong> " . $contact->getDemande() . "</li>";
-            echo "<li><strong>Réponse:</strong> " . $contact->getReponse() . "</li>";
+            echo "<li><strong>Identifiant Entreprise :</strong> " . $entreprise['societe'] . "</li>";
+            echo "<li><strong>Date :</strong> " . $contact->getDate() . "</li>";
+            echo "<li><strong>Moyen de Contact :</strong> " . $type[$contact->getMoyenDeContact()] . "</li>";
+            echo "<li><strong>Demande :</strong> " . $contact->getDemande() . "</li>";
+            echo "<li><strong>Réponse :</strong> " . $contact->getReponse() . "</li>";
             echo "</ul>";
         }
         echo "</ul>";
