@@ -27,9 +27,9 @@ if (isset($_POST['filtre'])){
             echo "<ul>";
             echo "<li>date : ".$probleme[$i]['date']." | statut : ".$statut[$probleme[$i]['statut']]." | sujet : ".$probleme[$i]['sujet']." | contenu : ".$probleme[$i]['contenu']."";
             
-            $_SESSION['idProbleme'] = $probleme[$i]['id'];
+            $_GET['id'] = $probleme[$i]['id'];
 
-            echo " <a href='?action=modifStatut&id=".$_SESSION['idProbleme']."&statut=".$probleme[$i]['statut']."'><button>Modifier statut</button></a>";
+            echo " <a href='?action=modifStatut&id=".$_GET['id']."&statut=".$probleme[$i]['statut']."'><button>Modifier statut</button></a>";
             
             echo "</li>
                 </ul>";
@@ -42,9 +42,9 @@ if (isset($_POST['filtre'])){
         echo "<ul>";
         echo "<li>date : ".$probleme[$i]['date']." | statut : ".$statut[$probleme[$i]['statut']]." | sujet : ".$probleme[$i]['sujet']." | contenu : ".$probleme[$i]['contenu']."";
         
-        $_SESSION['idProbleme'] = $probleme[$i]['id'];
+        $_GET['id'] = $probleme[$i]['id'];
         
-        echo " <a href='?action=modifStatut&id=".$_SESSION['idProbleme']."&statut=".$probleme[$i]['statut']."'><button>Modifier statut</button></a>";
+        echo " <a href='?action=modifStatut&id=".$_GET['id']."&statut=".$probleme[$i]['statut']."'><button>Modifier statut</button></a>";
 
         echo "</li>
             </ul>";
