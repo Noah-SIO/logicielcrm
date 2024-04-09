@@ -21,7 +21,7 @@
         </ul>
     </nav>
             <?php
-                if(isset($_POST['deconection'])){
+                if(isset($_POST['deconnexion'])){
                     session_destroy();
                     $_SESSION = array();
                     $_SESSION['id'] = null;
