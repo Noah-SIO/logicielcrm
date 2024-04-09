@@ -5,7 +5,7 @@
     </header>
 <body>
     <h3>Bienvenue <?php echo $_SESSION['nom'] . " " . $_SESSION['prenom'] ?>, Connecté en tant que: <?php echo $poste[$_SESSION['droit']] ?></h3>
-    <form style="margin-left: auto;" action="" method="post"><input type="submit" name="valider" class="button" value="Se déconnecter"></form>
+    <form style="margin-left: auto;" action="" method="post"><input type="submit" name="deconnexion" class="button" value="Se déconnecter"></form>
     <nav style="display: flex; justify-content: space-between; align-items: center;">
         <ul style="list-style: none; display: flex; padding: 0;">
             <li style="margin-right:5px">
@@ -21,7 +21,7 @@
         </ul>
     </nav>
             <?php
-                if(isset($_POST['valider'])){
+                if(isset($_POST['deconection'])){
                     session_destroy();
                     $_SESSION = array();
                     $_SESSION['id'] = null;
