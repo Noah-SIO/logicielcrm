@@ -22,7 +22,7 @@ echo "<label for='nom'>La date de fin de rappel :</label><br/><br/>";
 echo "<input type='date' id='date' name='date' required><br/><br/>";
 echo "<label for='mess'>Et votre message :</label><br/><br/>";
 echo "<textarea id='mess' name='mess' rows='7' cols='50' placeholder='Rappeler M. Latour le 28/03/2024 à 9h pour son problème de MDP' required></textarea><br/><br/>";
-echo "<input type='submit' name='valider' class='button' value='Créer'/>";
+echo "<input type='submit' class='button' name='valider' class='button' value='Créer'/>";
 echo "</form>";
 
 if (isset($_POST['valider'])) {

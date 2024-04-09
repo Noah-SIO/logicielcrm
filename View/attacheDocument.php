@@ -22,7 +22,7 @@ $test = new ManagerFichier();
         <label for="type">Et Le nom du Fichier</label></br></br>
         <input type="text" id="nom" name="nom" placeholder='ex : FactureNoah'required></br>
         <br>
-        <input type="submit" value="Envoyer">
+        <input type="submit" value="Envoyer" class='button'>
 </form>
 <?php
 //LinkDocumentToClient liens fichier.php || Noah

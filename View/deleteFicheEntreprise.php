@@ -7,7 +7,7 @@ if (isset($_POST['supprEntreprise'])) {
 }
 ?>
 <form method="post" action="deleteFicheEntreprise.php">
-    <input type="submit" name="supprEntreprise" value="SupprEntreprise">
+    <input type="submit" name="supprEntreprise" value="SupprEntreprise" class="button">
 </form>
 
 

@@ -56,8 +56,8 @@ img {
     padding: 10px 20px;
     border: none;
     border-radius: 20px; 
-    background-color: #f0f0f0;
-    color: #333;
+    background-color: #333; 
+    color: #fff; 
     font-size: 16px;
     text-align: center;
     text-decoration: none;
@@ -67,7 +67,7 @@ img {
   
   /* Style au survol */
   .button:hover {
-    background-color: #ddd;
+    background-color: #555; 
   }
   
   /* Style pour les boutons de taille différente */
@@ -78,12 +78,30 @@ img {
   
   /* Style pour les boutons de couleur différente */
   .button.primary {
-    background-color: #007bff;
-    color: #fff;
+    background-color: #007bff; 
+    color: #fff; 
   }
   
   .button.secondary {
-    background-color: #6c757d;
-    color: #fff;
+    background-color: #6c757d; 
+    color: #fff; 
   }
+  
+
+  /* Style de base pour les champs de saisie texte */
+input[type="text"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px; 
+  }
+  
+  /* Style lorsque le champ de saisie est survolé */
+  input[type="text"]:hover {
+    border-color: #007bff; 
+}
+  
+
+
+
   

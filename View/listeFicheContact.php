@@ -12,7 +12,7 @@
                 <option value=ASC>croissant</option>
                 <option value=DESC>décroissant</option>
             </select>
-            <input type="submit" name="rechercher" id='rechercher' value='Rechercher'></br>
+            <input type="submit" name="rechercher" id='rechercher' value='Rechercher' class="button"></br>
     </form>
 </html>
 <?php

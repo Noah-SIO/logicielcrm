@@ -29,7 +29,7 @@ if (isset($_POST['nom'], $_POST['prenom'], $_POST['login'], $_POST['mdp'], $_POS
                 <option value=5>Responsable informatique</option>
                 <option value=6>Directeur général</option>
             </select>
-            <input type="submit" name="rechercher" id='rechercher' value='Créer'></br>
+            <input type="submit" name="rechercher" id='rechercher' value='Créer' class="button"></br>
         </fieldset>           
     </form>
 </html>

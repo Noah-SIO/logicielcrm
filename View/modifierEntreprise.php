@@ -49,6 +49,6 @@ if (isset($_POST['modifier'])) {
     </select><br><br>
     <label for="date">Date:</label>
     <input type="date" name="date" value="<?php echo $date; ?>"><br>
-    <input type="submit" name="modifier" value="Modifier">
+    <input type="submit" name="modifier" value="Modifier" class="button">
 </form>
 <?php

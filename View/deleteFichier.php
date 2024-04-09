@@ -7,7 +7,7 @@ if(isset($_POST['submit'])){
 $bdsqll = new PDO("mysql:host=localhost;dbname=crm", 'root', '');
 $test = new ManagerFichier($bdsqll);
 echo"<form method='post'>";
-echo"<input type='submit' name='submit' value='Delete Document'>";
+echo"<input type='submit' name='submit' class='button' value='Delete Document'>";
 echo"</form>";
 
 

@@ -5,7 +5,7 @@ echo"</form>";
  */
 ?>
 <form method='post'>
-    <input type='submit' name='valider' class='button' value='Contacter un administrateur'/>
+    <input type='submit' name='valider' class='button' value='Contacter un administrateur' class='button'/>
 </form>
 <?php
 if (isset($_POST['valider'])){
