@@ -4,8 +4,8 @@ $user = new ManagerUtilisateur();//même chose
 $donneestableau = $user->SearchUserByType('%','ALL');
 echo"<h1>Formulaire Création de Rappel</h1>";
 echo"<p>Ce service sert aux employés de l'entreprise à ne pas oublié les taches qu'il auront à effectuer en créant un rappel qu'il recevront d'ici quelques jour.</p></br>";
-echo"<form method='post' action=''>";
-    echo"<label for=''>Choix desinataire :</label></br></br>";
+echo"<form method='post'>";
+    echo"<label for=''>Choix destinataire :</label></br></br>";
     echo"<input type='checkbox' id='sois' name='destinataire' value=".$_SESSION['id']."/>";
     echo"<label for='sois'>Sois-même</label>";
     echo"</div><div>";
@@ -24,7 +24,7 @@ echo"<form method='post' action=''>";
     echo "<input type='date' id='date' name='date' required/></br></br>";
     echo"<label for='mess'>Et votre Message :</label></br></br>";
     echo"<textarea id='mess' name='mess' rows='7' cols='50' placeholder='Rappeler Mr Latour le 28/03/2024 a 9h pour son probleme de MDP' required></textarea></br></br>";
-    echo"<input type='submit' name='valider'class='button' value='Créer'/>";
+    echo"<input type='submit' name='valider' class='button' value='Créer'/>";
 echo"</form>";
 
 if (isset($_POST['valider'])) {
