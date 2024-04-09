@@ -21,9 +21,6 @@ if(isset($_GET['idAlerte']) && ($_GET['statutAlerte'])){
 if (isset($_POST['terminer'])){
     $alerteRappelStatut = new ManagerRappelAlerte();
     $alerteRappelStatut -> stopAlerte($_GET['idAlerte']);
-    if ($alerteRappelStatut -> stopAlerte($_GET['idAlerte']) ==  true){
-        echo "-- Alerte ou rappel terminé --";
+    echo "<strong><p>--------------- Alerte ou Rappel Terminé !!! -----------------</p></strong>";
     }
-}
-
 ?>
