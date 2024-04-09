@@ -28,7 +28,7 @@ if (isset($_POST['submit'])) {
     <label for="contenu">Contenu :</label><br>
     <textarea name="contenu" id="contenu" rows="5" cols="30"></textarea><br>
 
-    <input type="submit" name="submit" value="Envoyer">
+    <input type="submit" name="submit" value="Envoyer" class='button'>
 </form>
 
 

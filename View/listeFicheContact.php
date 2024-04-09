@@ -12,29 +12,35 @@
                 <option value=ASC>croissant</option>
                 <option value=DESC>décroissant</option>
             </select>
-            <input type="submit" name="rechercher" id='rechercher' value='Rechercher'></br>
+            <input type="submit" name="rechercher" id='rechercher' value='Rechercher' class="button"></br>
     </form>
 </html>
 <?php
 
 if (isset($_POST['filtre'])){
     $listeContact = new Contact();
-    $listeContact -> getContact(10, $_POST['filtre'], $_POST['ordre']);
+    $clientContact = new ManagerEntreprise();
+    $utilisateurContact = new ManagerUtilisateur();
+    
+    // $listeContact -> getContact(10, $_POST['filtre'], $_POST['ordre'])['id_utilisateur'];
     $lC = $listeContact -> getContact(10, $_POST['filtre'], $_POST['ordre']);
+    
     if ($lC != NULL){
         echo "<table>
         <tr>
-        <th scope='col'>ID utilisateur associé</th>
-        <th scope='col'>ID entreprise associé</th>
-        <th scope='col'>Moyen de contact</th>
-        <th scope='col'>Demande</th>
-        <th scope='col'>Réponse</th>
-        <th scope='col'>Date</th>
+        <th scope='col'> Utilisateur associé </th>
+        <th scope='col'> Entreprise associé </th>
+        <th scope='col'> Moyen de contact </th>
+        <th scope='col'> Demande </th>
+        <th scope='col'> Réponse </th>
+        <th scope='col'> Date </th>
         </tr>";
         for ($i = 0; $i < count($lC); $i ++){
+            $entreprise = $clientContact -> getEntreprise($lC[$i]['id_entreprise']);
+            $utilisateur = $utilisateurContact -> GetUserById($lC[$i]['id_utilisateur']);
             echo "<tr>
-                    <td>".$lC[$i]['id_utilisateur']."</td>
-                    <td>".$lC[$i]['id_entreprise']."</td>
+                    <td>".$utilisateur[0]['nom']." ".$utilisateur[0]['prenom']."</td>
+                    <td>".$entreprise['societe']."</td>
                     <td>".$type[$lC[$i]['moyen_contact']]."</td>
                     <td>".$lC[$i]['demande']."</td>
                     <td>".$lC[$i]['reponse']."</td>

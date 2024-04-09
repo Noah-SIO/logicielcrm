@@ -21,7 +21,7 @@ if(isset($_POST['creer'])){
     <input type="text" name="id_commercial" required><br>
     <label for="date">Date:</label>
     <input type="date" name="date" required><br>
-    <input type="submit" name="creer" value="Créer">
+    <input type="submit" name="creer" value="Créer" class='button'>
 </form>
 
 

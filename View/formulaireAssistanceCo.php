@@ -21,6 +21,6 @@ echo"<label for='idrespinfo'>Entrer un Responsable Informatique :</label></br></
     echo"<input type='text' name='suj' placeholder='Un problème de MDP' required></br></br>";
     echo"<label for='mess'>Et votre Message :</label></br></br>";
     echo"<textarea id='mess' name='mess' rows='7' cols='50' placeholder='salut c est jêrome du service comptable j ai un problème de mot de passe...' required></textarea></br></br>";
-    echo"<input type='submit' name='valider'class='button' value='Envoyer au Service Informatique'/></br>";
+    echo"<input type='submit' class='button' name='valider'class='button' value='Envoyer au Service Informatique'/></br>";
     echo"</form>";
 ?>

@@ -25,7 +25,7 @@
                 <option value=5 <?php if ($user[0]['droit'] == 5) { echo 'selected'; } ?>>Responsable informatique</option>
                 <option value=6 <?php if ($user[0]['droit'] == 6) { echo 'selected'; } ?>>Directeur général</option>
             </select>
-            <input type="submit" name="rechercher" id='rechercher' value='Modifier'></br>
+            <input type="submit" name="rechercher" id='rechercher' value='Modifier' class="button"></br>
         </fieldset>           
     </form>
 </html>

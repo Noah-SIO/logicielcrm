@@ -10,9 +10,9 @@ $contact = new Contact($bdsqll);//même chose
 echo"<form method='post'>";
 echo"<label for='id'>Entrer L'id du Contact à Supprimer :</label></br></br>";
 echo"<input type='text' name='id' placeholder='1, 2, 3...' required></br></br>";
-echo"<input type='submit' name='valider' class='button' value='supprimer Contact'/>";
+echo"<input type='submit' class='button' name='valider' class='button' value='supprimer Contact'/>";
 echo"</form>";
-
+}
 
 
 

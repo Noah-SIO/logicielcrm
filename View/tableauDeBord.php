@@ -1,6 +1,5 @@
 <?php
-echo "<h2>Tableau de bord</h2></br> <h4>Bonjour ".$_SESSION['nom']." ".$_SESSION['prenom'].", nous sommes le ".date("d-m-Y")." | ".$poste[$_SESSION['droit']]."</h4></br>";
-
+echo "<h2>Tableau de bord</h2>";
 if ($_SESSION['droit'] == 1){
     echo "<div class='listeRappels'>";
     require('View/listeRappels.php');

@@ -62,6 +62,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <input type="text" name="reponse" value="<?php echo $contact->getReponse(); ?>"><br>
     <label for="date">Date:</label>
     <input type="date" name="date" value="<?php echo $contact->getDate(); ?>"><br>
-    <input type="submit" name="modifier" value="Modifier">
+    <input type="submit" name="modifier" value="Modifier" class="button">
 </form>
 

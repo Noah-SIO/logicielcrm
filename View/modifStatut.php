@@ -14,7 +14,7 @@ echo "<li>date : ".$issueSelected['date']." | statut : ".$statut[$issueSelected[
             <option value=2>En cours</option>
             <option value=3>Terminé</option>
         </select>
-        <input type="submit" name="Modifier" id='Modifier' value='Modifier'></br>
+        <input type="submit" name="Modifier" id='Modifier' value='Modifier' class="button"></br>
     </form>
 </html>
 <?php    

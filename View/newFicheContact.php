@@ -33,7 +33,7 @@ echo "</select><br><br>";
 <input type='text' name='dem' placeholder='ex : problème d’impression' required><br><br>
 <label for='rep'>Et la réponse :</label><br>
 <textarea id='rep' name='rep' rows='7' cols='50' placeholder='Nous vous envoyons les données par e-mail' required></textarea><br><br>
-<input type='submit' name='valider'class='button' value='Creer le Contact'>
+<input type='submit' name='valider'class='button' value='Creer le Contact' class='button'>
 <?php
 echo"</form>";
 ?>

@@ -1,7 +1,7 @@
 
 <form action="?action=tableauDeBord" method="POST">
     <input type="text" name="recherche" placeholder="Recherche" required>
-    <input type="submit" value="Rechercher">
+    <input type="submit" value="Rechercher" class="button" class='button'>
 </form>
 
 <?php 

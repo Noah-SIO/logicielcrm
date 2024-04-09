@@ -8,7 +8,7 @@
             <option value=2>en cours</option>
             <option value=3>terminé</option>
         </select>
-        <input type="submit" name="rechercher" id='rechercher' value='Rechercher'></br>
+        <input type="submit" name="rechercher" id='rechercher' value='Rechercher' class='button'></br>
     </form>
 </html>
 <?php

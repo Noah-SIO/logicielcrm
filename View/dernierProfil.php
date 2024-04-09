@@ -10,7 +10,7 @@ foreach ($derniersTroisProfils as $utilisateur) {
     echo "Prénom : " . $utilisateur->getPrenom() . "<br>";
     echo "Identifiant : " . $utilisateur->getIdentifiant() . "<br>";
     echo "Profil : " . $poste[$utilisateur->getProfil()] . "<br>";
-    echo '<a href="?action=ficheProfil&id=' . $utilisateur->getID() . '"><button>Voir la fiche d\'utilisateur</button></a>';
+    echo '<a href="?action=ficheProfil&id=' . $utilisateur->getID() . '"><button>Voir la fiche</button></a>';
     echo "<hr>";
 }
 echo "</br></br>";

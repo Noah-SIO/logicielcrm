@@ -121,20 +121,7 @@ Class Contact{
             $sql = "SELECT * FROM `contact` ORDER BY $filtre $ordre LIMIT $nbr";
             $requete = $this->bd->query($sql);
             $donnees = $requete->fetchAll(PDO::FETCH_ASSOC);
-            $tableauContacts = [];
-            foreach ($donnees as $contactData) {
-                $contact = new FicheContact(
-                    $contactData['id'],
-                    $contactData['id_utilisateur'],
-                    $contactData['id_entreprise'],
-                    $contactData['date'],
-                    $contactData['demande'],
-                    $contactData['reponse'],
-                    $contactData['moyen_contact']
-                );
-                $tableauContacts[] = $contact;
-            }
-            return $tableauContacts;
+            return $donnees;
         }
     }
     

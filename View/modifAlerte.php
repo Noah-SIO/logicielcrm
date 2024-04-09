@@ -13,7 +13,7 @@ if(isset($_GET['idAlerte']) && ($_GET['statutAlerte'])){
 <html>
     <form method="post"></br>
         <label for="idAlerte">Êtes-vous de vouloir terminer le rappel ci-dessus ?</label></br>
-        <input type="submit" name="terminer" id='terminer' value='Terminer'></br>
+        <input type="submit" name="terminer" id='terminer' value='Terminer' class='button'></br>
     </form>
 </html>
 <?php
