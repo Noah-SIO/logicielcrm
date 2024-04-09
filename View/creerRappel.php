@@ -3,7 +3,7 @@ $rappel = new ManagerRappelAlerte();//même chose
 $user = new ManagerUtilisateur();//même chose
 $donneestableau = $user->SearchUserByType('%','ALL');
 echo"<h1>Formulaire Création de Rappel</h1>";
-echo "<p>Ce service permet aux employés de l'entreprise de ne pas oublier les tâches qu'ils auront à effectuer en créant un rappel qu'ils recevront d'ici quelques jours.</p></br>";
+echo "<p>Ce service permet aux employés de l'entreprise de ne pas oublier les tâches qu'ils auront à effectuer en créant un rappel qu'ils recevront d'ici quelques jours.</p><br/>";
 echo "<form method='post'>";
 echo "<label for=''>Choix destinataire :</label><br/><br/>";
 echo "<input type='checkbox' id='sois' name='destinataire' value='" . $_SESSION['id'] . "'/>";
