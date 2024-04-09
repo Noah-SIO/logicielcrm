@@ -56,7 +56,7 @@ img {
     padding: 10px 20px;
     border: none;
     border-radius: 20px; 
-    background-color: #333; 
+    background-color: hsl(0, 0%, 58%); 
     color: #fff; 
     font-size: 16px;
     text-align: center;
@@ -102,6 +102,46 @@ input[type="text"] {
 }
   
 
+/* Style de base pour les listes non ordonnées et ordonnées */
+ul, ol {
+    margin: 0; 
+    padding: 0; 
+  }
+  
+  /* Style de base pour les éléments de liste */
+  li {
+    list-style: none; 
+    margin-bottom: 5px; 
+  }
+  
+  /* Style de survol pour les éléments de liste */
+  li:hover {
+    background-color: #f0f0f0;
+    cursor: pointer; 
+  }
 
+
+
+  /* Style de base pour les champs de saisie de mot de passe */
+input[type="password"] {
+    padding: 10px; /* Marge intérieure */
+    border: 1px solid #ccc; /* Bordure */
+    border-radius: 5px; /* Coins arrondis */
+    font-size: 16px; /* Taille de la police */
+  }
+  
+  /* Style lorsque le champ de saisie est survolé */
+  input[type="password"]:hover {
+    border-color: #007bff; /* Couleur de la bordure au survol */
+  }
+  
+  /* Style lorsque le champ de saisie est en focus */
+  input[type="password"]:focus {
+    outline: none; /* Suppression du contour */
+    border-color: #007bff; /* Couleur de la bordure en focus */
+    box-shadow: 0 0 5px #007bff; /* Ombre autour du champ de saisie en focus */
+  }
+  
+  
 
   

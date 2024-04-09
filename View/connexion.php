@@ -5,7 +5,7 @@
             <label for="login">Identifiant</label></br>
             <input type="text" name="login" id="login"></br>
             <label for="password">Mot de passe</label></br>
-            <input type="password" name="password" id="password"></br>
+            <input type="password" name="password" id="password"><br/><br/>
             <input type="submit" name="connection" id='connection' value="Se connecter" class='button'></br>
         </fieldset>
     </form>
