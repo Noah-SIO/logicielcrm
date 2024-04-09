@@ -14,7 +14,6 @@ if (isset($_GET['id'])){
 
 }
     ?>
-    <form>
         <fieldset>
             <legend>Fiche entreprise</legend>
                 <ul>
@@ -29,10 +28,9 @@ if (isset($_GET['id'])){
                     <li><b>Fichier(s) lié(s) :</b> <?php if ($fichier != NULL){ foreach ($fichier as $values) { echo $values -> getNom()." | ".$values -> getDate()." | ".$values -> getLienDoc(); }} else { echo "Aucun fichier"; } ?></li>
                 </ul>
         </fieldset>
-    </form>
 <?php
 if ($_SESSION['droit'] == 3){
-    echo "<a href='?action=afficherContactsEntreprise&id=" . $idEnt . "'><button>Afficher les contacts de l'entreprise</button></a>";
+    echo "<a href='?action=afficherContactsEntreprise&id=" . $idEnt . "'><button>Historique des contacts</button></a>";
     echo "<a href='?action=modifFicheEntreprise&id=".$idEnt."'><button>Modifier la fiche</button></a>";
 }
 
@@ -42,7 +40,7 @@ if ($_SESSION['droit'] == 3 || $_SESSION['droit'] == 4){
 }
 if ($_SESSION['droit'] == 1 || $_SESSION['droit'] == 3){
     echo "<a href='?action=creerRappel&iddest=".$entreprise -> getEntreprise($idEnt)['id_commercial']."'><button>Créer un rappel</button></a>";
-    echo "<a href='?action=afficherContactsEntreprise&id=" . $idEnt . "'><button>Afficher les contacts de l'entreprise</button></a>";
+    // echo "<a href='?action=afficherContactsEntreprise&id=" . $idEnt . "'><button>Afficher les contacts de l'entreprise</button></a>";
 
 }
 if ($_SESSION['droit'] == 1){
