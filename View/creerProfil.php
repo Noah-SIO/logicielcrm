@@ -4,7 +4,7 @@ if (isset($_POST['nom'], $_POST['prenom'], $_POST['login'], $_POST['mdp'], $_POS
     $utilisateur = new Utilisateur(NULL,$_POST['nom'], $_POST['prenom'], $_POST['login'], $_POST['mdp'], $_POST['droit']);
     $utilisateurProfil = new ManagerUtilisateur();
     $utilisateurProfil -> addUser($utilisateur);
-    echo "<h3>Utilisateur créé</h3>";
+    echo "<strong><p>-----------------------Utilisateur créé avec Succès !!!--------------------</p></strong>";
     //echo "<script>setTimeout(function(){location.reload(); },3000);</script>";
 }
 ?>
