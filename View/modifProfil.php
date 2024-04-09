@@ -34,11 +34,13 @@
 if (isset($_POST['rechercher'])) {
     if ($_POST['mdp'] == "") {
         $mdp = $user[0]['mdp'];
-    }
     $utilisateur = new Utilisateur($_GET['id'], $_POST['nom'], $_POST['prenom'], $_POST['login'], $mdp, $_POST['droit']);
-    
+    }
+    else{
+        $utilisateur = new Utilisateur($_GET['id'], $_POST['nom'], $_POST['prenom'], $_POST['login'], $_POST['mdp'], $_POST['droit']);
+    }
     $utilisateurProfil -> ModifyUser($utilisateur);
-    echo"yes";
+    echo"<strong><p>-------Utilisateur Modifié Avec Succès !!!--------------</p></strong>";
 }
 
 ?>
