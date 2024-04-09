@@ -22,7 +22,7 @@ echo "<li>date : ".$issueSelected['date']." | statut : ".$statut[$issueSelected[
 if (isset($_POST['statut'])){
     $assistanceStatut -> updateStatut($_GET['id'], $_POST['statut']);
     if ($assistanceStatut -> updateStatut($_GET['id'], $_POST['statut']) ==  true){
-        echo "</br>-- Statut changé --";
+        echo "</br><strong><p>------------------ Statut Changé avec Succès !!! -----------------</p></strong>";
         echo " <a href='?action=tableauDeBord><button>Retour tableau de bord</button></a>";
     }
 }
