@@ -1,5 +1,5 @@
 <?php
-echo "<h2>Tableau de bord</h2>";
+echo "<h2>Tableau de bord</h2></br>";
 if ($_SESSION['droit'] == 1){
     echo "<div class='listeRappels'>";
     require('View/listeRappels.php');
@@ -24,13 +24,14 @@ if ($_SESSION['droit'] == 2){
 }
 
 if ($_SESSION['droit'] == 3){
+    echo "<a href='?action=creerFicheEntreprise'>Créer une fiche entreprise</a><br/><br/>";
     echo "<div class='listeFicheContact'>";
     require('View/listeFicheContact.php');
     echo "</div>";
     echo "<div class='listeRappels'>";
     require('View/listeRappels.php');
     echo "</div>";
-    echo "<input type='button' class='button2' value='Créer une fiche entreprise' onclick='document.location.href=\"?action=creerFicheEntreprise\"'>";
+    
 }
 
 if ($_SESSION['droit'] == 4){
