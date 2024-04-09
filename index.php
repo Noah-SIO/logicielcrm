@@ -11,6 +11,7 @@ require_once("Class/utilisateur.php");
 require_once("Class/fichecontact.php");
 require_once("Class/rappelAlerte.php");
 
+$alerte = [1 => "En cours", 2 => "Terminé"];
 $type = [1 => "Téléphone fixe", 2 => "Téléphone portable", 3 => "E-mail"];
 $statut= [1 => "à faire", 2 => "en cours", 3 => "terminé"];
 $poste = [1 => "Conseiller client", 2 => "Manager", 3 => "Commercial", 4 => "Comptable", 5 => "Responsable informatique", 6 => "Directeur général"];
@@ -108,7 +109,7 @@ if(isset($_GET['action'])){
         require_once("View/attacheDocument.php");
     }
     if ($_GET["action"] == "afficherContactsEntreprise"){
-        $title = "Voici tout les contacts lié a l'entreprise.";
+        $title = "Page historique de contact";
         require_once("View/headerNavigation.php");
         require_once("View/afficherContactsEntreprise.php");
     }
