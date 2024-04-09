@@ -18,7 +18,7 @@ $donneestableau = $rappel->getAlerteRappel($_SESSION['id']);
         echo "<li> <b>Sujet :</b> ".$donneestableau[$i]->getSujet()."</li>";
         echo "<li> <b>Contenu :</b> ".$donneestableau[$i]->getContenu();
         echo "</li>
-            </ul>";
+            </ul> </br>";
         }
     }
 ?>
