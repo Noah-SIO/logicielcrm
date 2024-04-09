@@ -30,7 +30,7 @@ if ($_SESSION['droit'] == 3){
     echo "<div class='listeRappels'>";
     require('View/listeRappels.php');
     echo "</div>";
-    echo "<a href='?action=creerFicheEntreprise'>Créer une fiche entreprise</a></br>";
+    echo "<input type='button' class='button2' value='Créer une fiche entreprise' onclick='document.location.href=\"?action=creerFicheEntreprise\"'>";
 }
 
 if ($_SESSION['droit'] == 4){

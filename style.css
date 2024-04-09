@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    margin: 0;
+    margin: 30;
     padding: 0;
     background-color: #f0f0f0;
 }
@@ -63,13 +63,30 @@ img {
     text-decoration: none;
     cursor: pointer;
     transition: background-color 0.3s ease;
-  }
-  
+  }  
   /* Style au survol */
   .button:hover {
     background-color: #555; 
   }
-  
+
+  .buttonNAV {
+    display: inline-block;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 10px; 
+    background-color: hsl(0, 0%, 58%); 
+    color: #fff; 
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .buttonNAV:hover {
+    background-color: #555; 
+  }
+
   /* Style pour les boutons de taille différente */
   .button.large {
     padding: 15px 30px;
@@ -87,6 +104,19 @@ img {
     color: #fff; 
   }
   
+  .button2 {
+    display: inline-block;
+    padding: 4px 8px;
+    border: none;
+    border-radius: 20px; 
+    background-color: hsl(0, 0%, 72%); 
+    color: #fff; 
+    font-size: 10px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
 
   /* Style de base pour les champs de saisie texte */
 input[type="text"] {
@@ -144,4 +174,22 @@ input[type="password"] {
   
   
 
+/* Style des boutons radio */
+input[type="radio"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid #2a5f26;
+    margin: 0 5px 0 0;
+    cursor: pointer;
+  }
+  
+  /* Style du bouton radio coché */
+  input[type="radio"]:checked {
+    background-color: #2a5f26;
+  }
   
