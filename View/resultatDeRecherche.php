@@ -16,8 +16,8 @@ $managerContact = new Contact();
 $contact = $managerContact->getContactByID((int)$recherche);
 
 if ($statutUtilisateur == 3 or $statutUtilisateur == 4 or $statutUtilisateur == 6 or $statutUtilisateur == 5 or $statutUtilisateur == 1) {
+    echo "<strong><p>Resultat de recherche Entreprise</p></strong>";
     if (!empty($listeEntreprise)) {
-        echo "<strong><p>Resultat de recherche Entreprise</p></strong>";
         foreach ($listeEntreprise as $entreprise) {
             echo "Nom: " . $entreprise->getNom() . " - Prenom: " . $entreprise->getPrenom() . " - Societe: " . $entreprise->getSociete() . " - Poste: " . $entreprise->getPoste() . "</p>";
             echo '<a href="index.php?action=ficheEntreprise&id=' . $entreprise->getId() . '"><button class="MINIboutton">Voir fiche</button></a></br></br>';
