@@ -9,15 +9,15 @@
     <nav style="display: flex; justify-content: space-between; align-items: center;">
         <ul style="list-style: none; display: flex; padding: 0;">
             <li style="margin-right:5px">
-                <button onclick="window.location.href='?action=tableauDeBord'" class="button">Accueil</button>
+                <button onclick="window.location.href='?action=tableauDeBord'" class="buttonNAV">Accueil</button>
             </li>
             <li style="margin-right:5px">
-                <button onclick="window.location.href='?action=formulaireAssistanceCo'" class="button">Assistance</button>
+                <button onclick="window.location.href='?action=formulaireAssistanceCo'" class="buttonNAV">Assistance</button>
             </li>
             <li style="margin-right:5px">   
             <?php require_once('barreDeRecherche.php')?>             
             </li>
-            <form style="margin-left: auto;" action="" method="post"><input type="submit" name="deconnexion" class="button" value="Se déconnecter"></form>
+            <form style="margin-left: auto;" action="" method="post"><input type="submit" name="deconnexion" class="buttonNAV" value="Se déconnecter"></form>
             
         </ul>
     </nav>

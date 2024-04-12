@@ -30,20 +30,39 @@ if (isset($_GET['id'])){
         </fieldset>
 <?php
 if ($_SESSION['droit'] == 1 or $_SESSION['droit'] == 2 or $_SESSION['droit'] == 3 or $_SESSION['droit'] == 6){
-    echo "<a href='?action=afficherContactsEntreprise&id=" . $idEnt . "'><button>Historique des contacts</button></a>";
-    echo "<a href='?action=modifFicheEntreprise&id=".$idEnt."'><button>Modifier la fiche</button></a>";
+    echo "<a href='?action=afficherContactsEntreprise&id=" . $idEnt . "'><button class='MINIbutton'>Historique des contacts</button></a>";
+    echo "<a href='?action=modifFicheEntreprise&id=".$idEnt."'><button class='MINIbutton'>Modifier la fiche</button></a>";
 }
 
 if ($_SESSION['droit'] == 3 || $_SESSION['droit'] == 4){
-    echo "<a href='?action=attacheDocument&ident=".$idEnt."'><button>Attacher un document</button></a>";
+    echo "<a href='?action=attacheDocument&ident=".$idEnt."'><button class='MINIbutton'>Attacher un document</button></a>";
 
 }
 if ($_SESSION['droit'] == 1 || $_SESSION['droit'] == 3){
     $_GET['iddest'] = $entreprise -> getEntreprise($idEnt)['id_commercial'];
 
-    echo "<a href='?action=creerRappel&iddest=".$_GET['iddest']."'><button>Créer un rappel</button></a>";
+    echo "<a href='?action=creerRappel&iddest=".$_GET['iddest']."'><button class='MINIbutton'>Créer un rappel</button></a>";
 }
 if ($_SESSION['droit'] == 1){
-    echo "<a href='?action=creerFicheContact&identreprise=".$entreprise -> getEntreprise($idEnt)['id']."'><button>Ajouter un Contact</button></a>";
+    echo "<a href='?action=creerFicheContact&identreprise=".$entreprise -> getEntreprise($idEnt)['id']."'><button class='MINIbutton'>Ajouter un Contact</button></a>";
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
