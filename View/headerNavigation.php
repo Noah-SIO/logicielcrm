@@ -9,10 +9,10 @@
     <nav style="display: flex; justify-content: space-between; align-items: center;">
         <ul style="list-style: none; display: flex; padding: 0;">
             <li style="margin-right:5px">
-                <button onclick="window.location.href='?action=tableauDeBord'">Accueil</button>
+                <button onclick="window.location.href='?action=tableauDeBord'" class="button">Accueil</button>
             </li>
             <li style="margin-right:5px">
-                <button onclick="window.location.href='?action=formulaireAssistanceCo'">Assistance</button>
+                <button onclick="window.location.href='?action=formulaireAssistanceCo'" class="button">Assistance</button>
             </li>
             <li style="margin-right:5px">   
             <?php require_once('barreDeRecherche.php')?>             
