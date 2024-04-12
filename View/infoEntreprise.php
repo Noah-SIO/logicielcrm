@@ -43,7 +43,7 @@ if ($_SESSION['droit'] == 1 || $_SESSION['droit'] == 3){
 
     echo "<a href='?action=creerRappel&iddest=".$_GET['iddest']."'><button>Créer un rappel</button></a>";
 }
-if ($_SESSION['droit'] == 1){
+if ($_SESSION['droit'] == 1 || $_SESSION['droit'] == 3){
     echo "<a href='?action=creerFicheContact&identreprise=".$entreprise -> getEntreprise($idEnt)['id']."'><button>Ajouter un Contact</button></a>";
 }
 

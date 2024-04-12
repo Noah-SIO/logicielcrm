@@ -44,9 +44,9 @@ if(!empty($tmp)){
 
     }
 }
+}
 else{
     echo "<strong><p>Aucun entreprise trouve</p></strong>";
-}
 }
 
 
@@ -72,7 +72,7 @@ if($statutUtilisateur == 3 or $statutUtilisateur == 6 or $statutUtilisateur == 4
 if(!empty($fichiers)){
     echo "<strong><p>Resultat de recherche Fichier</p></strong>";
     foreach($fichiers as $fichier){
-        echo "Nom: ".$fichier->getNom()." - Type: ".$fichier->getType()." - Date: ".$fichier->getDate()."<br>";
+        echo "Nom: ".$fichier->getNom()." - Type: ".$document[$fichier->getType()]." - Date: ".$fichier->getDate()."<br>";
         echo "<a href='view/download.php?file=../".$fichier->getLienDoc()."'><button>télécharger ". $fichier->getNom()." </button></a>"."<br><br>";
     }
 }

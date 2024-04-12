@@ -1,5 +1,5 @@
 <?php
-$idEntreprise = 5;///modifier après
+$idEntreprise = $_GET['id'];
 $utilisateurManager = new ManagerUtilisateur();
 $commercial = $utilisateurManager->returnAllUsers();
 $entrepriseManager = new ManagerEntreprise();
@@ -21,7 +21,7 @@ if (isset($_POST['modifier'])) {
     $modifEntreprie = new Entreprise(NULL,$nom, $prenom, $societe,$poste, $id_commercial, $date);
     $modifEntreprie->setId($idEntreprise);
     $entrepriseManager->ModifClient($modifEntreprie);
-    echo"<h3>Client/Entreprise Modifier avec Succès !!!</h3>";
+    echo"<h3>Entreprise Modifier avec Succès !!!</h3>";
     //echo "<script>setTimeout(function(){location.reload(); },3000);</script>";
     
 }
