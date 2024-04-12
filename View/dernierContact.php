@@ -8,11 +8,11 @@ if ($derniersContacts) {
     foreach ($derniersContacts as $dernierContact) {
         $profil = $managerUtilisateur->GetUserById($dernierContact['id_utilisateur']);
         echo "Conseiller : " . $profil[0]['nom'] . "<br>";
-        echo "ID Entreprise : " . $dernierContact->getIdEntreprise() . "<br>";
-        echo "Date : " . $dernierContact->getDate() . "<br>";
-        echo "Moyen de contact : " . $dernierContact->getMoyenDeContact() . "<br>";
-        echo "Demande : " . $dernierContact->getDemande() . "<br>";
-        echo "Réponse : " . $dernierContact->getReponse() . "<br>";
+        echo "ID Entreprise : " . $dernierContact['id_entreprise'] . "<br>";
+        echo "Date : " . $dernierContact['date' ] . "<br>";
+        echo "Moyen de contact : " . $type[$dernierContact['moyen_contact']] . "<br>";
+        echo "Demande : " . $dernierContact['demande'] . "<br>";
+        echo "Réponse : " . $dernierContact['reponse'] . "<br>";
         echo "<hr>";
         //echo "<script>setTimeout(function(){location.reload(); },3000);</script>";
     }
