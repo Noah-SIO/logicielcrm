@@ -80,13 +80,6 @@ if(!empty($contact)){
         echo "Date: " . $contact->getDate() . " - Demande: " ,$contact->getDemande() . " - Reponse: " .$contact->getReponse(). ".</p>";
         echo '<a href="index.php?action=ficheContact&id='.$contact->getId(). '"><button>Voir fiche</button></a>';
         }
-        if (!empty($tmp)) {
-            foreach ($tmp as $entreprise) {
-                echo "Nom: " . $entreprise->getNom() . " - Prenom: " . $entreprise->getPrenom() . " - Societe: " . $entreprise->getSociete() . " - Poste: " . $entreprise->getPoste() . "</p>";
-                echo '<a href="index.php?action=ficheEntreprise&id=' . $entreprise->getId() . '"><button class="MINIboutton">Voir fiche</button></a></br></br>';
-
-            }
-        }
     }
 } else {
     echo "<strong><p>Aucune fiche de contact trouvée</p></strong>";
