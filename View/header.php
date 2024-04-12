@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
-    <header>
+    <head>
         <title><?php echo $title ?></title>    
-    </header>
+    </head>
 <body>
     <h1>Bienvenue sur le CRM de votre entreprise</h1> 
