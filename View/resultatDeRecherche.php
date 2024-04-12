@@ -84,11 +84,9 @@ if(!empty($contact)){
 
             }
         }
-    } else {
-        echo "<strong><p>Aucune entreprise trouvée</p></strong>";
     }
 } else {
-    echo "<strong><p>Aucune entreprise trouvée</p></strong>";
+    echo "<strong><p>Aucune fiche de contact trouvée</p></strong>";
 }
 
 if ($statutUtilisateur == 5 or $statutUtilisateur == 6 or $statutUtilisateur == 4 or $statutUtilisateur == 0) {
@@ -115,15 +113,4 @@ if ($statutUtilisateur == 3 or $statutUtilisateur == 6 or $statutUtilisateur == 
     }
 }
 
-if ($statutUtilisateur == 0 or $statutUtilisateur == 6 or $statutUtilisateur == 2 or $statutUtilisateur == 1 or $statutUtilisateur == 5) {
-    if (!empty($contact)) {
-        echo "<strong><p>Resultat de recherche Contact</p></strong>";
-        foreach ($contact as $contact) {
-            echo "Date: " . $contact->getDate() . " - Demande: " . $contact->getDemande() . " - Reponse: " . $contact->getReponse() . ".</p>";
-            echo '<a href="index.php?action=ficheContact&id=' . $contact->getId() . '"><button class="MINIboutton">Voir fiche</button></a>';
-        }
-    } else {
-        echo "<strong><p>Aucun contact trouvé</p></strong>";
-    }
-}
 ?>
