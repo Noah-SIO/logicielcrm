@@ -1,14 +1,17 @@
 <?php
 $managerContact = new Contact();
 $managerUtilisateur = new ManagerUtilisateur();
+$managerEntreprise = new ManagerEntreprise();
 $derniersContacts = $managerContact->getContact(3, 'date', 'DESC');
 echo "<h2>Les derniers contacts</h2>";
 echo "<hr>";
 if ($derniersContacts) {
     foreach ($derniersContacts as $dernierContact) {
+        $entreprise = $managerEntreprise->returnClientById($dernierContact['id_entreprise']);
+        $nomEntreprise = $entreprise->getSociete();
         $profil = $managerUtilisateur->GetUserById($dernierContact['id_utilisateur']);
         echo "Conseiller : " . $profil[0]['nom'] . "<br>";
-        echo "ID Entreprise : " . $dernierContact['id_entreprise'] . "<br>";
+        echo "Entreprise : " .$nomEntreprise  . "<br>";
         echo "Date : " . $dernierContact['date' ] . "<br>";
         echo "Moyen de contact : " . $type[$dernierContact['moyen_contact']] . "<br>";
         echo "Demande : " . $dernierContact['demande'] . "<br>";
