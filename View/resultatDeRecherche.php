@@ -44,9 +44,9 @@ if(!empty($tmp)){
 
     }
 }
-}
 else{
     echo "<strong><p>Aucun entreprise trouve</p></strong>";
+}
 }
 
 
