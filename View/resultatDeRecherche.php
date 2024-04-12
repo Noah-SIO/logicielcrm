@@ -15,6 +15,8 @@ $fichiers = $managerFichier->GetFichierByName($recherche);
 $managerContact = new Contact();
 $contact = $managerContact->getContactByID((int)$recherche);
 
+//recherche Entreprise
+
 if ($statutUtilisateur == 3 or $statutUtilisateur == 4 or $statutUtilisateur == 6 or $statutUtilisateur == 5 or $statutUtilisateur == 1) {
     echo "<strong><p>Resultat de recherche Entreprise</p></strong>";
     if (!empty($listeEntreprise)) {
@@ -32,10 +34,11 @@ if(!empty($tmp)){
 
     }
 }
-}
 else{
     echo "<strong><p>Aucun entreprise trouve</p></strong>";
 }
+}
+
 
 
 
@@ -89,28 +92,29 @@ if(!empty($contact)){
     echo "<strong><p>Aucune fiche de contact trouvée</p></strong>";
 }
 
-if ($statutUtilisateur == 5 or $statutUtilisateur == 6 or $statutUtilisateur == 4 or $statutUtilisateur == 0) {
-    if (!empty($listeUtilisateur)) {
-        echo "<strong><p>Resultat de recherche Utilisateur</p></strong>";
-        foreach ($listeUtilisateur as $utilisateur) {
-            echo "Nom: " . $utilisateur->getNom() . " - Prenom: " . $utilisateur->getPrenom() . " - Identifiant: " . $utilisateur->getIdentifiant() . " - Profil: " . $poste[$utilisateur->getProfil()] . "</p>";
-            echo '<a href="index.php?action=ficheProfil&id=' . $utilisateur->getId() . '"><button class="MINIboutton">Voir fiche</button></a></br></br>';
-        }
-    } else {
-        echo "<strong><p>Aucun utilisateur trouvé</p></strong>";
-    }
-}
 
-if ($statutUtilisateur == 3 or $statutUtilisateur == 6 or $statutUtilisateur == 4 or $statutUtilisateur == 0 or $statutUtilisateur == 5) {
-    if (!empty($fichiers)) {
-        echo "<strong><p>Resultat de recherche Fichier</p></strong>";
-        foreach ($fichiers as $fichier) {
-            echo "Nom: " . $fichier->getNom() . " - Type: " . $fichier->getType() . " - Date: " . $fichier->getDate() . "<br>";
-            echo '<a href="view/download.php?file=../' . $fichier->getLienDoc() . '"><button class="MINIboutton">Télécharger ' . $fichier->getNom() . '</button></a><br><br>';
-        }
-    } else {
-        echo "<strong><p>Aucun fichier trouvé</p></strong>";
-    }
-}
+// if ($statutUtilisateur == 5 or $statutUtilisateur == 6 or $statutUtilisateur == 4 or $statutUtilisateur == 0) {
+//     if (!empty($listeUtilisateur)) {
+//         echo "<strong><p>Resultat de recherche Utilisateur</p></strong>";
+//         foreach ($listeUtilisateur as $utilisateur) {
+//             echo "Nom: " . $utilisateur->getNom() . " - Prenom: " . $utilisateur->getPrenom() . " - Identifiant: " . $utilisateur->getIdentifiant() . " - Profil: " . $poste[$utilisateur->getProfil()] . "</p>";
+//             echo '<a href="index.php?action=ficheProfil&id=' . $utilisateur->getId() . '"><button class="MINIboutton">Voir fiche</button></a></br></br>';
+//         }
+//     } else {
+//         echo "<strong><p>Aucun utilisateur trouvé</p></strong>";
+//     }
+// }
+
+// if ($statutUtilisateur == 3 or $statutUtilisateur == 6 or $statutUtilisateur == 4 or $statutUtilisateur == 0 or $statutUtilisateur == 5) {
+//     if (!empty($fichiers)) {
+//         echo "<strong><p>Resultat de recherche Fichier</p></strong>";
+//         foreach ($fichiers as $fichier) {
+//             echo "Nom: " . $fichier->getNom() . " - Type: " . $fichier->getType() . " - Date: " . $fichier->getDate() . "<br>";
+//             echo '<a href="view/download.php?file=../' . $fichier->getLienDoc() . '"><button class="MINIboutton">Télécharger ' . $fichier->getNom() . '</button></a><br><br>';
+//         }
+//     } else {
+//         echo "<strong><p>Aucun fichier trouvé</p></strong>";
+//     }
+// }
 
 ?>

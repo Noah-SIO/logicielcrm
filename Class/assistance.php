@@ -169,10 +169,10 @@ class ManagerAssistance{
     
         public function statsTimeSolvedIssues(){
             $date = date('Y-m-d', strtotime('-10 days'));
-            $sql = "SELECT AVG(TIMESTAMPDIFF(DAY, date, date_resolution)) AS moy FROM assistance;";
+            $sql = "SELECT TRUNCATE(AVG(TIMESTAMPDIFF(DAY, date, date_resolution)),0) AS moy FROM assistance;";
             $requete = $this->bd->query($sql);
             $donnees = $requete -> fetch(PDO::FETCH_ASSOC);
-            return $donnees['moy'];
+            return round($donnees['moy']);
         }
     }    
     

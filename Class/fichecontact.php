@@ -1,4 +1,4 @@
-x<?php 
+<?php 
 
 Class FicheContact{
     private $id;
